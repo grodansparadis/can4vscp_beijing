@@ -30,3 +30,6 @@
 
 # Debug files
 *.dSYM/
+/eagle/*.s#1
+/eagle/*.s#2
+/eagle/*.pro
