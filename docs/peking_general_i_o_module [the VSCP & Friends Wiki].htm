@@ -1,0 +1,714 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>
+    peking_general_i_o_module    [the VSCP &amp; Friends Wiki]
+  </title>
+
+  <meta name="generator" content="DokuWiki">
+<meta name="robots" content="index,follow">
+<meta name="keywords" content="peking general i o module">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.vscp.org/wiki/lib/exe/opensearch.php" title="the VSCP &amp; Friends Wiki">
+<link rel="start" href="http://www.vscp.org/wiki/">
+<link rel="contents" href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module?do=index" title="Sitemap">
+<link rel="alternate" type="application/rss+xml" title="Recent changes" href="http://www.vscp.org/wiki/feed.php">
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="http://www.vscp.org/wiki/feed.php?mode=list&amp;ns=">
+<link rel="edit" title="Edit this page" href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module?do=edit">
+<link rel="alternate" type="text/html" title="Plain HTML" href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module?do=export_xhtml">
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module?do=export_raw">
+<link rel="canonical" href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module">
+<link rel="stylesheet" type="text/css" href="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/css.css">
+<script type="text/javascript">/*<![CDATA[*/var NS='';var SIG=' --- //[[akhe@grodansparadis.com|Ake Hedman]] 2015/05/06 12:14//';var JSINFO = {"id":"peking_general_i_o_module","namespace":"","plugin_folded":{"hide":"hide","reveal":"reveal"}};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/js.php"></script><style type="text/css" media="screen"><!--/*--><![CDATA[/*><!--*/ .folded.hidden { display: none; } .folder .indicator { visibility: visible; } /*]]>*/--></style>
+
+  <link rel="shortcut icon" href="http://www.vscp.org/wiki/lib/tpl/sidebar/images/favicon.ico">
+
+  </head>
+
+<body class="sidebar sidebar_inside_left">
+<div class="dokuwiki">
+  <div class="notify">Hotfix release available: 2014-09-29d "Hrun".
+          <a href="http://download.dokuwiki.org/">upgrade now!</a> [46.4] <a href="http://www.dokuwiki.org/update_check">(what's this?)</a></div>
+  <div class="stylehead">
+
+    <div class="header">
+      <div class="pagename">
+        [[<a href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module?do=backlink" title="Backlinks">peking_general_i_o_module</a>]]
+      </div>
+      <div class="logo">
+        <a href="http://www.vscp.org/wiki/doku.php/start" name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]">the VSCP &amp; Friends Wiki</a>      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+    
+    <div class="bar" id="bar__top">
+      <div class="bar-left" id="bar__topleft">
+        <form class="button btn_edit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="0" type="hidden"><input value="Edit this page" class="button" accesskey="e" title="Edit this page [E]" type="submit"></div></form>        <form class="button btn_revs" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="revisions" type="hidden"><input value="Old revisions" class="button" accesskey="o" title="Old revisions [O]" type="submit"></div></form>      </div>
+
+      <div class="bar-right" id="bar__topright">
+        <form class="button btn_recent" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="recent" type="hidden"><input value="Recent changes" class="button" accesskey="r" title="Recent changes [R]" type="submit"></div></form>        <form action="/wiki/doku.php/start" accept-charset="utf-8" class="search" id="dw__search" method="get" role="search"><div class="no"><input name="do" value="search" type="hidden"><input id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" type="text"><input value="Search" class="button" title="Search" type="submit"><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>&nbsp;
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+        <div class="breadcrumbs">
+      <span class="bchead">Trace:</span> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/nurnberg" class="breadcrumbs" title="nurnberg">nurnberg</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/o_din_database_description" class="breadcrumbs" title="o_din_database_description">o_din_database_description</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/o_din_database_howto" class="breadcrumbs" title="o_din_database_howto">o_din_database_howto</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/o_din_database_structure" class="breadcrumbs" title="o_din_database_structure">o_din_database_structure</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/odin_information" class="breadcrumbs" title="odin_information">odin_information</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/ohas_daemon_control_interface" class="breadcrumbs" title="ohas_daemon_control_interface">ohas_daemon_control_interface</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/ohas_server" class="breadcrumbs" title="ohas_server">ohas_server</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/pcb_manufacturers" class="breadcrumbs" title="pcb_manufacturers">pcb_manufacturers</a></bdi> <span class="bcsep">•</span> <bdi><a href="http://www.vscp.org/wiki/doku.php/plc_modem_plcst3875" class="breadcrumbs" title="plc_modem_plcst3875">plc_modem_plcst3875</a></bdi> <span class="bcsep">•</span> <span class="curid"><bdi><a href="http://www.vscp.org/wiki/doku.php/peking_general_i_o_module" class="breadcrumbs" title="peking_general_i_o_module">peking_general_i_o_module</a></bdi></span>          </div>
+    
+    
+  </div>
+  
+  
+  <div class="page">
+    <!-- wikipage start -->
+    <!-- TOC START -->
+<div id="dw__toc">
+<h3 style="cursor: pointer;" class="toggle open"><strong><span>−</span></strong>Table of Contents</h3>
+<div style="">
+
+<ul style="" aria-expanded="true" class="toc">
+<li class="level1"><div class="li"><a href="#beijingpeking_-_general_io_module">Beijing/Peking - General I/O Module</a></div></li>
+<li class="level1"><div class="li"><a href="#download">Download</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#firmware">Firmware</a></div></li>
+<li class="level2"><div class="li"><a href="#schematics">Schematics</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#about">About</a></div></li>
+<li class="level1"><div class="li"><a href="#registers">Registers</a></div></li>
+<li class="level1"><div class="li"><a href="#decision_matrix">Decision Matrix</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#alarm_register">Alarm register</a></div></li>
+<li class="level2"><div class="li"><a href="#events">Events</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#contact_information">Contact Information</a></div></li>
+<li class="level1"><div class="li"><a href="#discussion__section">Discussion</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+<a href="http://www.vscp.org/wiki/lib/exe/detail.php/vscp_logo.jpg?id=peking_general_i_o_module" class="media" title="vscp_logo.jpg"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/vscp_logo.jpg" class="medialeft" title="vscp_logo.jpg" alt="vscp_logo.jpg" width="150"></a>
+</p>
+
+<h1 class="sectionedit1" id="beijingpeking_-_general_io_module">Beijing/Peking - General I/O Module</h1>
+<div class="level1">
+
+<p>
+ General I/O module with six protected inputs.
+</p>
+
+<p>
+<a href="http://www.vscp.org/wiki/doku.php/vscp_modules" class="wikilink1" title="vscp_modules"> Back to VSCP Modules </a>
+</p>
+<pre class="code">Current Harware Version: 0.0.5
+ Current Firmware version:  No firmware release yet.</pre>
+
+</div>
+<div class="secedit editbutton_section editbutton_1"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Beijing/Peking - General I/O Module] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="25-255" type="hidden"><input value="Edit" class="button" title="Beijing/Peking - General I/O Module" type="submit"></div></form></div>
+<h1 class="sectionedit2" id="download">Download</h1>
+<div class="level1">
+
+<p>
+Everything for the project can be downloaded at the following link <br>
+<a href="http://www.dosilos.se/download/hardware/beijing" class="urlextern" title="http://www.dosilos.se/download/hardware/beijing" rel="nofollow">http://www.dosilos.se/download/hardware/beijing</a>
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_2"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Download] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="256-403" type="hidden"><input value="Edit" class="button" title="Download" type="submit"></div></form></div>
+<h2 class="sectionedit3" id="firmware">Firmware</h2>
+<div class="level2">
+
+<p>
+No firmware release yet.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_3"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Firmware] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="404-451" type="hidden"><input value="Edit" class="button" title="Firmware" type="submit"></div></form></div>
+<h2 class="sectionedit4" id="schematics">Schematics</h2>
+<div class="level2">
+
+<p>
+Old file are available here <a href="http://www.dosilos.se/download/hardware/beijing" class="urlextern" title="http://www.dosilos.se/download/hardware/beijing" rel="nofollow">http://www.dosilos.se/download/hardware/beijing</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> JPEG for schema: <a href="http://www.dosilos.se/download/hardware/beijing/io_sch005.jpg" class="urlextern" title="http://www.dosilos.se/download/hardware/beijing/io_sch005.jpg" rel="nofollow">http://www.dosilos.se/download/hardware/beijing/io_sch005.jpg</a></div>
+</li>
+<li class="level1"><div class="li"> JPEG for Board: <a href="http://www.dosilos.se/download/hardware/beijing/io_brd005.jpg" class="urlextern" title="http://www.dosilos.se/download/hardware/beijing/io_brd005.jpg" rel="nofollow">http://www.dosilos.se/download/hardware/beijing/io_brd005.jpg</a> </div>
+</li>
+</ul>
+
+</div>
+<div class="secedit editbutton_section editbutton_4"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Schematics] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="452-732" type="hidden"><input value="Edit" class="button" title="Schematics" type="submit"></div></form></div>
+<h1 class="sectionedit5" id="about">About</h1>
+<div class="level1">
+
+<p>
+<a href="http://www.vscp.org/wiki/lib/exe/detail.php/pictures/bejing_small.jpg?id=peking_general_i_o_module" class="media" title="pictures:bejing_small.jpg"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/bejing_small.jpg" class="media" alt=""></a>
+</p>
+
+<p>
+The Bejing I/O module can be used as a low cost general 5V I/O module to
+ set and/or monitor six channels. 
+Automatic pulse output and event on change and a built in decision 
+matrix that can be programmed to control an input from any VSCP event 
+makes this module useful in many control situations.
+</p>
+
+<p>
+The firmware is built to handle 16 channels.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_5"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[About] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="733-1130" type="hidden"><input value="Edit" class="button" title="About" type="submit"></div></form></div>
+<h1 class="sectionedit6" id="registers">Registers</h1>
+<div class="level1">
+
+</div>
+
+<h5 id="configuration">Configuration</h5>
+<div class="level5">
+<pre class="code">Register 0(0x00) - Zone. Read/write.</pre>
+<pre class="code">Register 1(0x01) - Subzone 0. Read/write.
+Register 2(0x02) - Subzone 1. Read/write.
+Register 3(0x03) - Subzone 2. Read/write.
+Register 4(0x04) - Subzone 3. Read/write.
+Register 5(0x05) - Subzone 4. Read/write.
+Register 6(0x06) - Subzone 5. Read/write.
+Register 7(0x07) - Subzone 6. Read/write.
+Register 8(0x08) - Subzone 7. Read/write.
+Register 9(0x09) - Subzone 8. Read/write.  
+Register 10(0x0A) - Subzone 9. Read/write.
+Register 11(0x0B) - Subzone 10. Read/write.
+Register 12(0x0C) - Subzone 11. Read/write.
+Register 13(0x0D) - Subzone 12. Read/write.
+Register 14(0x0E) - Subzone 13. Read/write.
+Register 15(0x0F) - Subzone 14. Read/write.
+Register 16(0x10) - Subzone 15. Read/write.</pre>
+
+<p>
+The firmware can handle up to sixteen channels. Each channel can have its own subzone.
+</p>
+
+</div>
+
+<h5 id="channel_input_state">Channel input state</h5>
+<div class="level5">
+<pre class="code">Register 17(0x11) - Status register (channel 0-7). Read Only.
+Register 18(0x12) - Status register (channel 8-15). Read Only.</pre>
+
+<p>
+For channels that are set as inputs the state can be read here.
+</p>
+
+</div>
+
+<h5 id="channel_output_state">Channel output state</h5>
+<div class="level5">
+<pre class="code">Register 19(0x13) - Status register (channel 0-7). Read/Write.
+Register 20(0x14) - Status register (channel 8-15). Read/Write.</pre>
+
+<p>
+For channels set as outputs the state can be set here.
+</p>
+
+</div>
+
+<h5 id="channel_control_registers">Channel Control Registers</h5>
+<div class="level5">
+<pre class="code">Register 21(0x15) - Channel 0 Control Register.  Read/Write
+Register 22(0x16) - Channel 1 Control Register.  Read/Write
+Register 23(0x17) - Channel 2 Control Register.  Read/Write
+Register 24(0x18) - Channel 3 Control Register.  Read/Write
+Register 25(0x19) - Channel 4 Control Register.  Read/Write
+Register 26(0x1A) - Channel 5 Control Register.  Read/Write
+Register 27(0x1B) - Channel 6 Control Register.  Read/Write
+Register 28(0x1C) - Channel 7 Control Register.  Read/Write
+Register 29(0x1D) - Channel 8 Control Register.  Read/Write
+Register 30(0x1E) - Channel 9 Control Register.  Read/Write
+Register 31(0x1F) - Channel 10 Control Register.  Read/Write
+Register 32(0x20) - Channel 11 Control Register.  Read/Write
+Register 33(0x21) - Channel 12 Control Register.  Read/Write
+Register 34(0x22) - Channel 13 Control Register.  Read/Write
+Register 35(0x23) - Channel 14 Control Register.  Read/Write
+Register 36(0x24) - Channel 15 Control Register.  Read/Write</pre>
+
+<p>
+The channel control bits enable disable intelligent channel functionality
+</p>
+<ul>
+<li class="level1"><div class="li"> Bit 0 - Direction. 0=input. 1=output.</div>
+</li>
+<li class="level1"><div class="li"> Bit 1 - Reserved.</div>
+</li>
+<li class="level1"><div class="li"> Bit 2 - Reserved.</div>
+</li>
+<li class="level1"><div class="li"> Bit 3 - Send On event when channel goes to active state.</div>
+</li>
+<li class="level1"><div class="li"> Bit 4 - Send Off event when channel goes to inactive state.</div>
+</li>
+<li class="level1"><div class="li"> Bit 5 - Send Started event when channel goes to active state.</div>
+</li>
+<li class="level1"><div class="li"> Bit 6 - Send Stopped event when channel goes to active state.</div>
+</li>
+<li class="level1"><div class="li"> Bit 7 - Activate pulse (only for output).</div>
+</li>
+</ul>
+
+<p>
+Stream events report the state of all channels as strem event(s) for all
+ channels with a frequency set in the time between stream events 
+registers.
+</p>
+
+</div>
+
+<h5 id="channel_pulse_time_registers">Channel Pulse time Registers</h5>
+<div class="level5">
+<pre class="code">Register 37(0x25) - On/off pulse time Channel 0 (seconds) MSB. Read/Write
+Register 38(0x26) - On/off pulse time Channel 0 (seconds) LSB. Read/Write
+Register 39(0x27) - On/off pulse time Channel 1 (seconds) MSB. Read/Write
+Register 40(0x28) - On/off pulse time Channel 1 (seconds) LSB. Read/Write
+Register 41(0x29) - On/off pulse time Channel 2 (seconds) MSB. Read/Write
+Register 42(0x2A) - On/off pulse time Channel 2 (seconds) LSB. Read/Write
+Register 43(0x2B) - On/off pulse time Channel 3 (seconds) MSB. Read/Write
+Register 44(x02C) - On/off pulse time Channel 3 (seconds) LSB. Read/Write  
+Register 45(0x2D) - On/off pulse time Channel 4 (seconds) MSB. Read/Write
+Register 46(0x2E) - On/off pulse time Channel 4 (seconds) LSB. Read/Write
+Register 47(0x2F) - On/off pulse time Channel 5 (seconds) MSB. Read/Write
+Register 48(0x30) - On/off pulse time Channel 5 (seconds) LSB. Read/Write
+Register 49(0x31) - On/off pulse time Channel 6 (seconds) MSB. Read/Write
+Register 50(0x32) - On/off pulse time Channel 6 (seconds) LSB. Read/Write
+Register 51(0x33) – On/off pulse time Channel 7 (seconds) MSB. Read/Write
+Register 52(0x34) – On/off pulse time Channel 7 (seconds) LSB. Read/Write 
+
+Register 18(0x12) - On/off pulse time Channel 8 (seconds) MSB. Read/Write
+Register 19(0x13) - On/off pulse time Channel 8 (seconds) LSB. Read/Write
+Register 20(0x14) - On/off pulse time Channel 9 (seconds) MSB. Read/Write
+Register 21(0x15) - On/off pulse time Channel 9 (seconds) LSB. Read/Write
+Register 22(0x16) - On/off pulse time Channel 10 (seconds) MSB. Read/Write
+Register 23(0x17) - On/off pulse time Channel 10 (seconds) LSB. Read/Write
+Register 24(0x18) - On/off pulse time Channel 11 (seconds) MSB. Read/Write
+Register 25(x019) - On/off pulse time Channel 11 (seconds) LSB. Read/Write  
+Register 26(0x1A) - On/off pulse time Channel 12 (seconds) MSB. Read/Write
+Register 27(0x1B) - On/off pulse time Channel 12 (seconds) LSB. Read/Write
+Register 28(0x1C) - On/off pulse time Channel 13 (seconds) MSB. Read/Write
+Register 29(0x1D) - On/off pulse time Channel 13 (seconds) LSB. Read/Write
+Register 30(0x1E) - On/off pulse time Channel 14 (seconds) MSB. Read/Write
+Register 31(0x1F) - On/off pulse time Channel 14 (seconds) LSB. Read/Write
+Register 32(0x20) – On/off pulse time Channel 15 (seconds) MSB. Read/Write
+Register 33(0x21) – On/off pulse time Channel 15 (seconds) LSB. Read/Write</pre>
+
+<p>
+This is the pulse time for the each channel expressed in seconds. This 
+can be used to have a channel turn on and off with a certain preset 
+interval.  The min pulse time is 1 second and the max time is 65535 
+seconds which is about 18 hours. Set to zero (default) for no pulse time
+ i.e. the channel will be steady on/off.
+</p>
+
+</div>
+
+<h5 id="time_between_stream_events">Time between stream events</h5>
+<div class="level5">
+<pre class="code">Register 34(0x22) - Time between stream events (seconds), all channels. Read/Write</pre>
+
+<p>
+The stream events control bit and this value must be set to a value that
+ is not zero to get stream events. The stream events holds all bits as 
+described below.
+</p>
+
+</div>
+
+<h5 id="available_channels">Available channels</h5>
+<div class="level5">
+<pre class="code">Register 35(0x23) - # available channels. Read only.</pre>
+
+<p>
+Different hardware modules can have different number channels. The available number of channels can be read in this register.
+</p>
+
+</div>
+
+<h5 id="main_configuration">Main configuration</h5>
+<div class="level5">
+<pre class="code">Register 36(0x24) - Mdoule configuration bits.</pre>
+<ul>
+<li class="level1"><div class="li"> Bit 0 - Set to 1 to enable stream events.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="registers_for_decision_matrix">Registers for Decision Matrix</h5>
+<div class="level5">
+<pre class="code">Register 71(0x47) - 127(0x7f) - Decision Matrix ( eight elements)</pre>
+
+</div>
+<div class="secedit editbutton_section editbutton_6"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Registers] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="1131-7647" type="hidden"><input value="Edit" class="button" title="Registers" type="submit"></div></form></div>
+<h1 class="sectionedit7" id="decision_matrix">Decision Matrix</h1>
+<div class="level1">
+
+<p>
+The module have a decision matrix with seven entries.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_7"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Decision Matrix] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="7648-7733" type="hidden"><input value="Edit" class="button" title="Decision Matrix" type="submit"></div></form></div>
+<h3 class="sectionedit8" id="available_actions">Available Actions</h3>
+<div class="level3">
+<pre class="code">0(0x00) - NOOP, No action.</pre>
+<pre class="code">1(0x01) - Send state. Can be used for sync requests.</pre>
+<pre class="code">2(0x02) - Inactivate channel report for channel given by argument 0-15.</pre>
+<pre class="code">3(0x03) - Activate channel report for channel given by argument 0-15.</pre>
+
+</div>
+<div class="secedit editbutton_section editbutton_8"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Available Actions] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="7734-7997" type="hidden"><input value="Edit" class="button" title="Available Actions" type="submit"></div></form></div>
+<h2 class="sectionedit9" id="alarm_register">Alarm register</h2>
+<div class="level2">
+
+<p>
+ No alarm registers
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_9"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Alarm register] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="7998-8045" type="hidden"><input value="Edit" class="button" title="Alarm register" type="submit"></div></form></div>
+<h2 class="sectionedit10" id="events">Events</h2>
+<div class="level2">
+
+</div>
+<div class="secedit editbutton_section editbutton_10"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Events] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="8046-8065" type="hidden"><input value="Edit" class="button" title="Events" type="submit"></div></form></div>
+<h3 class="sectionedit11" id="on">On</h3>
+<div class="level3">
+
+<p>
+Can be sent on configurable intervals or on state transitions.
+</p>
+<pre class="code">Class: 0x014 
+Type: 0x03</pre>
+
+<p>
+Package: 
+</p>
+<pre class="code">Byte 0: Index.
+Byte 1: Zone
+Byte 2: Subzone</pre>
+
+<p>
+Index is 0 for channel 0, 1 for channel 1 and so on.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_11"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[On] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="8066-8292" type="hidden"><input value="Edit" class="button" title="On" type="submit"></div></form></div>
+<h3 class="sectionedit12" id="off">Off</h3>
+<div class="level3">
+
+<p>
+Can be sent on configurable intervals or on state transitions.
+</p>
+<pre class="code">Class: 0x014 
+Type: 0x04</pre>
+
+<p>
+Package: 
+</p>
+<pre class="code">Byte 0: index.
+Byte 1: Zone
+Byte 2: Subzone</pre>
+
+<p>
+Index is 0 for channel 0, 1 for channel 1 and so on.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_12"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Off] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="8293-8518" type="hidden"><input value="Edit" class="button" title="Off" type="submit"></div></form></div>
+<h3 class="sectionedit13" id="stopped">Stopped</h3>
+<div class="level3">
+
+<p>
+Can be sent on configurable intervals or on state transitions.
+</p>
+<pre class="code">Class: 0x014 
+Type: 0x18</pre>
+
+<p>
+Package: 
+</p>
+<pre class="code">Byte 0: index.
+Byte 1: Zone
+Byte 2: Subzone</pre>
+
+<p>
+Index is 0 for channel 0, 1 for channel 1 and so on.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_13"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Stopped] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="8519-8749" type="hidden"><input value="Edit" class="button" title="Stopped" type="submit"></div></form></div>
+<h3 class="sectionedit14" id="started">Started</h3>
+<div class="level3">
+
+<p>
+Can be sent on configurable intervals or on state transitions.
+</p>
+<pre class="code">Class: 0x014 
+Type: 0x19</pre>
+
+<p>
+Package: 
+</p>
+<pre class="code">Byte 0: index.
+Byte 1: Zone
+Byte 2: Subzone</pre>
+
+<p>
+Index is 0 for channel 0, 1 for channel 1 and so on.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_14"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Started] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="8750-8977" type="hidden"><input value="Edit" class="button" title="Started" type="submit"></div></form></div>
+<h3 class="sectionedit15" id="alarm">Alarm</h3>
+<div class="level3">
+
+<p>
+If enabled the event is sent when a channel goes from active to inactive.
+</p>
+<pre class="code">Class: 0x001 
+Type: 0x02</pre>
+
+<p>
+Package: 
+</p>
+<pre class="code">Byte 0: index.
+Byte 1: Zone
+Byte 2: Subzone</pre>
+
+<p>
+Index is 0 for channel 0, 1 for channel 1 and so on.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_15"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Alarm] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="8978-9213" type="hidden"><input value="Edit" class="button" title="Alarm" type="submit"></div></form></div>
+<h3 class="sectionedit16" id="stream_data_with_zone">Stream Data with zone</h3>
+<div class="level3">
+
+<p>
+A stream event is sent on intervals to report I/O channel state.
+</p>
+<pre class="code">Class: 0x014 
+Type: 0x26</pre>
+
+<p>
+Package: 
+</p>
+<pre class="code">Byte 0: Zone
+Byte 1: Subzone
+Byte 2: Index
+Byte 3: Channel 0-7 I/O
+Byte 4: Channel 8-15 I/O</pre>
+
+<p>
+Index is increased for every event that is sent out.
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_16"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Stream Data with zone] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="9214-9509" type="hidden"><input value="Edit" class="button" title="Stream Data with zone" type="submit"></div></form></div>
+<h1 class="sectionedit17" id="contact_information">Contact Information</h1>
+<div class="level1">
+
+<p>
+This is open hardware / software that is made by Ake Hedman, eurosource,
+ Sweden. It is free to use for commecial or non commercial use.
+</p>
+
+<p>
+Email: <a href="mailto:vscp@eurosource.se" class="mail" title="vscp@eurosource.se">vscp@eurosource.se</a>
+</p>
+
+<p>
+Company:
+</p>
+<pre class="code">eurosource
+Brattbergavagen 17
+820 50 LOS 
+SWEDEN
+
+info@eurosource.se
+http://www.eurosource.se
+
+Phone: +46 657 413430
+Fax: +46 657 413503</pre>
+
+<p>
+Modules and components are sold at <a href="http://www.dofscandinavia.com/catalog" class="urlextern" title="http://www.dofscandinavia.com/catalog" rel="nofollow">http://www.dofscandinavia.com/catalog</a>
+</p>
+
+<p>
+More info about the VSCP and CANAL protocol can be found at <a href="http://www.vscp.org/" class="urlextern" title="http://www.vscp.org" rel="nofollow">http://www.vscp.org</a>
+</p>
+
+</div>
+<div class="secedit editbutton_section editbutton_17"><form class="button btn_secedit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="1395897783" type="hidden"><input name="summary" value="[Contact Information] " type="hidden"><input name="target" value="section" type="hidden"><input name="range" value="9510-" type="hidden"><input value="Edit" class="button" title="Contact Information" type="submit"></div></form></div><div class="comment_wrapper" id="comment_wrapper">
+  <h2><a name="discussion__section" id="discussion__section">
+    Discussion
+  </a></h2>
+  <div class="level2 hfeed">
+
+        <div class="comment_form">
+          <form id="discussion__comment_form" method="post" action="/wiki/doku.php" accept-charset="utf-8">
+            <div class="no">
+              <input name="id" value="peking_general_i_o_module" type="hidden">
+              <input name="do" value="show" type="hidden">
+              <input name="comment" value="add" type="hidden">
+                      <input name="reply" value="" type="hidden">
+                        <div class="comment_text">
+                  Enter your comment:
+                  <!-- Fix for disable the toolbar when wikisyntaxok is set to false. See discussion's script.jss -->
+                                      <div id="discussion__comment_toolbar_disabled">
+                                  </div>
+                <textarea class="edit" name="text" cols="80" rows="10" id="discussion__comment_text" tabindex="5"></textarea>
+              </div>
+                      <input class="button comment_submit" id="discussion__btn_submit" name="submit" accesskey="s" value="Save" title="Save [S]" tabindex="7" type="submit">
+              <input class="button comment_preview_button" id="discussion__btn_preview" name="preview" accesskey="p" value="Preview" title="Preview [P]" type="button">
+
+        
+              <div class="clearer"></div>
+              <div id="discussion__comment_preview">&nbsp;</div>
+            </div>
+          </form>
+        </div>
+          </div>
+</div>
+
+    <!-- wikipage stop -->
+  </div>
+  <div id="sidebar">
+    <div id="sidebar_content">
+      
+<p>
+<a href="http://www.vscp.org/wiki/doku.php/start" class="wikilink1" title="start">Home</a>
+</p>
+<hr>
+<div class="table">
+<table class="ul">
+	<tbody><tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/vscp/start" class="wikilink1" title="vscp:start">The VSCP protocol</a></li></ul></td>
+	</tr>
+	<tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/vscpd/start" class="wikilink1" title="vscpd:start">The VSCP Daemon</a></li></ul></td>
+	</tr>
+	<tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/vscpworks/start" class="wikilink1" title="vscpworks:start">VSCP Works</a></li></ul></td>
+	</tr>
+	<tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/modules/start" class="wikilink1" title="modules:start">VSCP Hardware Modules</a></li></ul></td>
+	</tr>
+	<tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/coding/start" class="wikilink1" title="coding:start">Programming VSCP</a></li></ul></td>
+	</tr>
+	<tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/howto/start" class="wikilink1" title="howto:start">Getting started</a></li></ul></td>
+	</tr>
+	<tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/docs/start" class="wikilink1" title="docs:start">Press Material</a></li></ul></td>
+	</tr>
+</tbody></table>
+</div>
+<hr>
+<div class="table">
+<table class="ul">
+	<tbody><tr>
+		<td class="page"><ul><li><a href="http://www.vscp.org/wiki/doku.php/wikiwork/wikirules" class="wikilink1" title="wikiwork:wikirules">WIKI Rules for Editors / Access rights</a></li></ul></td>
+	</tr>
+</tbody></table>
+</div>
+<div class="comment_wrapper" id="comment_wrapper">
+  <h2><a name="discussion__section" id="discussion__section">
+    Discussion
+  </a></h2>
+  <div class="level2 hfeed">
+
+        <div class="comment_form">
+          <form id="discussion__comment_form" method="post" action="/wiki/doku.php" accept-charset="utf-8">
+            <div class="no">
+              <input name="id" value="sidebar" type="hidden">
+              <input name="do" value="show" type="hidden">
+              <input name="comment" value="add" type="hidden">
+                      <input name="reply" value="" type="hidden">
+                        <div class="comment_text">
+                  Enter your comment:
+                  <!-- Fix for disable the toolbar when wikisyntaxok is set to false. See discussion's script.jss -->
+                                      <div id="discussion__comment_toolbar_disabled">
+                                  </div>
+                <textarea class="edit" name="text" cols="80" rows="10" id="discussion__comment_text" tabindex="5"></textarea>
+              </div>
+                      <input class="button comment_submit" id="discussion__btn_submit" name="submit" accesskey="s" value="Save" title="Save [S]" tabindex="7" type="submit">
+              <input class="button comment_preview_button" id="discussion__btn_preview" name="preview" accesskey="p" value="Preview" title="Preview [P]" type="button">
+
+        
+              <div class="clearer"></div>
+              <div id="discussion__comment_preview">&nbsp;</div>
+            </div>
+          </form>
+        </div>
+          </div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="clearer">&nbsp;</div>
+
+  
+  <div class="stylefoot">
+
+    <div class="meta">
+      <div class="user">
+        Logged in as: <bdi>Ake Hedman</bdi> (<bdi>akhe</bdi>)      </div>
+      <div class="doc">
+        <bdi>peking_general_i_o_module.txt</bdi> · Last modified: 2014/03/27 06:23 (external edit)      </div>
+    </div>
+
+   
+    <div class="bar" id="bar__bottom">
+      <div class="bar-left" id="bar__bottomleft">
+        <form class="button btn_edit" method="post" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="edit" type="hidden"><input name="rev" value="0" type="hidden"><input value="Edit this page" class="button" accesskey="e" title="Edit this page [E]" type="submit"></div></form>        <form class="button btn_revs" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="revisions" type="hidden"><input value="Old revisions" class="button" accesskey="o" title="Old revisions [O]" type="submit"></div></form>      </div>
+      <div class="bar-right" id="bar__bottomright">
+        <form class="button btn_subscribe" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="subscribe" type="hidden"><input value="Manage Subscriptions" class="button" title="Manage Subscriptions" type="submit"></div></form>        [unknown button type]        <form class="button btn_admin" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="admin" type="hidden"><input value="Admin" class="button" title="Admin" type="submit"></div></form>        <form class="button btn_profile" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="profile" type="hidden"><input value="Update Profile" class="button" title="Update Profile" type="submit"></div></form>        <form class="button btn_logout" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="logout" type="hidden"><input name="sectok" value="f9edf44052dcefc3bf801455b987061e" type="hidden"><input value="Logout" class="button" title="Logout" type="submit"></div></form>        <form class="button btn_index" method="get" action="/wiki/doku.php/peking_general_i_o_module"><div class="no"><input name="do" value="index" type="hidden"><input value="Sitemap" class="button" accesskey="x" title="Sitemap [X]" type="submit"></div></form>        <a class="nolink" href="#dokuwiki__top"><input class="button" value="Back to top" onclick="window.scrollTo(0, 0)" title="Back to top" type="button"></a>&nbsp;
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </div>
+
+  <div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="http://creativecommons.org/licenses/publicdomain/" rel="license" class="urlextern">Public Domain</a></bdi></div>
+</div>
+
+<div class="footerinc">
+
+  <a href="http://www.vscp.org/wiki/feed.php" title="Recent changes RSS feed"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/button-rss.png" alt="Recent changes RSS feed" height="15" width="80"></a>
+
+        <a href="http://creativecommons.org/licenses/publicdomain/" rel="license" title="Public Domain"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/publicdomain.png" alt="" height="15" width="80"></a>
+  
+  <a href="http://www.dokuwiki.org/donate" title="Donate"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/button-donate.gif" alt="Donate" height="15" width="80"></a>
+
+  <a href="http://www.php.net/" title="Powered by PHP"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/button-php.gif" alt="Powered by PHP" height="15" width="80"></a>
+
+  <a href="http://validator.w3.org/check/referer" title="Valid XHTML 1.0"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/button-xhtml.png" alt="Valid XHTML 1.0" height="15" width="80"></a>
+
+  <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/button-css.png" alt="Valid CSS" height="15" width="80"></a>
+
+  <a href="http://dokuwiki.org/" title="Driven by DokuWiki"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/button-dw.png" alt="Driven by DokuWiki" height="15" width="80"></a>
+
+
+
+</div>
+
+<div class="no"><img src="peking_general_i_o_module%20%5Bthe%20VSCP%20&amp;%20Friends%20Wiki%5D_files/indexer.gif" alt="" height="1" width="2"></div>
+
+
+</body></html>

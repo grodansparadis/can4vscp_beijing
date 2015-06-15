@@ -1,0 +1,47 @@
+
+
+Beijing notes
+=============
+
+
+
+
+Registers
+=========
+00	Zone
+01	Subzone
+02	Control register IO0
+		Bit 0 - 0=Input, 1=Output
+		Bit 1 - Enable event on change
+		Bit 2 - Enable event on low
+		Bit 3 - Enable event on high
+		Bit 4 - Enable pull up.
+		Bit 5 - 
+		Bit 6 - 
+		Bit 7 - 
+03	Control register IO1
+04	Control register IO2
+05	Control register IO3
+06	Control register IO4
+07	Control register IO5
+08	Control register IO6
+09	Control register IO7
+0A	Control register IO8
+0B	Control register IO9
+
+
+
+Event to send on change
+Event to send on low
+Event to send on high
+Milliseconds between stream events
+Protection timer.
+pwm
+
+Actions
+=======
+0	NOOP
+1	Set ports
+2	Clear ports
+3	Set port directions
+4	Send state (for sync)

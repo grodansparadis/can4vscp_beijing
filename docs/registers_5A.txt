@@ -1,0 +1,168 @@
+Bejing 5A
+=========
+
+0 - Zone for Bejing module.
+1 - Subzone for module.
+2 - Zone for channel 0.
+3 - Subzone for channel 0.
+4 - Zone for channel 1.
+5 - Subzone for channel 1.
+6 - Zone for channel 2.
+7 - Subzone for channel 2.
+8 - Zone for channel 3.
+9 - Subzone for channel 3.
+10 - Zone for channel 4.
+11 - Subzone for channel 4.
+12 - Cannel 0 control register.
+		Bit 0 - Direction. 0=input. 1=output.
+		Bit 1 - Reserved.
+		Bit 2 - Reserved.
+		Bit 3 - Send On event when channel goes to active state.
+		Bit 4 - Send Off event when channel goes to active state.
+		Bit 5 - Reserved.
+		Bit 6 - Reserved.
+		Bit 7 - Reserved.
+13 - Cannel 1 control register.
+14 - Cannel 2 control register.
+15 - Cannel 3 control register.
+16 - Cannel 4 control register.
+17 - Channel input state. (Read only)
+18 - Channel output state.
+19 - Time between stream events in seconds. 0=no stream events.
+
+Temperature sensor
+------------------
+
+55 - Control byte for temperature sensor
+	Bit 0,1 - Temperature unit
+		00 - Kelvin.
+		01 - Celsius (default).
+		10 - Fahrenheit.
+	Bit 2 - Reserved
+	Bit 3 - Enable low alarm.
+	Bit 4 - Enable high alarm.
+	Bit 5 - Send ON/OFF events instead of Alarm
+	Bit 6 - on/off event usage
+			0 - TurnOn event is sent when low temp is reached. TurnOff event
+				when high temp. is reached.
+			1 - TurnOff event is sent when low temp is reached. TurnOff event
+				is sent when high temp. is reached.
+	Bit 7 - Enable temperature events.
+56 - Temperature temperature sensor MSB (on board sensor)
+57 - Temperature temperature sensor LSB (on board sensor)	
+58 - Report interval for temperature sensor in seconds. (Set to zero for no report)
+59 - Low alarm temperature Sensor MSB
+60 - Low alarm temperature Sensor LSB
+61 - High alarm temperature Sensor MSB
+62 - High alarm temperature Sensor LSB
+63 - Hysteresis low temperature for temperature sensor.
+64 - Hysteresis high temperature for temperature sensor.
+65 - Zone form temperature sensor alarms.
+66 - Subzone for temperature sensor alarms.
+67 - Absolut low for temperature sensor MSB. Write to reset.
+68 - Absolut low for temperature sensor LSB. Write to reset.
+69 - Absolut high for temperature sensor MSB. Write to reset.
+70 - Absolut high for temperature sensor LSB. Write to reset.
+
+71 - 127 - Decision Matrix (Eight elements).
+
+
+Alarm register bits
+===================
+bit 0 - Low temperature alarm
+bit 1 - High temperature alarm
+
+
+Actions
+=======
+0 - NOOP (No action).
+1 - Send state. Can be used for sync requests. (Argument is channels as a bitfield)
+2 - Turn on channel as of argument (bitfield).
+3 - Turn off channel as of argument (bitfield).
+
+
+Events
+======
+
+On
+--
+Can be sent on configurable intervals or on state transitions.
+
+Class: 0x014 
+Type: 0x03
+
+Package:
+
+Byte 0: Index.
+Byte 1: Zone
+Byte 2: Subzone
+
+Index is 0 for channel 0, 1 for channel 1 and so on.
+
+Off
+---
+
+Can be sent on configurable intervals or on state transitions.
+
+Class: 0x014 
+Type: 0x04
+
+Package:
+
+Byte 0: index.
+Byte 1: Zone
+Byte 2: Subzone
+
+Index is 0 for channel 0, 1 for channel 1 and so on.
+
+
+Alarm
+-----
+
+If enabled the event is sent when a channel goes from active to inactive.
+
+Class: 0x001 
+Type: 0x02
+
+Package:
+
+Byte 0: index.
+Byte 1: Zone
+Byte 2: Subzone
+
+Index is 0 for channel 0, 1 for channel 1 and so on.
+
+Stream Data with zone
+---------------------
+
+A stream event is sent on intervals to report I/O channel state.
+
+Class: 0x014 
+Type: 0x26
+
+Package:
+
+Byte 0: Zone
+Byte 1: Subzone
+Byte 2: Index
+Byte 3: Channel 0-4 I/O
+
+Index is increased for every event that is sent out.
+
+
+Temperature measurement
+-----------------------
+Class=10, Type=6
+
+Alarm
+-----
+Class=1, Type=2 - Alarm occured
+Sensor index in byte 0 (0-5)
+
+TurnOn
+------
+Class=30, Type=5
+
+TurnOff
+-------
+Class=30, Type=6

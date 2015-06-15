@@ -1,0 +1,6 @@
+Beijing
+=======
+2014-06-19 - AKHE Fixed dimensions.
+2014-06-18 - AKHE Job sent to factory
+2014-06-16 - AKHE Input power lines was to thin. Fixed!
+2014-06-02 - AKHE Rev B testad med standard dru.
