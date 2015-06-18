@@ -1,0 +1,48 @@
+#
+# Generated - do not edit!
+#
+# NOCDDL
+#
+CND_BASEDIR=`pwd`
+# bejing_2580_debug configuration
+CND_ARTIFACT_DIR_bejing_2580_debug=dist/bejing_2580_debug/production
+CND_ARTIFACT_NAME_bejing_2580_debug=Bejing.X.production.hex
+CND_ARTIFACT_PATH_bejing_2580_debug=dist/bejing_2580_debug/production/Bejing.X.production.hex
+CND_PACKAGE_DIR_bejing_2580_debug=${CND_DISTDIR}/bejing_2580_debug/package
+CND_PACKAGE_NAME_bejing_2580_debug=bejing.x.tar
+CND_PACKAGE_PATH_bejing_2580_debug=${CND_DISTDIR}/bejing_2580_debug/package/bejing.x.tar
+# bejing_2580_release configuration
+CND_ARTIFACT_DIR_bejing_2580_release=dist/bejing_2580_release/production
+CND_ARTIFACT_NAME_bejing_2580_release=Bejing.X.production.hex
+CND_ARTIFACT_PATH_bejing_2580_release=dist/bejing_2580_release/production/Bejing.X.production.hex
+CND_PACKAGE_DIR_bejing_2580_release=${CND_DISTDIR}/bejing_2580_release/package
+CND_PACKAGE_NAME_bejing_2580_release=bejing.x.tar
+CND_PACKAGE_PATH_bejing_2580_release=${CND_DISTDIR}/bejing_2580_release/package/bejing.x.tar
+# bejing_2580_relocated configuration
+CND_ARTIFACT_DIR_bejing_2580_relocated=dist/bejing_2580_relocated/production
+CND_ARTIFACT_NAME_bejing_2580_relocated=Bejing.X.production.hex
+CND_ARTIFACT_PATH_bejing_2580_relocated=dist/bejing_2580_relocated/production/Bejing.X.production.hex
+CND_PACKAGE_DIR_bejing_2580_relocated=${CND_DISTDIR}/bejing_2580_relocated/package
+CND_PACKAGE_NAME_bejing_2580_relocated=bejing.x.tar
+CND_PACKAGE_PATH_bejing_2580_relocated=${CND_DISTDIR}/bejing_2580_relocated/package/bejing.x.tar
+# bejing_25k80_debug configuration
+CND_ARTIFACT_DIR_bejing_25k80_debug=dist/bejing_25k80_debug/production
+CND_ARTIFACT_NAME_bejing_25k80_debug=Bejing.X.production.hex
+CND_ARTIFACT_PATH_bejing_25k80_debug=dist/bejing_25k80_debug/production/Bejing.X.production.hex
+CND_PACKAGE_DIR_bejing_25k80_debug=${CND_DISTDIR}/bejing_25k80_debug/package
+CND_PACKAGE_NAME_bejing_25k80_debug=bejing.x.tar
+CND_PACKAGE_PATH_bejing_25k80_debug=${CND_DISTDIR}/bejing_25k80_debug/package/bejing.x.tar
+# bejing_25k80_release configuration
+CND_ARTIFACT_DIR_bejing_25k80_release=dist/bejing_25k80_release/production
+CND_ARTIFACT_NAME_bejing_25k80_release=Bejing.X.production.hex
+CND_ARTIFACT_PATH_bejing_25k80_release=dist/bejing_25k80_release/production/Bejing.X.production.hex
+CND_PACKAGE_DIR_bejing_25k80_release=${CND_DISTDIR}/bejing_25k80_release/package
+CND_PACKAGE_NAME_bejing_25k80_release=bejing.x.tar
+CND_PACKAGE_PATH_bejing_25k80_release=${CND_DISTDIR}/bejing_25k80_release/package/bejing.x.tar
+# bejing_25k80_relocated configuration
+CND_ARTIFACT_DIR_bejing_25k80_relocated=dist/bejing_25k80_relocated/production
+CND_ARTIFACT_NAME_bejing_25k80_relocated=Bejing.X.production.hex
+CND_ARTIFACT_PATH_bejing_25k80_relocated=dist/bejing_25k80_relocated/production/Bejing.X.production.hex
+CND_PACKAGE_DIR_bejing_25k80_relocated=${CND_DISTDIR}/bejing_25k80_relocated/package
+CND_PACKAGE_NAME_bejing_25k80_relocated=bejing.x.tar
+CND_PACKAGE_PATH_bejing_25k80_relocated=${CND_DISTDIR}/bejing_25k80_relocated/package/bejing.x.tar
