@@ -112,6 +112,10 @@ uint16_t channel_pulse_timer[10];
 // for each channel
 uint16_t channel_protection_timer[10];
 
+// This is the iostate when the last one second work
+// was carried out
+uint16_t current_iostate;
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Isr() 	- Interrupt Service Routine
@@ -427,7 +431,7 @@ void init()
             }
 
      */
-
+    
     // Enable peripheral interrupt
     INTCONbits.PEIE = 1;
 
@@ -479,6 +483,18 @@ void init_app_ram( void )
         }
 
     }
+    
+    // Save the current I/O state
+    current_iostate = ( CHANNEL9 << 9 ) +
+                        ( CHANNEL8 << 8 ) +
+                        ( CHANNEL7 << 7 ) +
+                        ( CHANNEL6 << 6 ) +
+                        ( CHANNEL5 << 5 ) +
+                        ( CHANNEL4 << 4 ) +
+                        ( CHANNEL3 << 3 ) +
+                        ( CHANNEL2 << 2 ) +
+                        ( CHANNEL1 << 1 ) +
+                        CHANNEL0;
     
 }
 
@@ -550,183 +566,308 @@ void doApplicationOneSecondWork(void)
 {
 
     uint8_t i;
-    uint8_t ctrlreg;    // Current control register
+    uint16_t iodirections;  // Directions fro I/O channels
+    uint8_t ctrlreg;        // Control register
     BOOL bOn = FALSE;
 
-    for ( i = 0; i < 8; i++ ) {
-
-        // Get control register for this channel
-        ctrlreg = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
-
-        // If not enabled check next
-        if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) continue;
-
-        // * * * Protection timer * * *
-
-        if ( channel_protection_timer[ i ] ) {
-
-            channel_protection_timer[ i ]--;
-
-            // Check if its time to act on protection time
-            if ( !channel_protection_timer[ i ] &&
-                    ( readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i ) &
-                                    OUTPUT_CTRL_PROTECTION ) ) {
-
-                // Yes - its time to protect this channel
-                doActionOff( 0, (1 << i) );
-
-                // Should alarm be sent?
-                if ( ctrlreg & OUTPUT_CTRL_ALARM ) {
-                    SendInformationEvent( i, VSCP_CLASS1_ALARM,
-                                            VSCP_TYPE_ALARM_ALARM );
+    // Get direction for channels
+    iodirections = ( readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB ) << 8 ) +
+                    readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB );
+    
+    for ( i = 0; i < 10; i++ ) {
+        
+        if (  iodirections & ( 1 << i ) ) {
+            
+            // * * * Input * * *
+            
+            // Get input control register for this channel
+            ctrlreg = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_INPUT_CTRL + i );
+            
+            // If not enabled check next
+            if ( !( ctrlreg & INPUT_CTRL_ENABLE ) ) continue;
+            
+            // Should change ON event be sent?
+            if (  ctrlreg & INPUT_CTRL_EVENT_ON ) {
+                // Yes if last state was zero
+                if ( !( current_iostate & ( 1 << i ) ) ) {
+                    if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
+                        SendInformationEvent(i, VSCP_CLASS1_INFORMATION,
+                                                VSCP_TYPE_INFORMATION_ON );
+                    }
+                    else {
+                        SendInformationEvent(i, VSCP_CLASS1_CONTROL,
+                                                VSCP_TYPE_CONTROL_TURNON );
+                    }
                 }
-
             }
+            
+            // Should change OFF event be sent?
+            if (  ctrlreg & INPUT_CTRL_EVENT_OFF ) {
+                // Yes if last state was one
+                if ( current_iostate & ( 1 << i ) ) {
+                    if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
+                        SendInformationEvent(i, VSCP_CLASS1_INFORMATION,
+                                                VSCP_TYPE_INFORMATION_OFF );
+                    }
+                    else {
+                        SendInformationEvent(i, VSCP_CLASS1_CONTROL,
+                                                VSCP_TYPE_CONTROL_TURNOFF );
+                    }
+                }
+            }
+            
+            // Should alarm high event be sent?
+            if (  ctrlreg & INPUT_CTRL_ALARM_HIGH ) {
+                // Yes if last state was zero
+                if ( !( current_iostate & ( 1 << i ) ) ) {
+                    SendInformationEvent( i, VSCP_CLASS1_ALARM,
+                                                VSCP_TYPE_ALARM_ALARM );
+                    vscp_alarmstatus |= ALARM_INPUT_HIGH;
+                }
+            }
+            
+            // Should alarm low event be sent?
+            if (  ctrlreg & INPUT_CTRL_ALARM_LOW ) {
+                // Yes if last state was one
+                if ( current_iostate & ( 1 << i ) ) {
+                    SendInformationEvent( i, VSCP_CLASS1_ALARM,
+                                                VSCP_TYPE_ALARM_ALARM );
+                    vscp_alarmstatus |= ALARM_INPUT_LOW;
+                }
+            }
+            
         }
         else {
-            // Reload protection timer
-            channel_protection_timer[ i ] =
-                    readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
-                                    REG1_BEIJING_CH0_TIMING_PROTECT_MSB + i ) * 256 +
-                    readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
-                                    REG1_BEIJING_CH0_TIMING_PROTECT_LSB + i );
-        }
+            
+            // * * * Output * * *
+            
+            // Get output control register for this channel
+            ctrlreg = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
 
-        // * * * Pulsed channels * * *
-        if ( channel_pulse_flags & (1 << i) ) {
+            // If not enabled check next
+            if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) continue;
 
-            if ( channel_pulse_timer[ i ] ) {
+            // * * * Protection timer * * *
 
-                channel_pulse_timer[ i ]--;
+            if ( channel_protection_timer[ i ] ) {
 
-                // If zero its time for state change
-                if ( !channel_pulse_timer[ i ] ) {
+                channel_protection_timer[ i ]--;
 
-                    switch ( i ) {
+                // Check if its time to act on protection time
+                if (!channel_protection_timer[ i ] &&
+                        ( readEEPROM(VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i ) &
+                        OUTPUT_CTRL_PROTECTION ) ) {
 
-                        case 0:
-                            if ( CHANNEL0 ) {
-                                CHANNEL0 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL0 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
+                    // Yes - its time to protect this channel
+                    doActionOff(0, (1 << i));
 
-                        case 1:
-                            if ( CHANNEL1 ) {
-                                CHANNEL1 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL1 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
-
-                        case 2:
-                            if ( CHANNEL2 ) {
-                                CHANNEL2 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL2 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
-
-                        case 3:
-                            if ( CHANNEL3 ) {
-                                CHANNEL3 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL3 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
-
-                        case 4:
-                            if ( CHANNEL4 ) {
-                                CHANNEL4 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL4 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
-
-                        case 5:
-                            if ( CHANNEL5 ) {
-                                CHANNEL5 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL5 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
-
-                        case 6:
-                            if ( CHANNEL6 ) {
-                                CHANNEL6 = 0;
-                                bOn = FALSE;
-                            } else {
-                                CHANNEL6 = 1;
-                                bOn = TRUE;
-                            }
-                            break;
-
+                    // Should alarm be sent?
+                    if (ctrlreg & OUTPUT_CTRL_ALARM) {
+                        SendInformationEvent(i, VSCP_CLASS1_ALARM,
+                                                VSCP_TYPE_ALARM_ALARM);
                     }
+                    
+                    vscp_alarmstatus |= ALARM_STATE_PROTECTION;
 
-                    // Reload pulse timer
-                    channel_pulse_timer[ i ] =
-                            readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2*i ) * 256 +
-                            readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2*i );
-
-                    if ( bOn ) {
-
-                        // Reload protection timer
-                        if ( readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i ) & OUTPUT_CTRL_PROTECTION ) {
-                            channel_protection_timer[ i ] =
-                                readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
-                                                REG1_BEIJING_CH0_TIMING_PROTECT_MSB + 2*i ) * 256 +
-                                readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
-                                                REG1_BEIJING_CH0_TIMING_PROTECT_LSB + 2*i );
-                        }
-
-                        if ( ctrlreg & OUTPUT_CTRL_ONEVENT ) {
-                            SendInformationEvent( i, VSCP_CLASS1_INFORMATION,
-                                                    VSCP_TYPE_INFORMATION_ON );
-                        }
-
-
-                    } else {
-
-                        if ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) {
-                            SendInformationEvent( i, VSCP_CLASS1_INFORMATION,
-                                                    VSCP_TYPE_INFORMATION_OFF );
-                        }
-
-                    }
-
-                } // State change
-
-            } // Something to count down
+                }
+            } 
             else {
-                // Reload the pulse timer
-                channel_pulse_timer[ 0 ] =
-                                    readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
-                                                    REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2*i ) * 256 +
-                                    readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
-                                                    REG1_BEIJING_CH0_TIMING_PULSE_LSB + 2*i );
+                // Reload protection timer
+                channel_protection_timer[ i ] =
+                        readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                    REG1_BEIJING_CH0_TIMING_PROTECT_MSB + i) * 256 +
+                                    readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                    REG1_BEIJING_CH0_TIMING_PROTECT_LSB + i);
             }
 
-        } // Pulse bit
+            // * * * Pulsed channels * * *
+            if ( channel_pulse_flags & (1 << i) ) {
+
+                if ( channel_pulse_timer[ i ] ) {
+
+                    channel_pulse_timer[ i ]--;
+
+                    // If zero its time for state change
+                    if ( !channel_pulse_timer[ i ] ) {
+
+                        switch (i) {
+
+                            case 0:
+                                if ( CHANNEL0 ) {
+                                    CHANNEL0 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL0 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+
+                            case 1:
+                                if ( CHANNEL1 ) {
+                                    CHANNEL1 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL1 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+
+                            case 2:
+                                if ( CHANNEL2 ) {
+                                    CHANNEL2 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL2 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+
+                            case 3:
+                                if ( CHANNEL3 ) {
+                                    CHANNEL3 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL3 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+
+                            case 4:
+                                if ( CHANNEL4 ) {
+                                    CHANNEL4 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL4 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+
+                            case 5:
+                                if ( CHANNEL5 ) {
+                                    CHANNEL5 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL5 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+
+                            case 6:
+                                if ( CHANNEL6 ) {
+                                    CHANNEL6 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL6 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+                               
+                            case 7:
+                                if ( CHANNEL7 ) {
+                                    CHANNEL7 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL7 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+                                
+                            case 8:
+                                if ( CHANNEL8 ) {
+                                    CHANNEL8 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL8 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;
+                                
+                            case 9:
+                                if ( CHANNEL9 ) {
+                                    CHANNEL9 = 0;
+                                    bOn = FALSE;
+                                } 
+                                else {
+                                    CHANNEL9 = 1;
+                                    bOn = TRUE;
+                                }
+                                break;    
+                        }
+
+                        // Reload pulse timer
+                        channel_pulse_timer[ i ] =
+                                readEEPROM( VSCP_EEPROM_END + REG0_COUNT +
+                                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i ) * 256 +
+                                            readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i );
+
+                        if ( bOn ) {
+
+                            // Reload protection timer
+                            if ( readEEPROM(VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i) & 
+                                                OUTPUT_CTRL_PROTECTION) {
+                                channel_protection_timer[ i ] =
+                                        readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                                    REG1_BEIJING_CH0_TIMING_PROTECT_MSB + 2 * i) * 256 +
+                                                    readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                                    REG1_BEIJING_CH0_TIMING_PROTECT_LSB + 2 * i);
+                            }
+
+                            if ( ctrlreg & OUTPUT_CTRL_ONEVENT ) {
+                                SendInformationEvent(i, VSCP_CLASS1_INFORMATION,
+                                                        VSCP_TYPE_INFORMATION_ON);
+                            }
+
+
+                        } 
+                        else {
+
+                            if ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) {
+                                SendInformationEvent( i, VSCP_CLASS1_INFORMATION,
+                                                        VSCP_TYPE_INFORMATION_OFF);
+                            }
+
+                        }
+
+                    } // State change
+
+                } // Something to count down
+                else {
+                    // Reload the pulse timer
+                    channel_pulse_timer[ 0 ] =
+                            readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                        REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i) * 256 +
+                                        readEEPROM(VSCP_EEPROM_END + REG0_COUNT +
+                                        REG1_BEIJING_CH0_TIMING_PULSE_LSB + 2 * i);
+                }
+
+            } // Pulse bit
+
+        }
 
     } // for all channels
+    
+    // Save the current I/O state
+    current_iostate = ( CHANNEL9 << 9 ) +
+                        ( CHANNEL8 << 8 ) +
+                        ( CHANNEL7 << 7 ) +
+                        ( CHANNEL6 << 6 ) +
+                        ( CHANNEL5 << 5 ) +
+                        ( CHANNEL4 << 4 ) +
+                        ( CHANNEL3 << 3 ) +
+                        ( CHANNEL2 << 2 ) +
+                        ( CHANNEL1 << 1 ) +
+                        CHANNEL0;
 }
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Get Major version number for this hardware module
@@ -855,66 +996,94 @@ uint8_t vscp_readAppReg(uint8_t reg)
     uint8_t rv;
 
     rv = 0x00; // default read
+    
+    // * * *  Page 0  * * *
+    if ( 0 == vscp_page_select ) {
 
-    // Zone
-    if ( reg == 0x00 ) {
-        rv = readEEPROM(VSCP_EEPROM_END + REG0_BEIJING_ZONE);
-	}
-    // SubZone
-	else if ( reg == 0x01 ) {
-        rv = readEEPROM(VSCP_EEPROM_END + REG0_BEIJING_SUBZONE);
-	}
-    else if ( (reg >= REG0_BEIJING_CH0_STATUS) && (reg < REG0_BEIJING_CH0_OUTPUT_CTRL) ) {
+        // Zone
+        if ( reg == REG0_BEIJING_ZONE ) {
+            rv = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_ZONE );
+        }            // SubZone
+        else if ( reg == REG0_BEIJING_SUBZONE ) {
+            rv = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_SUBZONE );
+        } 
+        else if ( ( reg >= REG0_BEIJING_CH0_STATUS ) &&
+                ( reg <= REG0_BEIJING_CH9_STATUS ) ) {
 
-        switch ( reg ) {
+            switch (reg) {
 
-            // Channel 0 Status
-            case REG0_BEIJING_CH0_STATUS:
-                rv = CHANNEL0;
-                break;
+                    // Channel 0 Status
+                case REG0_BEIJING_CH0_STATUS:
+                    rv = CHANNEL0;
+                    break;
 
-            // Channel 1 Status
-            case REG0_BEIJING_CH1_STATUS:
-                rv = CHANNEL1;
-                break;
+                    // Channel 1 Status
+                case REG0_BEIJING_CH1_STATUS:
+                    rv = CHANNEL1;
+                    break;
 
-            // Channel 2 Status
-            case REG0_BEIJING_CH2_STATUS:
-                rv = CHANNEL2;
-                break;
+                    // Channel 2 Status
+                case REG0_BEIJING_CH2_STATUS:
+                    rv = CHANNEL2;
+                    break;
 
-            // Channel 3 Status
-            case REG0_BEIJING_CH3_STATUS:
-                rv = CHANNEL3;
-                break;
+                    // Channel 3 Status
+                case REG0_BEIJING_CH3_STATUS:
+                    rv = CHANNEL3;
+                    break;
 
-            // Channel 4 Status
-            case REG0_BEIJING_CH4_STATUS:
-                rv = CHANNEL4;
-                break;
+                    // Channel 4 Status
+                case REG0_BEIJING_CH4_STATUS:
+                    rv = CHANNEL4;
+                    break;
 
-            // Channel 5 Status
-            case REG0_BEIJING_CH5_STATUS:
-                rv = CHANNEL5;
-                break;
+                    // Channel 5 Status
+                case REG0_BEIJING_CH5_STATUS:
+                    rv = CHANNEL5;
+                    break;
 
-            // Channel 6 Status
-            case REG0_BEIJING_CH6_STATUS:
-                rv = CHANNEL6;
-                break;
+                    // Channel 6 Status
+                case REG0_BEIJING_CH6_STATUS:
+                    rv = CHANNEL6;
+                    break;
 
-            // Channel 7 Status
-            case REG0_BEIJING_CH7_STATUS:
-                rv = 0;
-                break;
+                    // Channel 7 Status
+                case REG0_BEIJING_CH7_STATUS:
+                    rv = 0;
+                    break;
+
+                    // Channel 8 Status
+                case REG0_BEIJING_CH8_STATUS:
+                    rv = 0;
+                    break;
+
+                    // Channel 9 Status
+                case REG0_BEIJING_CH9_STATUS:
+                    rv = 0;
+                    break;
+            }
+        }
+        // Read all other registers including DM
+        else if ( ( reg >= REG0_BEIJING_CH0_OUTPUT_CTRL ) &&
+                ( reg < REG0_COUNT ) ) {
+            rv = readEEPROM( VSCP_EEPROM_END + reg );
+        }
+        
+    } // page 0
+    
+    // * * *  Page 1  * * *
+    else if ( 1 == vscp_page_select ) {
+        if ( reg < REG1_COUNT ) {
+            rv = readEEPROM( VSCP_EEPROM_END + REG0_COUNT + reg );
         }
     }
-    // Read all other registers including DM
-    else if ( ( reg >= REG0_BEIJING_CH0_OUTPUT_CTRL ) &&
-        (reg < (REG_DESCION_MATRIX + DESCION_MATRIX_ROWS * 8 ) ) ) {
-        rv = readEEPROM( VSCP_EEPROM_END + reg );
+    // * * *  Page 2  * * *
+    else if ( 2 == vscp_page_select ) {
+        if ( reg < 8*DESCION_MATRIX_ROWS ) {
+            rv = readEEPROM( VSCP_EEPROM_END + REG0_COUNT + REG1_COUNT + reg );
+        }
     }
-
+    
     return rv;
 
 }
@@ -1583,21 +1752,10 @@ void SendInformationEvent( unsigned char idx,
                             unsigned char eventTypeId )
 {
     uint8_t data[3];
-/*
-    vscp_omsg.priority = VSCP_PRIORITY_MEDIUM;
-    vscp_omsg.flags = VSCP_VALID_MSG + 3;
-    vscp_omsg.vscp_class = eventClass;
-    vscp_omsg.vscp_type = eventTypeId;
 
-    vscp_omsg.data[ 0 ] = idx; // Register
-    vscp_omsg.data[ 1 ] = readEEPROM( VSCP_EEPROM_END + REG_RELAY_SUBZONE);
-    vscp_omsg.data[ 2 ] = readEEPROM( VSCP_EEPROM_END + REG_RELAY1_SUBZONE + idx );
-
-    vscp_sendEvent(); // Send data
-*/
     data[ 0 ] = idx; // Register
-    data[ 1 ] = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_ZONE + 2*idx );
-    data[ 2 ] = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_SUBZONE + 2*idx );
+    data[ 1 ] = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_ZONE );
+    data[ 2 ] = readEEPROM( VSCP_EEPROM_END + REG0_BEIJING_CH0_SUBZONE + idx );
     sendVSCPFrame( eventClass,
                     eventTypeId,
                     vscp_nickname,
@@ -1662,17 +1820,20 @@ void doDM(void)
                                     REG_DESCION_MATRIX +
                                     (8 * i) +
                                     VSCP_DM_POS_CLASSFILTER);
+            
             class_mask = ( dmflags & VSCP_DM_FLAG_CLASS_MASK)*256 +
                     readEEPROM( VSCP_EEPROM_END +
                                     REG0_COUNT + REG1_COUNT + 
                                     REG_DESCION_MATRIX +
                                     (8 * i) +
                                     VSCP_DM_POS_CLASSMASK);
+            
             type_filter = readEEPROM( VSCP_EEPROM_END +
                                         REG0_COUNT + REG1_COUNT + 
                                         REG_DESCION_MATRIX +
                                         (8 * i) +
                                         VSCP_DM_POS_TYPEFILTER);
+            
             type_mask = readEEPROM( VSCP_EEPROM_END +
                                         REG0_COUNT + REG1_COUNT + 
                                         REG_DESCION_MATRIX +
@@ -1687,7 +1848,7 @@ void doDM(void)
                                         REG0_COUNT + REG1_COUNT + 
                                         REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTION ) ) {
 
-                    case BEIJING_ACTION_SET: // Enable Channels in arg. bitarry
+                    case BEIJING_ACTION_SET: // Enable Channels in arg. bit arry
                         doActionOn( dmflags, readEEPROM( VSCP_EEPROM_END + 
                                                             REG0_COUNT + REG1_COUNT + 
                                                             REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );

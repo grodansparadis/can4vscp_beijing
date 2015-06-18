@@ -99,8 +99,6 @@
 #define CHANNEL_STATE_ACTIVE                2
 #define CHANNEL_STATE_PULSE                 3
 
-
-
 #define CHANNEL_CONTROLBIT_STATE            0x01 	// Current channel state
 
 // Bits for output control register
@@ -114,7 +112,7 @@
 // Bits for input control registers
 #define INPUT_CTRL_EVENT_ON                 0x01    // Send On/TurnOn event when input goes to active state.
 #define INPUT_CTRL_EVENT_OFF                0x02    // Send Off/TurnOff event when input goes to inactive state.
-#define INPUT_CTRL_EVENT_SELCECT            0x04    // 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).
+#define INPUT_CTRL_EVENT_SELECT             0x04    // 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).
 #define INPUT_CTRL_ALARM_LOW                0x08    // Alarm event sent if input goes low.  
 #define INPUT_CTRL_ALARM_HIGH               0x10    // Alarm event sent if input goes high.
 #define INPUT_CTRL_DEBOUNCE                 0x40    // Activate debounce
@@ -123,9 +121,13 @@
 // Bits for module control byte
 #define MODULE_CTRL_PULLUP                  0x01    // Activate pullups
         
-#define CHANNEL_DEFAULT_DIRECTION_MSB       0x03    // Channel 8/9 inputs
-#define CHANNEL_DEFAULT_DIRECTION_LSB       0xFF    // Channedl 0-7 inputs
+#define CHANNEL_DEFAULT_DIRECTION_MSB       0x03    // Channel 8/9
+#define CHANNEL_DEFAULT_DIRECTION_LSB       0xFF    // Channel 0-7
 
+// Alarm bits
+#define ALARM_STATE_PROTECTION              0x01    // One of the protection timers has ellapsed
+#define ALARM_INPUT_HIGH                    0x02    // Input has gone low
+#define ALARM_INPUT_LOW                     0x04    // Input has gone high
 
 // -----------------------------------------------
 
@@ -235,10 +237,10 @@
 
 #define REG1_COUNT                          40
 
-#define REG_DESCION_MATRIX                  0    // Start of matrix
 //      Page 2
 
 #define DESCION_MATRIX_ROWS                 8
+#define REG_DESCION_MATRIX                  0    // Start of matrix
 
 // * * * Persistent storage
 
