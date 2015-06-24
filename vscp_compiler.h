@@ -26,8 +26,8 @@
  * ******************************************************************************
 */
 
-#ifndef KELVIN_SMART_COMPILER_H
-#define KELVIN_SMART_COMPILER_H
+#ifndef BEIJING_COMPILER_H
+#define BEIJING_COMPILER_H
 
 
 

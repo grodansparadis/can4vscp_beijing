@@ -27,8 +27,8 @@
  * ******************************************************************************
 */
 
-#ifndef KELVIN_PARIS_PROJDEFS_H
-#define KELVIN_PARIS_PROJDEFS_H
+#ifndef BEIJING_PROJDEFS_H
+#define BEIJING_PROJDEFS_H
 
 // VSCP Defines
 // ============
