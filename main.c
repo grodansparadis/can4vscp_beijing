@@ -188,30 +188,23 @@ void interrupt low_priority  interrupt_at_low_vector( void )
 void main()
 {
     unsigned char b;
-    
-    init(); // Initialize Micro controller
 
+    init();         // Initialize Micro controller
+    
     // Check VSCP persistent storage and
     // restore if needed
     if ( !vscp_check_pstorage() ) {
 
         // Spoiled or not initialized - reinitialize
         init_app_eeprom();
-        init_app_ram();     // Needed because some ram positions
-                            // are initialized from EEPROM
 
     }
-
-    vscp_init();    // Initialize the VSCP functionality
     
-/*    
-    eeprom_write( 0x10, 0x55 );
-    b = eeprom_read( 0x10 );
-    if ( b == 0x55 ) {
-        Nop();
-    }
-    Nop();
-*/
+    // Initialize data
+    init_app_ram();
+    
+    // Initialize the VSCP functionality
+    vscp_init();    
             
     while ( 1 ) {   // Loop Forever
 
@@ -239,7 +232,8 @@ void main()
                 if (VSCP_ADDRESS_FREE == vscp_nickname) {
                     // new on segment need a nickname
                     vscp_node_state = VSCP_STATE_INIT;
-                } else {
+                } 
+                else {
                     // been here before - go on
                     vscp_node_state = VSCP_STATE_ACTIVE;
                     vscp_goActiveState();
@@ -331,9 +325,6 @@ void init()
     
     //uint8_t msgdata[ 8 ];
 
-    // Initialize data
-    init_app_ram();
-
     // Initialize the uP
 
     // PORTA
@@ -343,10 +334,7 @@ void init()
     // RA3/AN3  - output
     // RA4      - output
     // RA5/AN4  - output
-    dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB );
-    TRISA = ( dir & 0x01 ) |                // Channel 8
-                ( ( dir >> 1 ) & 0x01 ) |   // Channel 9
-                0b00000000;
+    TRISA = 0b00000000;
     PORTA = 0x00;  // Default off
 
     // PortB
@@ -359,28 +347,18 @@ void init()
     // RB5/LVPGM    - Not used = output.
     // RB&/PGC      - Not used = output.
     // RB7/PGD      - Not used = output.
-    dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB );
-    TRISB = ( dir & 0x03 ) |        // Channel 0/1
-                0b00001000;
-    
-    // Should the weak pullups be activated?
-    if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_MODULE_CTRL ) & MODULE_CTRL_PULLUP ) {
-        INTCON2bits.RBPU = 0;
-    }
-    
+    TRISB = 0b00001000;
     PORTB = 0x00;  // Default off
 
     // RC0 - Input  - Init. button
     // RC1 - Output - Status LED - Default off
     // RC2 - Output - Not used = output.
-    // RC3 - Output - Channel2.
-    // RC4 - Output - Channel2.
-    // RC5 - Output - Channel2.
-    // RC6 - Output - Channel2.
-    // RC7 - Output - Channel2.
-    dir = ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB ) << 1 ) & 0b11111000;
-    TRISC = dir | 
-                0b00000001;
+    // RC3 - Output - Channel 2.
+    // RC4 - Output - Channel 3.
+    // RC5 - Output - Channel 4.
+    // RC6 - Output - Channel 5.
+    // RC7 - Output - Channel 6.
+    TRISC = 0b00000001;
     PORTC = 0x00;   // Default off
 
 /*
@@ -459,6 +437,7 @@ void init()
 void init_app_ram( void )
 {
     uint8_t i;
+    uint8_t dir;
 
     measurement_clock = 0;      // start a new measurement cycle
 
@@ -495,6 +474,22 @@ void init_app_ram( void )
 
     }
     
+    dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB );
+    TRISA = ( dir & 0x03 ) | 0b00000000;
+
+    dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB );
+    TRISB = ( dir & 0x03 ) |        // Channel 0/1
+                0b00001000;
+    
+    // Should the weak pull-ups be activated?
+    if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_MODULE_CTRL ) & MODULE_CTRL_PULLUP ) {
+        INTCON2bits.RBPU = 0;
+    }
+
+    dir = ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB ) << 1 ) & 0b11111000;
+    TRISC = dir | 
+                0b00000001;
+    
     // Save the current I/O state
     current_iostate = ( CHANNEL9 << 9 ) +
                         ( CHANNEL8 << 8 ) +
@@ -522,11 +517,11 @@ void init_app_eeprom(void)
     eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_SUBZONE, 0 );
     
     for ( i=0; i<10; i++ ) {
-        eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_CH0_SUBZONE + i, 0 );
+        eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_CH0_SUBZONE + i, i );
     }
     
     eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB, CHANNEL_DEFAULT_DIRECTION_MSB );
-    eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB, CHANNEL_DEFAULT_DIRECTION_LSB );
+    eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB, CHANNEL_DEFAULT_DIRECTION_LSB );
 
     for ( i=0; i<10; i++ ) {
         eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i,
@@ -557,7 +552,6 @@ void init_app_eeprom(void)
                         REG0_COUNT +  // needed for page 1
                         REG1_BEIJING_CH0_TIMING_PROTECT_MSB + i, 0 );
     }
-
 
     // * * * Decision Matrix * * *
     // All elements disabled.
@@ -619,11 +613,13 @@ void doApplicationOneSecondWork(void)
                 // Yes if last state was one
                 if ( current_iostate & ( 1 << i ) ) {
                     if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
-                        SendInformationEvent(i, VSCP_CLASS1_INFORMATION,
+                        SendInformationEvent( i, 
+                                                VSCP_CLASS1_INFORMATION,
                                                 VSCP_TYPE_INFORMATION_OFF );
                     }
                     else {
-                        SendInformationEvent(i, VSCP_CLASS1_CONTROL,
+                        SendInformationEvent( i, 
+                                                VSCP_CLASS1_CONTROL,
                                                 VSCP_TYPE_CONTROL_TURNOFF );
                     }
                 }
@@ -676,7 +672,8 @@ void doApplicationOneSecondWork(void)
 
                     // Should alarm be sent?
                     if (ctrlreg & OUTPUT_CTRL_ALARM) {
-                        SendInformationEvent(i, VSCP_CLASS1_ALARM,
+                        SendInformationEvent( i, 
+                                                VSCP_CLASS1_ALARM,
                                                 VSCP_TYPE_ALARM_ALARM);
                     }
                     
@@ -819,9 +816,9 @@ void doApplicationOneSecondWork(void)
                         // Reload pulse timer
                         channel_pulse_timer[ i ] =
                                 eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i ) * 256 +
-                                            eeprom_read(VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i );
+                                                REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i ) * 256 +
+                                                eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
+                                                REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i );
 
                         if ( bOn ) {
 
@@ -829,14 +826,15 @@ void doApplicationOneSecondWork(void)
                             if ( eeprom_read(VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i) & 
                                                 OUTPUT_CTRL_PROTECTION) {
                                 channel_protection_timer[ i ] =
-                                        eeprom_read(VSCP_EEPROM_END + REG0_COUNT +
-                                                    REG1_BEIJING_CH0_TIMING_PROTECT_MSB + 2 * i) * 256 +
-                                                    eeprom_read(VSCP_EEPROM_END + REG0_COUNT +
-                                                    REG1_BEIJING_CH0_TIMING_PROTECT_LSB + 2 * i);
+                                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
+                                                        REG1_BEIJING_CH0_TIMING_PROTECT_MSB + 2 * i) * 256 +
+                                                        eeprom_read(VSCP_EEPROM_END + REG0_COUNT +
+                                                        REG1_BEIJING_CH0_TIMING_PROTECT_LSB + 2 * i);
                             }
 
                             if ( ctrlreg & OUTPUT_CTRL_ONEVENT ) {
-                                SendInformationEvent(i, VSCP_CLASS1_INFORMATION,
+                                SendInformationEvent( i, 
+                                                        VSCP_CLASS1_INFORMATION,
                                                         VSCP_TYPE_INFORMATION_ON);
                             }
 
@@ -856,7 +854,7 @@ void doApplicationOneSecondWork(void)
                 } // Something to count down
                 else {
                     // Reload the pulse timer
-                    channel_pulse_timer[ 0 ] =
+                    channel_pulse_timer[ i ] =
                             eeprom_read(VSCP_EEPROM_END + REG0_COUNT +
                                         REG1_BEIJING_CH0_TIMING_PULSE_MSB + 2 * i) * 256 +
                                         eeprom_read(VSCP_EEPROM_END + REG0_COUNT +
@@ -1086,7 +1084,6 @@ uint8_t vscp_readAppReg(uint8_t reg)
         else if ( ( reg >= REG0_BEIJING_CH0_OUTPUT_CTRL ) &&
                 ( reg < REG0_COUNT ) ) {
             rv = eeprom_read( VSCP_EEPROM_END + reg );
-            Nop();
         }
         
     } // page 0
@@ -1432,7 +1429,7 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
             }
         }
 
-        // Control registers
+        // Output control registers
         else if ( (reg >= REG0_BEIJING_CH0_OUTPUT_CTRL ) &&
                     (reg <= REG0_BEIJING_CH9_OUTPUT_CTRL) ) {
 
@@ -1440,20 +1437,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH0_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
                         CHANNEL0 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x01; // Enable pulse output
+                        channel_pulse_flags |= 0b0000000001; // Enable pulse output
                         channel_pulse_timer[ 0 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH0_TIMING_PULSE_MSB ) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH0_TIMING_PULSE_MSB );
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1111111110; // Disable pulse output
+                        CHANNEL0 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1467,20 +1469,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH1_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_ALARM ) {
 
                         CHANNEL1 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x02; // Enable pulse output
+                        channel_pulse_flags |= 0b0000000010; // Enable pulse output
                         channel_pulse_timer[ 1 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH0_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH0_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1111111101; // Disable pulse output
+                        CHANNEL1 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1494,20 +1501,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH2_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
                         CHANNEL2 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x04; // Enable pulse output
+                        channel_pulse_flags |= 0b0000000100; // Enable pulse output
                         channel_pulse_timer[ 2 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH2_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH2_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1111111011; // Disable pulse output
+                        CHANNEL2 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1521,21 +1533,26 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH3_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
                         CHANNEL3 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x08; // Enable pulse output
+                        channel_pulse_flags |= 0b0000001000; // Enable pulse output
                         channel_pulse_timer[ 3 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH3_TIMING_PULSE_MSB ) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH3_TIMING_PULSE_LSB );
-                    }   
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1111110111; // Disable pulse output
+                        CHANNEL3 = 0; // End with off
+                        bOn = FALSE;
+                    }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
                         channel_protection_timer[ 3 ] =
@@ -1548,20 +1565,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH4_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
 
                         CHANNEL4 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x10; // Enable pulse output
+                        channel_pulse_flags |= 0b0000010000; // Enable pulse output
                         channel_pulse_timer[ 4 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH4_TIMING_PULSE_MSB ) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH4_TIMING_PULSE_LSB );
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1111101111; // Disable pulse output
+                        CHANNEL4 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1575,20 +1597,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH5_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
                         CHANNEL5 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x20; // Enable pulse output
+                        channel_pulse_flags |= 0b0000100000; // Enable pulse output
                         channel_pulse_timer[ 5 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH5_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH5_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1111011111; // Disable pulse output
+                        CHANNEL5 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1602,20 +1629,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH6_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
                         CHANNEL6 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x40; // Enable pulse output
+                        channel_pulse_flags |= 0b0001000000; // Enable pulse output
                         channel_pulse_timer[ 6 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH6_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH6_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1110111111; // Disable pulse output
+                        CHANNEL6 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1629,20 +1661,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
                 
                 case REG0_BEIJING_CH7_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
                         CHANNEL7 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x40; // Enable pulse output
+                        channel_pulse_flags |= 0b0010000000; // Enable pulse output
                         channel_pulse_timer[ 7 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH7_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH7_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1101111111; // Disable pulse output
+                        CHANNEL7 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1656,20 +1693,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH8_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
                         CHANNEL8 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x40; // Enable pulse output
+                        channel_pulse_flags |= 0b0100000000; // Enable pulse output
                         channel_pulse_timer[ 8 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH8_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH8_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b1011111111; // Disable pulse output
+                        CHANNEL8 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1683,20 +1725,25 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
                 
                 case REG0_BEIJING_CH9_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + reg );
+                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
                         CHANNEL9 = 0; // Start out at a known state
                         bOn = FALSE;
 
-                        channel_pulse_flags |= 0x40; // Enable pulse output
+                        channel_pulse_flags |= 0b1000000000; // Enable pulse output
                         channel_pulse_timer[ 9 ] =
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH9_TIMING_PULSE_MSB) * 256 +
                                     eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
                                                     REG1_BEIJING_CH9_TIMING_PULSE_LSB);
+                    }
+                    else {
+                        channel_pulse_flags &= 0b0111111111; // Disable pulse output
+                        CHANNEL9 = 0; // End with off
+                        bOn = FALSE;
                     }
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
@@ -1711,13 +1758,11 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
             }
             
         }
-        else if ( ( reg <= REG0_BEIJING_MODULE_CTRL ) && 
+        else if ( ( reg >= REG0_BEIJING_MODULE_CTRL ) && 
                     ( reg <= REG0_BEIJING_STREAM_TIMING ) ) {
-            eeprom_write( VSCP_EEPROM_END + 
-                            REG0_BEIJING_MODULE_CTRL + 
-                            ( reg - REG0_BEIJING_MODULE_CTRL ), val);
-            rv = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_MODULE_CTRL +
-                                reg - REG0_BEIJING_MODULE_CTRL );
+            eeprom_write( VSCP_EEPROM_END + reg, val);
+            rv = eeprom_read( VSCP_EEPROM_END + reg );
+            Nop();
         }
         
     } // page 0
@@ -1939,7 +1984,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
         unsigned char val;
         val = eeprom_read( VSCP_EEPROM_END + 
-                            REG0_BEIJING_CH0_STATUS + (reg - REG0_BEIJING_CH0_STATUS) );
+                            REG0_BEIJING_CH0_STATUS + 
+                            ( reg - REG0_BEIJING_CH0_STATUS ) );
 
         if ( bOn ) {
 
@@ -3047,7 +3093,7 @@ void vscp_restoreDefaults() {
 
 uint8_t vscp_getRegisterPagesUsed( void )
 {
-    return 1; // One pae used
+    return 3; // One pae used
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -3176,7 +3222,7 @@ void calculateSetFilterMask( void )
             // ==============
             // We receive
             //  - all priorities
-            //  - hardcoded and not hardcoded
+            //  - hard coded and not hard coded
             //  - from all nodes
 
             rowmask =
@@ -3255,7 +3301,7 @@ void calculateSetFilterMask( void )
         }
     }
     
-    // Must be in Config mode to change settings.
+    // Must be in config. mode to change settings.
     ECANSetOperationMode( ECAN_OP_MODE_CONFIG );
 
     //Set mask 1

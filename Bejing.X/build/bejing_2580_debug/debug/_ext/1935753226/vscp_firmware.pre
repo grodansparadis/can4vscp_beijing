@@ -143,10 +143,10 @@ typedef unsigned short uint16_t;
 
 typedef unsigned char uint8_t;
 
-# 191 "../../vscp_firmware/common/vscp_firmware.h"
+# 190 "../../vscp_firmware/common/vscp_firmware.h"
 struct _imsg {
 
-# 203
+# 202
 uint8_t flags;
 
 uint8_t priority;
@@ -156,10 +156,10 @@ uint8_t oaddr;
 uint8_t data[8];
 };
 
-# 218
+# 217
 struct _omsg {
 
-# 230
+# 229
 uint8_t flags;
 
 uint8_t priority;
@@ -169,7 +169,7 @@ uint8_t vscp_type;
 uint8_t data[8];
 };
 
-# 284
+# 283
 struct _dmrow {
 uint8_t oaddr;
 uint8_t flags;
@@ -202,72 +202,72 @@ extern volatile uint16_t vscp_configtimer;
 
 extern const uint8_t vscp_deviceURL[];
 
-# 324
+# 323
 void vscp_init(void);
 
-# 330
+# 329
 void vscp_error(void);
 
-# 338
+# 337
 void vscp_handleProbeState(void);
 
-# 351
+# 350
 void vscp_handlePreActiveState(void);
 
-# 358
+# 357
 void vscp_handleProtocolEvent(void);
 
-# 366
+# 365
 void vscp_goActiveState(void);
 
-# 376
+# 375
 void vscp_sendHeartBeat(uint8_t zone, uint8_t subzone);
 
-# 381
+# 380
 void vscp_handleHeartbeat(void);
 
-# 386
+# 385
 void vscp_handleSetNickname(void);
 
-# 391
+# 390
 void vscp_handleDropNickname(void);
 
-# 396
+# 395
 void vscp_newNodeOnline(void);
 
-# 403
+# 402
 uint8_t vscp_readRegister(uint8_t reg);
 
-# 410
+# 409
 uint8_t vscp_readStdReg(uint8_t reg);
 
-# 418
+# 417
 uint8_t vscp_writeRegister(uint8_t reg, uint8_t value);
 
-# 426
+# 425
 uint8_t vscp_writeStdReg(uint8_t reg, uint8_t value);
 
-# 434
+# 433
 void vscp_doOneSecondWork(void);
 
-# 439
+# 438
 int8_t vscp_check_pstorage(void);
 
-# 447
+# 444
 int8_t vscp_sendEvent(void);
 
-# 453
+# 450
 int8_t vscp_getEvent(void);
 
-# 474
-int8_t getVSCPFrame(uint16_t *pvscpclass,
+# 471
+int8_t getVSCPFrame( uint16_t *pvscpclass,
 uint8_t *pvscptype,
 uint8_t *pNodeId,
 uint8_t *pPriority,
 uint8_t *pSize,
 uint8_t *pData);
 
-# 491
+# 488
 int8_t sendVSCPFrame( uint16_t vscpclass,
 uint8_t vscptype,
 uint8_t nodeid,
@@ -275,87 +275,87 @@ uint8_t priority,
 uint8_t size,
 uint8_t *pData );
 
-# 504
+# 499
 uint8_t vscp_getMajorVersion( void );
 uint8_t vscp_getMinorVersion( void );
 uint8_t vscp_getSubMinorVersion( void );
 
-# 511
+# 506
 uint8_t vscp_getGUID(uint8_t idx);
 void vscp_setGUID(uint8_t idx, uint8_t data);
 
-# 521
+# 516
 uint8_t vscp_getUserID(uint8_t idx);
 void vscp_setUserID(uint8_t idx, uint8_t data);
 
-# 537
+# 532
 uint8_t vscp_getManufacturerId(uint8_t idx);
 void vscp_setManufacturerId(uint8_t idx, uint8_t data);
 
-# 543
+# 538
 uint8_t vscp_getBootLoaderAlgorithm( void );
 
-# 548
+# 543
 uint8_t vscp_getBufferSize(void);
 
-# 553
+# 548
 uint8_t vscp_getRegisterPagesUsed(void);
 
-# 559
+# 554
 uint8_t vscp_getMDF_URL(uint8_t idx);
 
-# 565
+# 560
 uint8_t vscp_readNicknamePermanent(void);
 
-# 571
+# 566
 void vscp_writeNicknamePermanent(uint8_t nickname);
 
-# 576
+# 571
 uint8_t vscp_getSegmentCRC(void);
 
-# 581
+# 576
 void vscp_setSegmentCRC(uint8_t crc);
 
-# 586
+# 581
 uint8_t vscp_getControlByte(void);
 
-# 591
+# 586
 void vscp_setControlByte(uint8_t ctrl);
 
-# 598
+# 593
 uint8_t vscp_getPageSelect(uint8_t idx);
 
-# 605
+# 600
 void vscp_setPageSelect(uint8_t idx, uint8_t data);
 
-# 612
+# 607
 uint8_t vscp_readAppReg(uint8_t reg);
 
-# 620
+# 615
 uint8_t vscp_writeAppReg(uint8_t reg, uint8_t value);
 
-# 634
+# 629
 void vscp_getMatrixInfo(char *pData);
 
-# 642
+# 637
 void vscp_getEmbeddedMdfInfo(void);
 
-# 649
+# 644
 void vscp_goBootloaderMode( uint8_t algorithm );
 
-# 655
+# 650
 uint8_t vscp_getZone(void);
 
-# 661
+# 656
 uint8_t vscp_getSubzone(void);
 
-# 667
+# 662
 uint32_t vscp_getFamilyCode(void);
 
-# 673
+# 668
 uint32_t vscp_getFamilyType(void);
 
-# 681
+# 676
 void vscp_restoreDefaults(void);
 
 # 63 "../../vscp_firmware/common/vscp_firmware.c"
@@ -1339,8 +1339,8 @@ case 37:
 
 if ( vscp_nickname == vscp_imsg.data[0] ) {
 
-uint16_t page_save;
-uint8_t byte = 0, bytes = 0;
+uint16_t page_save, bytes = 0;
+uint8_t byte = 0;
 uint8_t bytes_this_time, cb;
 
 
@@ -1348,11 +1348,11 @@ uint8_t bytes_this_time, cb;
 if ( ( vscp_imsg.flags & 0x0f) > 3 ) {
 
 
-bytes = vscp_imsg.data[4];
+bytes = (uint16_t)vscp_imsg.data[4];
 
-if ( 0 == bytes ) {
-bytes = 1;
-}
+if (bytes == 0) bytes = 256;
+
+if (bytes > 256) bytes = 256;
 }
 else {
 bytes = 1;
@@ -1489,12 +1489,12 @@ int8_t rv;
 if (vscp_imsg.flags & 0x80) return !0;
 
 
-if ((rv = getVSCPFrame(&vscp_imsg.vscp_class,
+if ((rv = getVSCPFrame( &vscp_imsg.vscp_class,
 &vscp_imsg.vscp_type,
 &vscp_imsg.oaddr,
 &vscp_imsg.priority,
 &vscp_imsg.flags,
-vscp_imsg.data))) {
+vscp_imsg.data ) ) ) {
 
 vscp_imsg.flags |= 0x80;
 }

@@ -121,8 +121,9 @@
 // Bits for module control byte
 #define MODULE_CTRL_PULLUP                  0x01    // Activate pullups
         
-#define CHANNEL_DEFAULT_DIRECTION_MSB       0x03    // Channel 8/9
-#define CHANNEL_DEFAULT_DIRECTION_LSB       0xFF    // Channel 0-7
+// I/O Direction 0 = output 1= input
+#define CHANNEL_DEFAULT_DIRECTION_MSB       0x00    // Channel 8/9
+#define CHANNEL_DEFAULT_DIRECTION_LSB       0x00    // Channel 0-7
 
 // Alarm bits
 #define ALARM_STATE_PROTECTION              0x01    // One of the protection timers has ellapsed

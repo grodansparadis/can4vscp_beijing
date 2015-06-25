@@ -4,8 +4,8 @@
 <module>
 	<name>Beijing IO controller</name>
 	<model>B</model>
-	<version>1.0.1</version>
-	<changed>2015-06-16</changed>
+	<version>1.0.2</version>
+	<changed>2015-06-24</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -81,73 +81,73 @@
 	
 	<registers>        
 
-      <reg page="0" offset="0" default="0" >
+		<reg page="0" offset="0" default="0" fgcolor="0x000000" bgcolor="0xfff3d4" >
 			<name lang="en">Zone</name>
 			<description lang="en">Zone this module belongs to</description>
 			<access>rw</access>
 		</reg>
 
-		<reg page="0" offset="1" default="0" >
+		<reg page="0" offset="1" default="0" bgcolor="0xebd69d" >
 			<name lang="en">Sub zone</name>
 			<description lang="en">Sub zone this module belongs to</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="2" default="0" >
+		<reg page="0" offset="2" default="0" bgcolor="0xd1c17d" >
 			<name lang="en">Sub zone I/O 0</name>
 			<description lang="en">Sub zone for I/O channel 0</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="3" default="0">
+		<reg page="0" offset="3" default="1" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 1</name>
 			<description lang="en">Sub zone for I/O channel 1</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="4" default="0">
+		<reg page="0" offset="4" default="2" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 2</name>
 			<description lang="en">Sub zone for I/O channel 2</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="5" default="0">
+		<reg page="0" offset="5" default="3" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 3</name>
 			<description lang="en">Sub zone for I/O channel 3</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="6" default="0">
+		<reg page="0" offset="6" default="4" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 4</name>
 			<description lang="en">Sub zone for I/O channel 4</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="7" default="0">
+		<reg page="0" offset="7" default="5" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 5</name>
 			<description lang="en">Sub zone for I/O channel 5</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="8" default="0">
+		<reg page="0" offset="8" default="6" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 6</name>
 			<description lang="en">Sub zone for I/O channel 6</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="9" default="0">
+		<reg page="0" offset="9" default="7" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 7</name>
 			<description lang="en">Sub zone for I/O channel 7</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="10" default="0">
+		<reg page="0" offset="10" default="8" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 8</name>
 			<description lang="en">Sub zone for I/O channel 8</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="11" default="0">
+		<reg page="0" offset="11" default="9" bgcolor="0xd1c17d">
 			<name lang="en">Sub zone I/O 9</name>
 			<description lang="en">Sub zone for I/O channel 9</description>
 			<access>rw</access>
@@ -164,17 +164,17 @@
 			Bit 4 - Reserved.\n
 			Bit 3 - Reserved.\n
 			Bit 2 - Reserved.\n
-			Bit 1 - Direction for I/O channel 9.\n
-			Bit 0 - Direction for I/O channel 8.\n
+			Bit 1 - Direction for I/O channel 9 - (RA0).\n
+			Bit 0 - Direction for I/O channel 8 - (RA1).\n
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 8</name>
-				<description lang="en">Direction for I/O channel 8.</description> 
+				<description lang="en">Direction for I/O channel 8 - (RA1).</description> 
         	</bit>
 			<bit pos="1" default="false" >
 				<name lang="en">Direction 9</name>
-				<description lang="en">Direction for I/O channel 9.</description> 
+				<description lang="en">Direction for I/O channel 9 - (RA0).</description> 
         	</bit>
 			<bit pos="2" default="false" >
 				<name lang="en">Reserved</name>
@@ -207,47 +207,47 @@
 			<description lang="en">
 			Least significant part of I/O directions register.
 			Set bit to zero for output and one for input.\n\n
-			Bit 7 - Direction for I/O channel 7.\n
-			Bit 6 - Direction for I/O channel 6.\n
-			Bit 5 - Direction for I/O channel 5.\n
-			Bit 4 - Direction for I/O channel 4.\n
-			Bit 3 - Direction for I/O channel 3.\n
-			Bit 2 - Direction for I/O channel 2.\n
-			Bit 1 - Direction for I/O channel 1.\n
-			Bit 0 - Direction for I/O channel 0.\n
+			Bit 7 - Direction for I/O channel 7 - (RA2).\n
+			Bit 6 - Direction for I/O channel 6 - (RC7).\n
+			Bit 5 - Direction for I/O channel 5 - (RC6).\n
+			Bit 4 - Direction for I/O channel 4 - (RC5).\n
+			Bit 3 - Direction for I/O channel 3 - (RC4).\n
+			Bit 2 - Direction for I/O channel 2 - (RC3).\n
+			Bit 1 - Direction for I/O channel 1 - (RB1).\n
+			Bit 0 - Direction for I/O channel 0 - (RB0).\n
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 0</name>
-				<description lang="en">Direction for I/O channel 0.</description> 
+				<description lang="en">Direction for I/O channel 0 - (RB0).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 1</name>
-				<description lang="en">Direction for I/O channel 1.</description> 
+				<description lang="en">Direction for I/O channel 1 - (RB1).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 2</name>
-				<description lang="en">Direction for I/O channel 2.</description> 
+				<description lang="en">Direction for I/O channel 2 - (RC3).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 3</name>
-				<description lang="en">Direction for I/O channel 3.</description> 
+				<description lang="en">Direction for I/O channel 3 - (RC4).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 4</name>
-				<description lang="en">Direction for I/O channel 4.</description> 
+				<description lang="en">Direction for I/O channel 4 - (RC5).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 5</name>
-				<description lang="en">Direction for I/O channel 5.</description> 
+				<description lang="en">Direction for I/O channel 5 - ((RC6).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 6</name>
-				<description lang="en">Direction for I/O channel 6.</description> 
+				<description lang="en">Direction for I/O channel 6 - ((RC7).</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 7</name>
-				<description lang="en">Direction for I/O channel 7.</description> 
+				<description lang="en">Direction for I/O channel 7 - (RA2).</description> 
         	</bit>
 		</reg>
 		
@@ -491,7 +491,7 @@
 			</valuelist>
 		</reg>
 												
-		<reg page="0" offset="24" default="0" >
+		<reg page="0" offset="24" default="0x98" >
 			<name lang="en">Output 0 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -519,13 +519,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -543,7 +543,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -551,7 +551,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="25" default="0" >
+		<reg page="0" offset="25" default="0x98" >
 			<name lang="en">Output 1 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -579,13 +579,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -603,7 +603,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -611,7 +611,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="26" default="0" >
+		<reg page="0" offset="26" default="0x98" >
 			<name lang="en">Output 2 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -639,13 +639,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -663,7 +663,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -671,7 +671,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="27" default="0" >
+		<reg page="0" offset="27" default="0x98" >
 			<name lang="en">Output 3 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -699,13 +699,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -723,7 +723,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -732,7 +732,7 @@
 		</reg>
 		
 		
-		<reg page="0" offset="28" default="0" >
+		<reg page="0" offset="28" default="0x98" >
 			<name lang="en">Output 4 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -760,13 +760,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -784,7 +784,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -792,7 +792,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="29" default="0" >
+		<reg page="0" offset="29" default="0x98" >
 			<name lang="en">Output 5 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -820,13 +820,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -844,7 +844,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -852,7 +852,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="30" default="0" >
+		<reg page="0" offset="30" default="0x98" >
 			<name lang="en">Output 6 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -880,13 +880,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -904,7 +904,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -912,7 +912,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="31" default="0" >
+		<reg page="0" offset="31" default="0x98" >
 			<name lang="en">Output 7 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -940,13 +940,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -964,7 +964,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -972,7 +972,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="32" default="0" >
+		<reg page="0" offset="32" default="0x98" >
 			<name lang="en">Output 8 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -1000,13 +1000,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -1024,7 +1024,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -1032,7 +1032,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="33" default="0" >
+		<reg page="0" offset="33" default="0x98" >
 			<name lang="en">Output 9 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -1046,7 +1046,7 @@
 			Bit 7 - Enable output.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Enable pulse</name>
       	    <description lang="en">Enable pulse on output</description> 
         	</bit>
@@ -1060,13 +1060,13 @@
       	    If set: Protection timer is enabled and will deactivate output channel when the timer times out.
       	    </description> 
         	</bit>  
- 			<bit pos="3" default="false" >
+ 			<bit pos="3" default="true" >
       	    <name lang="en">On event on activate enable</name>
       	    <description lang="en">
       	    If set: An on event will be sent when the output is turned on.
       	    </description> 
         	</bit>  
- 			<bit pos="4" default="false" >
+ 			<bit pos="4" default="true" >
       	    <name lang="en">Off event on deactivate enable</name>
       	    <description lang="en">
       	    If set: An off event will be sent when the output is turned off.
@@ -1084,7 +1084,7 @@
       	    Reserved
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable channel</name>
       	    <description lang="en">
       	    Set this bit to make the output controllable.
@@ -1092,7 +1092,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="34" default="0" >
+		<reg page="0" offset="34" default="0x83" >
 			<name lang="en">Input 0 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1106,11 +1106,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1144,7 +1144,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1152,7 +1152,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="35" default="0" >
+		<reg page="0" offset="35" default="0x83" >
 			<name lang="en">Input 1 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1166,11 +1166,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1204,7 +1204,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1212,7 +1212,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="36" default="0" >
+		<reg page="0" offset="36" default="0x83" >
 			<name lang="en">Input 2 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1226,11 +1226,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1264,7 +1264,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1272,7 +1272,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="37" default="0" >
+		<reg page="0" offset="37" default="0x83" >
 			<name lang="en">Input 3 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1286,11 +1286,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1324,7 +1324,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1332,7 +1332,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="38" default="0" >
+		<reg page="0" offset="38" default="0x83" >
 			<name lang="en">Input 4 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1346,11 +1346,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1384,7 +1384,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1392,7 +1392,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="39" default="0" >
+		<reg page="0" offset="39" default="0x83" >
 			<name lang="en">Input 5 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1406,11 +1406,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1444,7 +1444,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1452,7 +1452,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="40" default="0" >
+		<reg page="0" offset="40" default="0x83" >
 			<name lang="en">Input 6 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1466,11 +1466,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1504,7 +1504,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1512,7 +1512,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="41" default="0" >
+		<reg page="0" offset="41" default="0x83" >
 			<name lang="en">Input 7 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1526,11 +1526,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1564,7 +1564,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1572,7 +1572,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="42" default="0" >
+		<reg page="0" offset="42" default="0x83" >
 			<name lang="en">Input 8 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1586,11 +1586,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1624,7 +1624,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
@@ -1632,7 +1632,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="43" default="0" >
+		<reg page="0" offset="43" default="0x83" >
 			<name lang="en">Input 9 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1646,11 +1646,11 @@
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
-			<bit pos="0" default="false" >
+			<bit pos="0" default="true" >
       	    <name lang="en">Activate ON/TURNON-event</name>
       	    <description lang="en">Send On/TurnOn event when input goes to active state.</description> 
         	</bit>
-			<bit pos="1" default="false" >
+			<bit pos="1" default="true" >
       	    <name lang="en">Activate OFF/TURNOFF-event</name>
       	    <description lang="en">Send Off/TurnOff event when input goes to inactive state.</description> 
         	</bit>
@@ -1684,7 +1684,7 @@
       	    Debounce functionality is activated
       	    </description> 
         	</bit>    
-  			<bit pos="7" default="false" >
+  			<bit pos="7" default="true" >
       	    <name lang="en">Enable input</name>
       	    <description lang="en">
       	    Set this bit to make the input active.
