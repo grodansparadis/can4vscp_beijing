@@ -87,73 +87,73 @@
 			<access>rw</access>
 		</reg>
 
-		<reg page="0" offset="1" default="0" bgcolor="0xebd69d" >
+		<reg page="0" offset="1" default="0" bgcolor="0xfff3d4" >
 			<name lang="en">Sub zone</name>
 			<description lang="en">Sub zone this module belongs to</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="2" default="0" bgcolor="0xd1c17d" >
+		<reg page="0" offset="2" default="0" bgcolor="0xebd69d" >
 			<name lang="en">Sub zone I/O 0</name>
 			<description lang="en">Sub zone for I/O channel 0</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="3" default="1" bgcolor="0xd1c17d">
+		<reg page="0" offset="3" default="1" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 1</name>
 			<description lang="en">Sub zone for I/O channel 1</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="4" default="2" bgcolor="0xd1c17d">
+		<reg page="0" offset="4" default="2" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 2</name>
 			<description lang="en">Sub zone for I/O channel 2</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="5" default="3" bgcolor="0xd1c17d">
+		<reg page="0" offset="5" default="3" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 3</name>
 			<description lang="en">Sub zone for I/O channel 3</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="6" default="4" bgcolor="0xd1c17d">
+		<reg page="0" offset="6" default="4" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 4</name>
 			<description lang="en">Sub zone for I/O channel 4</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="7" default="5" bgcolor="0xd1c17d">
+		<reg page="0" offset="7" default="5" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 5</name>
 			<description lang="en">Sub zone for I/O channel 5</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="8" default="6" bgcolor="0xd1c17d">
+		<reg page="0" offset="8" default="6" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 6</name>
 			<description lang="en">Sub zone for I/O channel 6</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="9" default="7" bgcolor="0xd1c17d">
+		<reg page="0" offset="9" default="7" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 7</name>
 			<description lang="en">Sub zone for I/O channel 7</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="10" default="8" bgcolor="0xd1c17d">
+		<reg page="0" offset="10" default="8" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 8</name>
 			<description lang="en">Sub zone for I/O channel 8</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="11" default="9" bgcolor="0xd1c17d">
+		<reg page="0" offset="11" default="9" bgcolor="0xebd69d">
 			<name lang="en">Sub zone I/O 9</name>
 			<description lang="en">Sub zone for I/O channel 9</description>
 			<access>rw</access>
 		</reg>
 		
-		<reg page="0" offset="12" default="0">
+		<reg page="0" offset="12" default="0" bgcolor="0xB2F0FF">
 			<name lang="en">I/O direction MSB</name>
 			<description lang="en">
 			Most significant part of I/O directions register. 
@@ -202,7 +202,7 @@
         	</bit>
 		</reg>
 		
-		<reg page="0" offset="13" default="0">
+		<reg page="0" offset="13" default="0" bgcolor="0xB2F0FF">
 			<name lang="en">I/O direction LSB</name>
 			<description lang="en">
 			Least significant part of I/O directions register.
@@ -251,7 +251,7 @@
         	</bit>
 		</reg>
 		
-		<reg page="0" offset="14" >
+		<reg page="0" offset="14" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 0 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -275,7 +275,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="15" >
+		<reg page="0" offset="15" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 1 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -299,7 +299,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="16" >
+		<reg page="0" offset="16" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 2 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -323,7 +323,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="17" >
+		<reg page="0" offset="17" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 3 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -347,7 +347,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="18" >
+		<reg page="0" offset="18" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 4 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -371,7 +371,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="19" >
+		<reg page="0" offset="19" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 5 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -395,7 +395,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="20" >
+		<reg page="0" offset="20" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 6 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -419,7 +419,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="21" >
+		<reg page="0" offset="21" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 7 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -443,7 +443,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="22" >
+		<reg page="0" offset="22" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 8 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -467,7 +467,7 @@
 			</valuelist>
 		</reg>
 		
-		<reg page="0" offset="23" >
+		<reg page="0" offset="23" bgcolor="0x99FF99" >
 			<name lang="en">I/O channel 9 status register</name>
 			<description lang="en">
 			Read or write the state of I/O channel 0 in this register.\n
@@ -491,7 +491,7 @@
 			</valuelist>
 		</reg>
 												
-		<reg page="0" offset="24" default="0x98" >
+		<reg page="0" offset="24" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 0 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -551,7 +551,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="25" default="0x98" >
+		<reg page="0" offset="25" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 1 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -611,7 +611,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="26" default="0x98" >
+		<reg page="0" offset="26" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 2 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -671,7 +671,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="27" default="0x98" >
+		<reg page="0" offset="27" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 3 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -732,7 +732,7 @@
 		</reg>
 		
 		
-		<reg page="0" offset="28" default="0x98" >
+		<reg page="0" offset="28" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 4 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -792,7 +792,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="29" default="0x98" >
+		<reg page="0" offset="29" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 5 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -852,7 +852,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="30" default="0x98" >
+		<reg page="0" offset="30" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 6 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -912,7 +912,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="31" default="0x98" >
+		<reg page="0" offset="31" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 7 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -972,7 +972,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="32" default="0x98" >
+		<reg page="0" offset="32" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 8 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -1032,7 +1032,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="33" default="0x98" >
+		<reg page="0" offset="33" default="0x98" bgcolor="0xF0F5F5" >
 			<name lang="en">Output 9 control register</name>
 			<description lang="en">
 			The output control bits enable/disable intelligent functionality for a channel set as output.\n
@@ -1092,7 +1092,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="34" default="0x83" >
+		<reg page="0" offset="34" default="0x83" bgcolor="0xE6E6F0" >
 			<name lang="en">Input 0 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1152,7 +1152,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="35" default="0x83" >
+		<reg page="0" offset="35" default="0x83" bgcolor="0xE6E6F0" >
 			<name lang="en">Input 1 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1212,7 +1212,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="36" default="0x83" >
+		<reg page="0" offset="36" default="0x83" bgcolor="0xE6E6F0" >
 			<name lang="en">Input 2 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1272,7 +1272,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="37" default="0x83" >
+		<reg page="0" offset="37" default="0x83" bgcolor="0xE6E6F0" >
 			<name lang="en">Input 3 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1332,7 +1332,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="38" default="0x83" >
+		<reg page="0" offset="38" default="0x83" bgcolor="0xE6E6F0">
 			<name lang="en">Input 4 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1392,7 +1392,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="39" default="0x83" >
+		<reg page="0" offset="39" default="0x83" bgcolor="0xE6E6F0" >
 			<name lang="en">Input 5 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1452,7 +1452,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="40" default="0x83" >
+		<reg page="0" offset="40" default="0x83" bgcolor="0xE6E6F0">
 			<name lang="en">Input 6 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1512,7 +1512,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="41" default="0x83" >
+		<reg page="0" offset="41" default="0x83" bgcolor="0xE6E6F0">
 			<name lang="en">Input 7 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1572,7 +1572,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="42" default="0x83" >
+		<reg page="0" offset="42" default="0x83" bgcolor="0xE6E6F0">
 			<name lang="en">Input 8 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1632,7 +1632,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="43" default="0x83" >
+		<reg page="0" offset="43" default="0x83" bgcolor="0xE6E6F0">
 			<name lang="en">Input 9 control register</name>
 			<description lang="en">
 			The input control bits enable/disable intelligent functionality for a channel set as input.\n
@@ -1692,7 +1692,7 @@
         	</bit>        	  	       	      	     	
 		</reg>
 		
-		<reg page="0" offset="44" default="0" >
+		<reg page="0" offset="44" default="0" bgcolor="0xCCFFEB" >
 			<name lang="en">Module Control register</name>
       	<description lang="en">
       	It is possible to control general module behaviour in this register.\n
@@ -1756,7 +1756,7 @@
         </bit>
 		</reg>
 		
-		<reg page="0" offset="45" default="0" >
+		<reg page="0" offset="45" default="0" bgcolor="0x80FFCC">
 		<name lang="en">Input stream sample time</name>
       	<description lang="en">
       	This is the time in seconds between input stream samples. Set to zero to disable.\n
@@ -1773,7 +1773,7 @@
 		
 		// * * *   Pulse time  * * *   
 		
-		<reg page="1" offset="0" >
+		<reg page="1" offset="0" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 0 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1787,7 +1787,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="1" >
+		<reg page="1" offset="1" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 0 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1801,7 +1801,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="2" >
+		<reg page="1" offset="2" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 1 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1815,7 +1815,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="3" >
+		<reg page="1" offset="3" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 1 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1829,7 +1829,7 @@
 			<access>rw</access>
 		</reg>
 
-		<reg page="1" offset="4" >
+		<reg page="1" offset="4" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 2 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1843,7 +1843,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="5" >
+		<reg page="1" offset="5" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 2 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1857,7 +1857,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="6" >
+		<reg page="1" offset="6" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 3 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1871,7 +1871,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="7" >
+		<reg page="1" offset="7" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 3 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1885,7 +1885,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="8" >
+		<reg page="1" offset="8" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 4 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1899,7 +1899,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="9" >
+		<reg page="1" offset="9" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 4 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1913,7 +1913,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="10" >
+		<reg page="1" offset="10" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 5 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1927,7 +1927,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="11" >
+		<reg page="1" offset="11" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 5 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1941,7 +1941,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="12" >
+		<reg page="1" offset="12" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 6 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1955,7 +1955,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="13" >
+		<reg page="1" offset="13" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 6 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1969,7 +1969,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="14" >
+		<reg page="1" offset="14" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 7 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1983,7 +1983,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="15" >
+		<reg page="1" offset="15" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 7 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -1997,7 +1997,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="16" >
+		<reg page="1" offset="16" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 8 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -2011,7 +2011,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="17" >
+		<reg page="1" offset="17" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 8 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -2025,7 +2025,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="18" >
+		<reg page="1" offset="18" default="0" bgcolor="0xE6E6F0" >
 			<name lang="en">Output pulse time register for output 9 MSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -2039,7 +2039,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="19" >
+		<reg page="1" offset="19" default="0" bgcolor="0xE0EBEB" >
 			<name lang="en">Output pulse time register for output 9 LSB</name>
 			<description lang="en">
 			This is the pulse time for the each output expressed in seconds. This can be used to 
@@ -2058,7 +2058,7 @@
 		// * * *   Output protection  * * *
 		
 		
-		<reg page="1" offset="20" >
+		<reg page="1" offset="20" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 0 MSB</name>
 			<description lang="en">
 			This is the output protection time. An output will be inactivated if not written to before 
@@ -2070,7 +2070,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="21" >
+		<reg page="1" offset="21" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 0 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2080,7 +2080,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="22" >
+		<reg page="1" offset="22" default="0" bgcolor="0xFFF5FA">
 			<name lang="en">Output protection time register for output 1 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2090,7 +2090,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="23" >
+		<reg page="1" offset="23" default="0" bgcolor="0xFFEBF5"  >
 			<name lang="en">Output protection time register for output 1 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2100,7 +2100,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="24" >
+		<reg page="1" offset="24" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 2 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2110,7 +2110,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="25" >
+		<reg page="1" offset="25" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 2 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2120,7 +2120,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="26" >
+		<reg page="1" offset="26" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 3 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2130,7 +2130,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="27" >
+		<reg page="1" offset="27" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 3 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2140,7 +2140,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="28" >
+		<reg page="1" offset="28" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 4 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2150,7 +2150,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="29" >
+		<reg page="1" offset="29" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 4 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2160,7 +2160,7 @@
 			<access>rw</access>
 		</reg>
 
-		<reg page="1" offset="30" >
+		<reg page="1" offset="30" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 5 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2170,7 +2170,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="31" >
+		<reg page="1" offset="31" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 5 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2180,7 +2180,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="32" >
+		<reg page="1" offset="32" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 6 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2190,7 +2190,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="33" >
+		<reg page="1" offset="33" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 6 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2200,7 +2200,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="34" >
+		<reg page="1" offset="34" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 7 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2210,7 +2210,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="35" >
+		<reg page="1" offset="35" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 7 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2220,7 +2220,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="36" >
+		<reg page="1" offset="36" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 8 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2230,7 +2230,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="37" >
+		<reg page="1" offset="37" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 8 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2240,7 +2240,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="38" >
+		<reg page="1" offset="38" default="0" bgcolor="0xFFF5FA" >
 			<name lang="en">Output protection time register for output 9 MSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2250,7 +2250,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="1" offset="39" >
+		<reg page="1" offset="39" default="0" bgcolor="0xFFEBF5" >
 			<name lang="en">Output protection time register for output 9 LSB</name>
 			<description lang="en">
 			This is the output protection time. A output will be inactivated if not written to before this time has elapsed.\n
@@ -2266,11 +2266,11 @@
 		///////////////////////////////////////////////////////////////////////		
 				
 			
-		<!-- DM Row 1 -->
-		<reg page="2" offset="0" >
+		<!-- DM Row 0 -->
+		<reg page="2" offset="0" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger action. 
+			Originating address. Set to nickname for node that should trigger action. 
 			Oaddr is the originating address. We are only interested in messages from the node given here. 0×00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will not 
 			be checked and events from all nodes will be accepted. 			
@@ -2278,14 +2278,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="1" >
+		<reg page="2" offset="1" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone information of 
 			an event. That is the zone/sub zone of the machine must match the one of the event to trigger the DM 
-			row.\n  
+			row. 
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2322,7 +2322,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="2" >
+		<reg page="2" offset="2" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the action of 
@@ -2332,7 +2332,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="3" >
+		<reg page="2" offset="3" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the action of thsi decision matrix row.\n
@@ -2341,7 +2341,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="4" >
+		<reg page="2" offset="4" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -2349,7 +2349,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="5" >
+		<reg page="2" offset="5" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -2357,7 +2357,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="6" >
+		<reg page="2" offset="6" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only action code 0×00 is predefined and means No-Operation. All other codes are application specific and typical application defined codes could do measurement, send predefined event etc.		
@@ -2365,7 +2365,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="7" >
+		<reg page="2" offset="7" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
@@ -2373,11 +2373,11 @@
 			<access>rw</access>
 		</reg>						
 		
-		<!-- DM Row 2 -->
-		<reg page="2" offset="8" >
+		<!-- DM Row 1 -->
+		<reg page="2" offset="8" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger action. 
+			Originating address. Set to nickname for node that should trigger action. 
 			Oaddr is the originating address. We are only interested in messages from the node given here. 0x00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will 
 			not be checked and events from all nodes will be accepted. 			
@@ -2385,14 +2385,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="8" >
+		<reg page="2" offset="8" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/subzone information of 
 			an event. That is the zone/sub zone of the machine must match the one of the event to trigger the 
-			DM row.\n  
+			DM row.  
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2429,7 +2429,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="10" >
+		<reg page="2" offset="10" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the action of 
@@ -2439,7 +2439,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="11" >
+		<reg page="2" offset="11" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the action of 
@@ -2449,7 +2449,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="12" >
+		<reg page="2" offset="12" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -2457,7 +2457,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="13" >
+		<reg page="2" offset="13" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -2465,7 +2465,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="14" >
+		<reg page="2" offset="14" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only action 
@@ -2475,7 +2475,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="15" >
+		<reg page="2" offset="15" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
@@ -2483,11 +2483,11 @@
 			<access>rw</access>
 		</reg>						
 		
-		<!-- DM Row 3 -->
-		<reg page="2" offset="16" >
+		<!-- DM Row 2 -->
+		<reg page="2" offset="16" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger action. 
+			Originating address. Set to nickname for node that should trigger action. 
 			Oaddr is the originating address. We are only interested in messages from the node given here. 0×00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will not 
 			be checked and events from all nodes will be accepted. 			
@@ -2495,14 +2495,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="17" >
+		<reg page="2" offset="17" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone information of 
 			an event. That is the zone/sub zone of the machine must match the one of the event to trigger the DM 
-			row.\n  
+			row.  
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2539,7 +2539,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="18" >
+		<reg page="2" offset="18" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the action of 
@@ -2549,7 +2549,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="19" >
+		<reg page="2" offset="19" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the action of 
@@ -2559,7 +2559,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="20" >
+		<reg page="2" offset="20" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -2567,7 +2567,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="21" >
+		<reg page="2" offset="21" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -2575,7 +2575,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="22" >
+		<reg page="2" offset="22" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only action 
@@ -2585,7 +2585,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="23" >
+		<reg page="2" offset="23" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 2: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
@@ -2593,11 +2593,11 @@
 			<access>rw</access>
 		</reg>					
 		
-		<!-- DM Row 4 -->
-		<reg page="2" offset="24" >
+		<!-- DM Row 3 -->
+		<reg page="2" offset="24" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger action. 
+			Originating address. Set to nickname for node that should trigger action. 
 			Oaddr is the originating address. We are only interested in messages from the node given here. 0×00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will 
 			not be checked and events from all nodes will be accepted. 			
@@ -2605,14 +2605,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="25" >
+		<reg page="2" offset="25" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone information 
 			of an event. That is the zone/sub zone of the machine must match the one of the event to trigger 
-			the DM row.\n  
+			the DM row.  
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2649,7 +2649,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="26" >
+		<reg page="2" offset="26" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the action of 
@@ -2659,7 +2659,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="27" >
+		<reg page="2" offset="27" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the action 
@@ -2669,7 +2669,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="28" >
+		<reg page="2" offset="28" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -2677,7 +2677,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="29" >
+		<reg page="2" offset="29" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -2685,7 +2685,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="30" >
+		<reg page="2" offset="30" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only action 
@@ -2695,7 +2695,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="31" >
+		<reg page="2" offset="31" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 3: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
@@ -2703,11 +2703,11 @@
 			<access>rw</access>
 		</reg>		
 		
-		<!-- DM Row 5 -->
-		<reg page="2" offset="32" >
+		<!-- DM Row 4 -->
+		<reg page="2" offset="32" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger action. 
+			Originating address. Set to nickname for node that should trigger action. 
 			Oaddr is the originating address. We are only interested in messages from the node given here. 0x00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will not
 			be checked and events from all nodes will be accepted. 			
@@ -2715,14 +2715,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="33" >
+		<reg page="2" offset="33" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone 
 			information of an event. That is the zone/sub zone of the machine must match the one of 
-			the event to trigger the DM row.\n  
+			the event to trigger the DM row.  
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2759,7 +2759,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="34" >
+		<reg page="2" offset="34" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the 
@@ -2769,7 +2769,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="35" >
+		<reg page="2" offset="35" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the 
@@ -2779,7 +2779,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="36" >
+		<reg page="2" offset="36" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -2787,7 +2787,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="37" >
+		<reg page="2" offset="37" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -2795,7 +2795,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="38" >
+		<reg page="2" offset="38" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only 
@@ -2805,7 +2805,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="39" >
+		<reg page="2" offset="39" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 4: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
@@ -2813,11 +2813,11 @@
 			<access>rw</access>
 		</reg>		
 		
-		<!-- DM Row 6 -->
-		<reg page="2" offset="40" >
+		<!-- DM Row 5 -->
+		<reg page="2" offset="40" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger 
+			Originating address. Set to nickname for node that should trigger 
 	        action. 
 			Oaddr is the originating address. We are only interested in messages from the node given 
 			here. 0x00 is segment controller and 0xff is a node without a nickname. If bit 6 of flags 
@@ -2826,14 +2826,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="41" >
+		<reg page="2" offset="41" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone 
 			information of an event. That is the zone/sub zone of the machine must match the one of the 
-			event to trigger the DM row.\n  
+			event to trigger the DM row.  
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2870,7 +2870,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="42" >
+		<reg page="2" offset="42" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the 
@@ -2880,7 +2880,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="43" >
+		<reg page="2" offset="43" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the 
@@ -2890,7 +2890,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="44" >
+		<reg page="2" offset="44" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix 
@@ -2899,7 +2899,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="45" >
+		<reg page="2" offset="45" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix 
@@ -2908,7 +2908,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="46" >
+		<reg page="2" offset="46" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. 
@@ -2918,7 +2918,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="47" >
+		<reg page="2" offset="47" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 5: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
@@ -2926,11 +2926,11 @@
 			<access>rw</access>
 		</reg>
 		
-		<!-- DM Row 7 -->
-		<reg page="2" offset="48" >
+		<!-- DM Row 6 -->
+		<reg page="2" offset="48" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Oaddr </name>
 			<description lang="en">
-			Row 1 of decision matrix. Originating address. Set to nickname for node that should trigger 
+			Originating address. Set to nickname for node that should trigger 
 			action. 
 			Oaddr is the originating address. We are only interested in messages from the node given here. 
 			0x00 is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr 
@@ -2939,14 +2939,14 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="49" >
+		<reg page="2" offset="49" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: flags </name>
 			<description lang="en">
-			Row 1 of decision matrix. Flags. Set selection behaviour.\n
+			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone information 
-			of an event. That is the zone/subz one of the machine must match the one of the event to trigger 
-			the DM row.\n  
+			of an event. That is the zone/subzone one of the machine must match the one of the event to trigger 
+			the DM row. 
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="0" >
@@ -2983,7 +2983,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="50" >
+		<reg page="2" offset="50" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the action 
@@ -2993,7 +2993,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="51" >
+		<reg page="2" offset="51" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the action 
@@ -3003,7 +3003,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="52" >
+		<reg page="2" offset="52" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -3011,7 +3011,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="53" >
+		<reg page="2" offset="53" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -3019,7 +3019,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="54" >
+		<reg page="2" offset="54" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only 
@@ -3029,8 +3029,120 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="55" >
+		<reg page="2" offset="55" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 6: Action parameter</name>
+			<description lang="en">
+			A numeric action parameter can be set and its meaning is application specific.
+			</description>
+			<access>rw</access>
+		</reg>
+		
+		
+		<!-- DM Row 7 -->
+		<reg page="2" offset="48" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Oaddr </name>
+			<description lang="en">
+			Originating address. Set to nickname for node that should trigger 
+			action. 
+			Oaddr is the originating address. We are only interested in messages from the node given here. 
+			0x00 is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr 
+			will not be checked and events from all nodes will be accepted. 			
+			</description>
+			<access>rw</access>
+		</reg>
+		
+		<reg page="2" offset="49" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: flags </name>
+			<description lang="en">
+			Flags. Set selection behaviour.\n
+			The enable bit can be used to disable a decision matrix row while it is edited.\n
+			The zone and use sub zone bits can be activated to have a check on the zone/sub zone information 
+			of an event. That is the zone/subz one of the machine must match the one of the event to trigger 
+			the DM row.  
+			</description>
+			<access>rw</access>
+			<bit pos="0" default="0" >
+				<name lang="en">Class filter bit 8</name>
+      	   <description lang="en">Defines the ninth bit of the class filter.</description> 
+			</bit>
+			<bit pos="1" default="0" >
+				<name lang="en">Class mask bit 8</name>
+      	   <description lang="en">Defines the ninth bit of the class mask.</description> 
+			</bit>			
+			<bit pos="2" default="false" >
+				<name lang="en">Reserved bit</name>
+      	   <description lang="en">This bit is not used.</description> 
+			</bit>
+			<bit pos="3" default="false" >
+				<name lang="en">Sub zone match</name>
+      	   <description lang="en">If set to one sub zone should be matched to trigger DM entry action.</description> 
+			</bit>
+			<bit pos="4" default="false" >
+				<name lang="en">Zone match</name>
+      	   <description lang="en">If set to one zone should be matched to trigger DM entry action.</description> 
+			</bit>
+			<bit pos="5" default="false" >
+				<name lang="en">Hard coded</name>
+      	   <description lang="en">If set to one the originating address should be hard coded to trigger DM entry action.</description> 
+			</bit>	
+			<bit pos="6" default="false" >
+				<name lang="en">Check Originating address</name>
+      	   <description lang="en">If set to one the originating address should be checked and match to trigger DM entry action.</description> 
+			</bit>
+			<bit pos="7" default="false" >
+				<name lang="en">Enable</name>
+      	   <description lang="en">Enable (1) or disable (0)the decision matrix row.</description> 
+			</bit>												
+		</reg>		
+		
+		<reg page="2" offset="50" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Class mask (low eight bits) </name>
+			<description lang="en">
+			The lowest eight bits of the class mask that defines the events that should trigger the action 
+			of this decision matrix row.\n
+			Bit 8 of the class mask is stored in bit 1 of the flag byte. 			
+			</description>
+			<access>rw</access>
+		</reg>
+		
+		<reg page="2" offset="51" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Class filter (low eight bits) </name>
+			<description lang="en">
+			The lowest eight bits of the class filter that defines the events that should trigger the action 
+			of this decision matrix row.\n
+			Bit 8 of the class filter is stored in bit 1 of the flag byte. 			
+			</description>
+			<access>rw</access>
+		</reg>
+		
+		<reg page="2" offset="52" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Type mask</name>
+			<description lang="en">
+			Type mask that defines the events that should trigger the action of this decision matrix row.		
+			</description>
+			<access>rw</access>
+		</reg>	
+		
+		<reg page="2" offset="53" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Type filter</name>
+			<description lang="en">
+			Type filter that defines the events that should trigger the action of this decision matrix row.		
+			</description>
+			<access>rw</access>
+		</reg>	
+		
+		<reg page="2" offset="54" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Action</name>
+			<description lang="en">
+			This is the action or operation that should be performed if the filtering is satisfied. Only 
+			action code 0x00 is predefined and means No-Operation. All other codes are application specific 
+			and typical application defined codes could do measurement, send predefined event etc.		
+			</description>
+			<access>rw</access>
+		</reg>
+		
+		<reg page="2" offset="55" default="0" bgcolor="0xE6E6E6" >
+			<name lang="en">Decision matrix row 7: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
 			</description>
@@ -3045,12 +3157,13 @@
 	<abstractions>
 
 		<abstraction type="short" default="0"  
-							page = "1" offset = "0" >
+							page = "1" offset = "0" 
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output pulse time register for channel 0</name>
       	<description lang="en">
-      	This is the pulse time for output 0 expressed in seconds. 
+		This is the pulse time for output 0 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3062,12 +3175,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "2" >
+							page = "1" offset = "2"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output pulse time register for channel 1</name>
       	<description lang="en">
-      	This is the pulse time for output 1 expressed in seconds. 
+		This is the pulse time for output 1 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3079,12 +3193,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "4" >
+							page = "1" offset = "4"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output pulse time register for channel 2</name>
       	<description lang="en">
-      	This is the pulse time for output 2 expressed in seconds. 
+		This is the pulse time for output 2 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3096,12 +3211,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "6" >
+							page = "1" offset = "6"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output pulse time register for channel 3</name>
       	<description lang="en">
-      	This is the pulse time for channel 3 expressed in seconds. 
+		This is the pulse time for channel 3 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3113,12 +3229,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "8" >
+							page = "1" offset = "8"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output pulse time register for channel 4</name>
       	<description lang="en">
-      	This is the pulse time for channel 4 expressed in seconds. 
+		This is the pulse time for channel 4 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3130,12 +3247,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "10" >
+							page = "1" offset = "10"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output pulse time register for channel 5</name>
       	<description lang="en">
-      	This is the pulse time for channel 5 expressed in seconds. 
+		This is the pulse time for channel 5 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3147,12 +3265,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "12" >
+							page = "1" offset = "12"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output pulse time register for channel 6</name>
       	<description lang="en">
-      	This is the pulse time for channel 6 expressed in seconds. 
+		This is the pulse time for channel 6 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3164,12 +3283,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "14" >
+							page = "1" offset = "14"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output pulse time register for channel 7</name>
       	<description lang="en">
-      	This is the pulse time for channel 7 expressed in seconds. 
+		This is the pulse time for channel 7 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3181,12 +3301,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "16" >
+							page = "1" offset = "16"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output pulse time register for channel 8</name>
       	<description lang="en">
-      	This is the pulse time for channel 8 expressed in seconds. 
+		This is the pulse time for channel 8 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3198,12 +3319,13 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "18" >
+							page = "1" offset = "18"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output pulse time register for channel 9</name>
       	<description lang="en">
-      	This is the pulse time for channel 9 expressed in seconds. 
+		This is the pulse time for channel 9 expressed in seconds. 
 		It can be used to have an output turn on and off with a certain 
-		preset interval. The min pulse time is 1 second and the max time 
+		preset interval. The min. pulse time is 1 second and the max time 
 		is 65535 seconds which is about 18 hours. Set to zero (default) 
 		for no pulse time i.e. the output will be steady on/off.\n\n
 		To start a pulse sequence first write the pulse time to this 
@@ -3214,15 +3336,13 @@
       	<access>rw</access>
 		</abstraction>
 		
-		
-		
-		
-   	
+
 		<abstraction type="short" default="0"  
-							page = "1" offset = "20" >
+							page = "1" offset = "20"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output protection time register channel 0</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3234,10 +3354,11 @@
 		</abstraction> 
    	
 		<abstraction type="short" default="0"  
-							page = "1" offset = "22" >
+							page = "1" offset = "22"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output protection time register channel 1</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3249,10 +3370,11 @@
 		</abstraction> 
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "24" >
+							page = "1" offset = "24"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output protection time register channel 2</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3264,10 +3386,11 @@
 		</abstraction> 
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "26" >
+							page = "1" offset = "26"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output protection time register channel 3</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3279,10 +3402,11 @@
 		</abstraction> 
 
 		<abstraction type="short" default="0"  
-							page = "1" offset = "28" >
+							page = "1" offset = "28"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output protection time register channel 4</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3294,10 +3418,11 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "30" >
+							page = "1" offset = "30"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output protection time register channel 5</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3309,10 +3434,11 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "32" >
+							page = "1" offset = "32"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output protection time register channel 6</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3324,10 +3450,11 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "34" >
+							page = "1" offset = "34"
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output protection time register channel 7</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3339,10 +3466,11 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "36" >
+							page = "1" offset = "36"
+							bgcolor="0xE0E0FF" >
    		<name lang="en">Output protection time register channel 8</name>
       	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+		This is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
@@ -3354,10 +3482,10 @@
 		</abstraction>
 		
 		<abstraction type="short" default="0"  
-							page = "1" offset = "38" >
+							page="1" offset="38" 
+							bgcolor="0xF0F0FF" >
    		<name lang="en">Output protection time register channel 9</name>
-      	<description lang="en">
-      	This is the output protection time. A output will be inactivated if 
+      	<description lang="en">TThis is the output protection time. A output will be inactivated if 
 		not written to before this time has elapsed.\n\n
 		Set to zero to disable (default). The max time is 65535 seconds 
 		which is about 18 hours.\n\n
