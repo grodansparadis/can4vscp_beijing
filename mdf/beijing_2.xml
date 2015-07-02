@@ -4,8 +4,8 @@
 <module>
 	<name>Beijing IO controller</name>
 	<model>B</model>
-	<version>1.0.2</version>
-	<changed>2015-06-24</changed>
+	<version>1.0.3</version>
+	<changed>2015-07-02</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -1101,7 +1101,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1133,9 +1133,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1161,7 +1161,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1193,9 +1193,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1221,7 +1221,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1253,9 +1253,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1281,7 +1281,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1313,9 +1313,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1341,7 +1341,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1373,9 +1373,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1401,7 +1401,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1433,9 +1433,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1461,7 +1461,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1493,9 +1493,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1521,7 +1521,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1553,9 +1553,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1581,7 +1581,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1613,9 +1613,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -1641,7 +1641,7 @@
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
-			Bit 5 - Reserved.\n
+			Bit 5 - Continuous alarm.\n
 			Bit 6 - Activate debounce\n
 			Bit 7 - Enable input.\n
 			</description>
@@ -1673,9 +1673,9 @@
       	    </description> 
         	</bit> 
  			<bit pos="5" default="false" >
-      	    <name lang="en">Reserved</name>
+      	    <name lang="en">Continuous alarm</name>
       	    <description lang="en">
-      	    Reserved
+      	    Alarm events are sent continuously while the state is active.
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
@@ -4096,6 +4096,27 @@
 		</event>
 		
 	</events>
+	
+	<setup>
+		<recipe>
+			<name lang="en">Blink channel 0</name>
+      		<description lang="en">
+      		Set channel 0 to output and blink with 10 Hz.
+      		</description>
+			<!-- Set channel as output -->
+			<bit-in-reg pos="0" page="0" offset="" value="false" />
+			<register page="0" offset="0" value="0" />
+			<!-- Read frequency from user -->
+			<messagebox>
+				<function>input</function>
+				<head lang="en">Beijing I/O node</head>
+				<description lang="en">With what frequency should channel blink?</description>
+				<variable type="byte" name="frequency"/>
+			</messagebox>
+			<!-- Write frequency to abstraction register -->
+			<abstraction name="blink-frequency0" value="$frequency" />
+		</recipe>
+	</setup>
 	
 </module>	
 </vscp>	

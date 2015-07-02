@@ -37,6 +37,7 @@
 #include <timers.h>
 #include <delays.h>
 #include <inttypes.h>
+#include <string.h>
 #include <ecan.h>
 #include <vscp_firmware.h>
 #include <vscp_class.h>
@@ -91,7 +92,12 @@ void calculateSetFilterMask( void );
 // The device URL (max 32 characters including null termination)
 const uint8_t vscp_deviceURL[] = "www.eurosource.se/beijing_2.xml";
 
-volatile unsigned long measurement_clock; // Clock for measurments
+volatile unsigned long measurement_clock_sec;  // Clock for one second work
+
+
+volatile unsigned long measurement_clock_10ms;  // Debounce clock
+uint8_t debounce_cnt[ 10 ];                     // Debaunce counter
+uint8_t current_debounce;                       // I/O channel to check
 
 uint8_t sendTimer;  // Timer for CAN send
 uint8_t seconds;    // counter for seconds
@@ -110,9 +116,11 @@ uint16_t channel_pulse_timer[10];
 // for each channel
 uint16_t channel_protection_timer[10];
 
-// This is the io-state when the last one second work
+// This is the I/O-state when the last one second work
 // was carried out
 uint16_t current_iostate;
+
+
 
 //__EEPROM_DATA(0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88);
 
@@ -138,7 +146,8 @@ void interrupt low_priority  interrupt_at_low_vector( void )
         
         vscp_timer++;
         vscp_configtimer++;
-        measurement_clock++;
+        measurement_clock_10ms++;
+        measurement_clock_sec++;
 
         // Check for init. button
         if ( INIT_BUTTON ) {
@@ -185,9 +194,9 @@ void interrupt low_priority  interrupt_at_low_vector( void )
 // Main() - Main Routine
 //***************************************************************************
 
+
 void main()
 {
-    unsigned char b;
 
     init();         // Initialize Micro controller
     
@@ -259,9 +268,320 @@ void main()
                         vscp_handleProtocolEvent();
 
                     }
-
-                    doDM();
-					
+                    else {
+                        
+                        if ( measurement_clock_10ms >= 10 ) {
+                            
+                            uint8_t dir = eeprom_read( VSCP_EEPROM_END + 
+                                                            REG0_BEIJING_IO_DIRECTION_MSB ) << 8 +
+                                            eeprom_read( VSCP_EEPROM_END + 
+                                                            REG0_BEIJING_IO_DIRECTION_LSB );
+                                    
+                            measurement_clock_10ms = 0;
+                            
+                            if ( ( dir & ( 1 << current_debounce ) ) &&
+                                        ( eeprom_read( VSCP_EEPROM_END + 
+                                                        REG0_BEIJING_CH0_INPUT_CTRL +
+                                                        current_debounce ) & 
+                                                            INPUT_CTRL_DEBOUNCE ) &&
+                                        ( eeprom_read( VSCP_EEPROM_END + 
+                                                        REG0_BEIJING_CH0_INPUT_CTRL +
+                                                        current_debounce ) & 
+                                                            INPUT_CTRL_ENABLE ) ) {
+                                switch ( current_debounce ) {
+                                    
+                                    case 0:
+                                        if ( !CHANNEL0 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 1:
+                                        if ( !CHANNEL1 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 2:
+                                        if ( !CHANNEL2 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 3:
+                                        if ( !CHANNEL3 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 4:
+                                        if ( !CHANNEL4 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 5:
+                                        if ( !CHANNEL5 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 6:
+                                        if ( !CHANNEL6 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 7:
+                                        if ( !CHANNEL7 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 8:
+                                        if ( !CHANNEL8 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                        
+                                    case 9:
+                                        if ( !CHANNEL9 ) {
+                                            debounce_cnt[ current_debounce ]++;
+                                            if ( debounce_cnt[ current_debounce ] > 3 ) {
+                                                
+                                                debounce_cnt[ current_debounce ] = 0;
+                                                
+                                                // Send On/TurnOn event
+                                                if ( eeprom_read( VSCP_EEPROM_END + 
+                                                                    REG0_BEIJING_CH0_OUTPUT_CTRL + 
+                                                                    current_debounce ) &  
+                                                                        INPUT_CTRL_EVENT_SELECT ) {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_INFORMATION,
+                                                            VSCP_TYPE_INFORMATION_ON );
+                                                }
+                                                else {
+                                                    SendInformationEvent( current_debounce, 
+                                                            VSCP_CLASS1_CONTROL,
+                                                            VSCP_TYPE_CONTROL_TURNON );
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            debounce_cnt[ current_debounce ] = 0;
+                                        }
+                                        break;
+                                                                          
+                                    default:
+                                        current_debounce = 0;
+                                        break;
+                                }
+                            
+                            }
+                        }
+                        
+                        doDM();
+                        
+					}
+                    
                 }
                 break;
 
@@ -276,9 +596,9 @@ void main()
         }
 
         // do a measurement if needed
-        if ( measurement_clock > 1000 ) {
+        if ( measurement_clock_sec > 1000 ) {
 
-            measurement_clock = 0;
+            measurement_clock_sec = 0;
             sendTimer++;
  
             // Do VSCP one second jobs
@@ -287,10 +607,8 @@ void main()
             // Temperature report timers are only updated if in active
             // state GUID_reset
             if ( VSCP_STATE_ACTIVE == vscp_node_state ) {
-
                 // Do VSCP one second jobs
                 doApplicationOneSecondWork();
-
             }
 
         }
@@ -326,6 +644,11 @@ void init()
     //uint8_t msgdata[ 8 ];
 
     // Initialize the uP
+    
+    // Deselect comparators and ADC's so PORTA/PORTB
+    // can be used as inputs.
+    ADCON1 = 0x0f;
+    //CMCON = 0x07;     // Not implemented on PIC18F2580
 
     // PORTA
     // RA0/AN0  - channel 9
@@ -439,7 +762,7 @@ void init_app_ram( void )
     uint8_t i;
     uint8_t dir;
 
-    measurement_clock = 0;      // start a new measurement cycle
+    measurement_clock_sec = 0;      // start a new measurement cycle
 
     seconds = 0;
     minutes = 0;
@@ -448,10 +771,8 @@ void init_app_ram( void )
     channel_pulse_flags = 0;      // No pulse outputs yet
 
     // Clear timers
-    for ( i = 0; i < 10; i++ ) {
-        channel_pulse_timer[ i ] = 0;
-        channel_protection_timer[ i ] = 0;
-    }
+    memset( channel_pulse_timer, 0, sizeof( channel_pulse_timer ) );
+    memset( channel_protection_timer, 0, sizeof( channel_protection_timer ) );
 
     for ( i=0; i<10; i++ ) {
 
@@ -478,8 +799,7 @@ void init_app_ram( void )
     TRISA = ( dir & 0x03 ) | 0b00000000;
 
     dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB );
-    TRISB = ( dir & 0x03 ) |        // Channel 0/1
-                0b00001000;
+    TRISB = ( dir & 0x03 ) | 0b00001000;  // Channel 0/1
     
     // Should the weak pull-ups be activated?
     if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_MODULE_CTRL ) & MODULE_CTRL_PULLUP ) {
@@ -487,8 +807,10 @@ void init_app_ram( void )
     }
 
     dir = ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB ) << 1 ) & 0b11111000;
-    TRISC = dir | 
-                0b00000001;
+    TRISC = dir | 0b00000001;
+    
+    memset( debounce_cnt, 0, sizeof( debounce_cnt ) );
+    current_debounce = 0;   // Check debounce on channel 0
     
     // Save the current I/O state
     current_iostate = ( CHANNEL9 << 9 ) +
@@ -576,6 +898,7 @@ void doApplicationOneSecondWork(void)
     uint16_t iodirections;  // Directions fro I/O channels
     uint8_t ctrlreg;        // Control register
     BOOL bOn = FALSE;
+    BOOL bInput;            // State of input
 
     // Get direction for channels
     iodirections = ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB ) << 8 ) +
@@ -593,56 +916,125 @@ void doApplicationOneSecondWork(void)
             // If not enabled check next
             if ( !( ctrlreg & INPUT_CTRL_ENABLE ) ) continue;
             
+            switch ( i ) {
+                    
+                case 0:
+                    bInput = CHANNEL0;
+                    break;
+                        
+                case 1:
+                    bInput = CHANNEL1;
+                    break;
+                        
+                case 2:
+                    bInput = CHANNEL2;
+                    break;
+                        
+                case 3:
+                    bInput = CHANNEL3;
+                    break;
+
+                case 4:
+                    bInput = CHANNEL4;
+                    break;
+
+                case 5:
+                    bInput = CHANNEL5;
+                    break;
+
+                case 6:
+                    bInput = CHANNEL6;
+                    break;
+
+                case 7:
+                    bInput = CHANNEL7;
+                    break;
+
+                case 8:
+                    bInput = CHANNEL8;
+                    break;
+
+                case 9:
+                    bInput = CHANNEL9;
+                    break;                        
+                }
+            
             // Should change ON event be sent?
             if (  ctrlreg & INPUT_CTRL_EVENT_ON ) {
-                // Yes if last state was zero
-                if ( !( current_iostate & ( 1 << i ) ) ) {
-                    if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
-                        SendInformationEvent(i, VSCP_CLASS1_INFORMATION,
-                                                VSCP_TYPE_INFORMATION_ON );
-                    }
-                    else {
-                        SendInformationEvent(i, VSCP_CLASS1_CONTROL,
-                                                VSCP_TYPE_CONTROL_TURNON );
+                                
+                if ( bInput ) {
+                    
+                    // Yes if last state was zero
+                    if ( !( current_iostate & ( 1 << i ) ) ) {
+                        if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
+                            SendInformationEvent( i, 
+                                                    VSCP_CLASS1_CONTROL,
+                                                    VSCP_TYPE_CONTROL_TURNON );
+                        }   
+                        else {
+                            SendInformationEvent( i, 
+                                                    VSCP_CLASS1_INFORMATION,
+                                                    VSCP_TYPE_INFORMATION_ON );
+                        }
                     }
                 }
             }
             
             // Should change OFF event be sent?
             if (  ctrlreg & INPUT_CTRL_EVENT_OFF ) {
-                // Yes if last state was one
-                if ( current_iostate & ( 1 << i ) ) {
-                    if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
-                        SendInformationEvent( i, 
-                                                VSCP_CLASS1_INFORMATION,
-                                                VSCP_TYPE_INFORMATION_OFF );
-                    }
-                    else {
-                        SendInformationEvent( i, 
-                                                VSCP_CLASS1_CONTROL,
-                                                VSCP_TYPE_CONTROL_TURNOFF );
+                
+                if ( !bInput ) {
+                    
+                    // Yes if last state was one
+                    if ( current_iostate & ( 1 << i ) ) {
+                        if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
+                            SendInformationEvent( i, 
+                                                    VSCP_CLASS1_CONTROL,
+                                                    VSCP_TYPE_CONTROL_TURNOFF );
+                        }
+                        else {
+                            SendInformationEvent( i, 
+                                                    VSCP_CLASS1_INFORMATION,
+                                                    VSCP_TYPE_INFORMATION_OFF );
+                        }
                     }
                 }
             }
             
             // Should alarm high event be sent?
-            if (  ctrlreg & INPUT_CTRL_ALARM_HIGH ) {
-                // Yes if last state was zero
-                if ( !( current_iostate & ( 1 << i ) ) ) {
-                    SendInformationEvent( i, VSCP_CLASS1_ALARM,
+            if ( ctrlreg & INPUT_CTRL_ALARM_HIGH ) {
+                
+                if ( bInput ) {
+                    
+                    // Yes if last state was zero
+                    if ( !( current_iostate & ( 1 << i ) ) || 
+                            ( ctrlreg & INPUT_CTRL_ALARM_CONTINIOUS ) ) {
+                        SendInformationEvent( i, 
+                                                VSCP_CLASS1_ALARM,
                                                 VSCP_TYPE_ALARM_ALARM );
-                    vscp_alarmstatus |= ALARM_INPUT_HIGH;
+                        vscp_alarmstatus |= ALARM_INPUT_HIGH;
+                    }
+                    
                 }
+                
             }
             
             // Should alarm low event be sent?
-            if (  ctrlreg & INPUT_CTRL_ALARM_LOW ) {
-                // Yes if last state was one
-                if ( current_iostate & ( 1 << i ) ) {
-                    SendInformationEvent( i, VSCP_CLASS1_ALARM,
+            if ( ctrlreg & INPUT_CTRL_ALARM_LOW ) {
+                
+                if (!bInput ) {
+                    
+                    // Yes if last state was one
+                    if ( current_iostate & ( 1 << i ) ||
+                            ( ctrlreg & INPUT_CTRL_ALARM_CONTINIOUS ) ) {
+                        SendInformationEvent( i, 
+                                                VSCP_CLASS1_ALARM,
                                                 VSCP_TYPE_ALARM_ALARM );
-                    vscp_alarmstatus |= ALARM_INPUT_LOW;
+                        vscp_alarmstatus |= ALARM_INPUT_LOW;
+                    }
+                    
                 }
+                
             }
             
         }
@@ -867,6 +1259,33 @@ void doApplicationOneSecondWork(void)
 
     } // for all channels
     
+    
+    // Check if stream event should be sent
+    if ( eeprom_read(VSCP_EEPROM_END + REG0_BEIJING_STREAM_TIMING ) ) {
+    
+        uint8_t data[ 3 ]; 
+        
+        data[ 0 ] = 0;  // Data coding (coding=0(bits), unit=0, sensor=0)
+        data[ 1 ] = ( CHANNEL9 << 1 ) + 
+                        CHANNEL8;
+        data[ 2 ] = ( CHANNEL7 << 7 ) + 
+                        ( CHANNEL6 << 6 ) +
+                        ( CHANNEL5 << 5 ) +
+                        ( CHANNEL4 << 4 ) +
+                        ( CHANNEL3 << 3 ) +
+                        ( CHANNEL2 << 2 ) +
+                        ( CHANNEL1 << 1 ) +
+                        CHANNEL0;
+
+        // Send event
+        sendVSCPFrame( VSCP_CLASS1_DATA,
+                        VSCP_TYPE_DATA_IO,
+                        vscp_nickname,
+                        VSCP_PRIORITY_MEDIUM,
+                        3,
+                        data );
+    }
+    
     // Save the current I/O state
     current_iostate = ( CHANNEL9 << 9 ) +
                         ( CHANNEL8 << 8 ) +
@@ -1024,6 +1443,20 @@ uint8_t vscp_readAppReg(uint8_t reg)
                                 REG0_BEIJING_CH0_SUBZONE + 
                                 ( reg - REG0_BEIJING_CH0_SUBZONE ) );
         }
+        else if ( reg == REG0_BEIJING_IO_DIRECTION_MSB ) {
+            rv = ( TRISAbits.TRISA0 << 1 ) +
+                    TRISAbits.TRISA1;
+        }
+        else if ( reg == REG0_BEIJING_IO_DIRECTION_LSB ) {
+            rv = ( TRISAbits.TRISA2 << 7 ) +
+                    ( TRISCbits.TRISC7 << 6 ) +
+                    ( TRISCbits.TRISC6 << 5 ) +
+                    ( TRISCbits.TRISC5 << 4 ) +
+                    ( TRISCbits.TRISC4 << 3 ) +
+                    ( TRISCbits.TRISC3 << 2 ) +
+                    ( TRISBbits.TRISB1 << 1 ) +
+                    TRISBbits.TRISB0;
+        }
         else if ( ( reg >= REG0_BEIJING_CH0_STATUS ) &&
                 ( reg <= REG0_BEIJING_CH9_STATUS ) ) {
 
@@ -1066,17 +1499,17 @@ uint8_t vscp_readAppReg(uint8_t reg)
 
                     // Channel 7 Status
                 case REG0_BEIJING_CH7_STATUS:
-                    rv = 0;
+                    rv = CHANNEL7;
                     break;
 
                     // Channel 8 Status
                 case REG0_BEIJING_CH8_STATUS:
-                    rv = 0;
+                    rv = CHANNEL8;
                     break;
 
                     // Channel 9 Status
                 case REG0_BEIJING_CH9_STATUS:
-                    rv = 0;
+                    rv = CHANNEL9;
                     break;
             }
         }
@@ -1139,6 +1572,43 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
             rv = eeprom_read( VSCP_EEPROM_END + 
                                 REG0_BEIJING_CH0_SUBZONE + 
                                 ( reg - REG0_BEIJING_CH0_SUBZONE ) );
+        }
+        else if ( reg == REG0_BEIJING_IO_DIRECTION_MSB ) {
+            
+            eeprom_write( VSCP_EEPROM_END + 
+                                    REG0_BEIJING_IO_DIRECTION_MSB,
+                                    ( val & 0x03 ) );
+            
+            TRISAbits.TRISA0 = ( val & 0x02 ) ? 1 : 0;
+            TRISAbits.TRISA1 = ( val & 0x01 ) ? 1 : 0;
+            
+            rv = ( TRISAbits.TRISA0 << 1 ) +
+                    TRISAbits.TRISA1;
+        }
+        else if ( reg == REG0_BEIJING_IO_DIRECTION_LSB ) {
+            
+            eeprom_write( VSCP_EEPROM_END + 
+                                    REG0_BEIJING_IO_DIRECTION_LSB,
+                                    val);
+            
+            TRISAbits.TRISA2 = ( val & 0x80 ) ? 1 : 0;
+            TRISCbits.TRISC7 = ( val & 0x40 ) ? 1 : 0;
+            TRISCbits.TRISC6 = ( val & 0x20 ) ? 1 : 0;
+            TRISCbits.TRISC5 = ( val & 0x10 ) ? 1 : 0;
+            TRISCbits.TRISC4 = ( val & 0x08 ) ? 1 : 0;
+            TRISCbits.TRISC3 = ( val & 0x04 ) ? 1 : 0;
+            TRISBbits.TRISB1 = ( val & 0x02 ) ? 1 : 0;
+            TRISBbits.TRISB0 = ( val & 0x01 ) ? 1 : 0;
+            
+            rv = ( TRISAbits.TRISA2 << 7 ) +
+                    ( TRISCbits.TRISC7 << 6 ) +
+                    ( TRISCbits.TRISC6 << 5 ) +
+                    ( TRISCbits.TRISC5 << 4 ) +
+                    ( TRISCbits.TRISC4 << 3 ) +
+                    ( TRISCbits.TRISC3 << 2 ) +
+                    ( TRISBbits.TRISB1 << 1 ) +
+                    TRISBbits.TRISB0;
+            
         }
         // Channel Status registers?
         else if ( (reg >= REG0_BEIJING_CH0_STATUS) && (reg <= REG0_BEIJING_CH9_STATUS) ) {
@@ -1758,11 +2228,10 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
             }
             
         }
-        else if ( ( reg >= REG0_BEIJING_MODULE_CTRL ) && 
+        else if ( ( reg >= REG0_BEIJING_CH0_INPUT_CTRL ) && 
                     ( reg <= REG0_BEIJING_STREAM_TIMING ) ) {
             eeprom_write( VSCP_EEPROM_END + reg, val);
             rv = eeprom_read( VSCP_EEPROM_END + reg );
-            Nop();
         }
         
     } // page 0
@@ -2125,7 +2594,7 @@ void doDM(void)
                                         REG_DESCION_MATRIX +
                                         (8 * i) +
                                         VSCP_DM_POS_TYPEMASK);
-
+                           
             if ( !( ( class_filter ^ vscp_imsg.vscp_class ) & class_mask ) &&
                     !( ( type_filter ^ vscp_imsg.vscp_type ) & type_mask ) ) {
 
@@ -2134,6 +2603,9 @@ void doDM(void)
                                         REG0_COUNT + REG1_COUNT + 
                                         REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTION ) ) {
 
+                    case BEIJING_ACTION_NOOP:
+                        break;
+                        
                     case BEIJING_ACTION_SET: // Enable Channels in arg. bit arry
                         doActionOn( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                             REG0_COUNT + REG1_COUNT + 
@@ -2185,159 +2657,86 @@ void doDM(void)
 
 void doActionOn( unsigned char dmflags, unsigned char arg )
 {
+    unsigned char ctrlreg;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
 
-    unsigned char i;
-    unsigned char val;
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
 
-    for (i = 0; i < 8; i++) {
-
-        // If the rely should not be handled just move on
-        if ( !( arg & ( 1 << i ) ) ) continue;
-
-        // Check if sub zone should match and if so check if it match
-        if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE ) {
-            if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
+    
+    // Check if sub zone should match and if so check if it match
+    if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE ) {
+        if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
                                                         REG0_BEIJING_CH1_SUBZONE +
                                                         i ) ) {
-                continue;
-            }
+            return;
         }
+    }
 
-        val = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
+    switch ( arg ) {
 
-        // Do nothing if disabled
-        if ( !( val & OUTPUT_CTRL_ENABLED ) ) continue;
+        case 0:
+            CHANNEL0 = 1; 
+            break;
 
-        switch ( i ) {
+        case 1:
+            CHANNEL1 = 1;
+            break;
 
-            case 0:
-                CHANNEL0 = 1;
+        case 2:
+            CHANNEL2 = 1;
+            break;
 
-                if (eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL ) & OUTPUT_CTRL_PROTECTION ) {
-                    channel_protection_timer[ 0 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH0_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH0_TIMING_PROTECT_LSB );
-                }
-                break;
+        case 3:
+            CHANNEL3 = 1;
+            break;
 
-            case 1:
-                CHANNEL1 = 1;
+        case 4:
+            CHANNEL4 = 1;
+            break;
 
-                if (eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH1_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION ) {
-                    channel_protection_timer[ 1 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH1_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH1_TIMING_PROTECT_LSB );
-                }
-                break;
+        case 5:
+            CHANNEL5 = 1;
+            break;
 
-            case 2:
-                CHANNEL2 = 1;
-
-                if (eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH2_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION ) {
-                    channel_protection_timer[ 2 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH2_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH2_TIMING_PROTECT_LSB );
-                }
-                break;
-
-            case 3:
-                CHANNEL3 = 1;
-
-                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH3_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION ) {
-                    channel_protection_timer[ 3 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH3_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH3_TIMING_PROTECT_LSB );
-                }
-                break;
-
-            case 4:
-                CHANNEL4 = 1;
-
-                if (eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH4_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION ) {
-                    channel_protection_timer[ 4 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH4_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH4_TIMING_PROTECT_LSB );
-                }
-                break;
-
-            case 5:
-                CHANNEL5 = 1;
-
-                if (eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH5_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION) {
-                    channel_protection_timer[ 5 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH5_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH5_TIMING_PROTECT_LSB );
-                }
-                break;
-
-            case 6:
-                CHANNEL6 = 1;
-
-                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH6_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION) {
-                    channel_protection_timer[ 6 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH6_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH6_TIMING_PROTECT_LSB );
-                }
-                break;
+        case 6:
+            CHANNEL6 = 1;
+            break;
                 
-            case 7:
-                CHANNEL7 = 1;
-
-                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH7_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION) {
-                    channel_protection_timer[ 7 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH7_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH7_TIMING_PROTECT_LSB );
-                }
-                break;
+        case 7:
+            CHANNEL7 = 1;
+            break;
                 
-            case 8:
-                CHANNEL8 = 1;
-
-                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH8_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION) {
-                    channel_protection_timer[ 8 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH8_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH8_TIMING_PROTECT_LSB );
-                }
-                break;    
+        case 8:
+            CHANNEL8 = 1;
+            break;    
                 
-            case 9:
-                CHANNEL7 = 1;
-
-                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH9_OUTPUT_CTRL) & OUTPUT_CTRL_PROTECTION) {
-                    channel_protection_timer[ 9 ] =
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH9_TIMING_PROTECT_MSB ) * 256 +
-                            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                            REG1_BEIJING_CH9_TIMING_PROTECT_LSB );
-                }
-                break;    
-
-        }
-
-        // Should off event be sent?
-        if ( val & OUTPUT_CTRL_ONEVENT ) {
-            SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
-        }
+        case 9:
+            CHANNEL7 = 1;
+            break;    
 
     }
+    
+    if ( ctrlreg & OUTPUT_CTRL_PROTECTION ) {
+        channel_protection_timer[ arg ] =
+                eeprom_read( VSCP_EEPROM_END + 
+                                REG0_COUNT +
+                                REG1_BEIJING_CH0_TIMING_PROTECT_MSB + 
+                                2 * arg ) * 256 +
+                eeprom_read( VSCP_EEPROM_END + 
+                                REG0_COUNT +
+                                REG1_BEIJING_CH0_TIMING_PROTECT_LSB  + 
+                                2 * arg );
+    }
+
+    // Should off event be sent?
+    if ( val & OUTPUT_CTRL_ONEVENT ) {
+        SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+    }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -2560,7 +2959,6 @@ void doActionPulse(unsigned char dmflags, unsigned char arg)
 
 void doActionStatus(unsigned char dmflags, unsigned char arg)
 {
-
     unsigned char i;
     unsigned char val;
     BOOL bOn = FALSE;
@@ -2640,7 +3038,6 @@ void doActionStatus(unsigned char dmflags, unsigned char arg)
             }
 
         }
-
     }
 }
 
@@ -2650,7 +3047,6 @@ void doActionStatus(unsigned char dmflags, unsigned char arg)
 
 void doActionDisable(unsigned char dmflags, unsigned char arg)
 {
-
     unsigned char i;
     unsigned char val;
 

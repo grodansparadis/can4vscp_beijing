@@ -83,7 +83,7 @@
         <property key="extra-include-directories"
                   value=".;..;..\..\vscp_firmware\pic\common;..\..\vscp_firmware\common"/>
         <property key="identifier-length" value="255"/>
-        <property key="operation-mode" value="free"/>
+        <property key="operation-mode" value="pro"/>
         <property key="opt-xc8-compiler-strict_ansi" value="false"/>
         <property key="optimization-assembler" value="true"/>
         <property key="optimization-assembler-files" value="false"/>
