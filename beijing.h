@@ -321,9 +321,10 @@ void doDM(void);
 
 void doActionOn(unsigned char dmflags, unsigned char arg);
 void doActionOff(unsigned char dmflags, unsigned char arg);
-void doActionPulse(unsigned char dmflags, unsigned char arg);
+void doActionPulseOn(unsigned char dmflags, unsigned char arg);
+void doActionPulseOff(unsigned char dmflags, unsigned char arg);
 void doActionStatus(unsigned char dmflags, unsigned char arg);
-void doActionDisable(unsigned char dmflags, unsigned char arg);
+void doActionStatusAll(unsigned char dmflags, unsigned char arg);
 void doActionToggle(unsigned char dmflags, unsigned char arg);
 
 void doApplicationOneSecondWork(void);

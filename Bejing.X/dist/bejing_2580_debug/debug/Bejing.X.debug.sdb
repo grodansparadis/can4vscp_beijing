@@ -37,12 +37,12 @@ ECAN_RX_XTD_FRAME 32
 ECAN_RX_RTR_FRAME 64
 ECAN_RX_DBL_BUFFERED 128
 ]
-"900 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"897 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [e E15660 _BOOL `uc
 FALSE 0
 TRUE 1
 ]
-"3628
+"3587
 [e E16407 _ECAN_TX_MSG_FLAGS `uc
 ECAN_TX_PRIORITY_BITS 3
 ECAN_TX_PRIORITY_0 0
@@ -56,7 +56,7 @@ ECAN_TX_RTR_BIT 64
 ECAN_TX_NO_RTR_FRAME 0
 ECAN_TX_RTR_FRAME 64
 ]
-"3645
+"3604
 [e E16425 _ECAN_RX_MSG_FLAGS `uc
 ECAN_RX_OVERFLOW 8
 ECAN_RX_INVALID_MSG 16
@@ -64,7 +64,7 @@ ECAN_RX_XTD_FRAME 32
 ECAN_RX_RTR_FRAME 64
 ECAN_RX_DBL_BUFFERED 128
 ]
-"3774
+"3733
 [e E16438 _ECAN_OP_MODE `uc
 ECAN_OP_MODE_BITS 224
 ECAN_OP_MODE_NORMAL 0
@@ -131,113 +131,115 @@ ECAN_OP_MODE_CONFIG 128
 [v _main main `(v  1 e 0 0 ]
 "641
 [v _init init `(v  1 e 0 0 ]
-"761
+"759
 [v _init_app_ram init_app_ram `(v  1 e 0 0 ]
-"835
+"832
 [v _init_app_eeprom init_app_eeprom `(v  1 e 0 0 ]
-"895
+"892
 [v _doApplicationOneSecondWork doApplicationOneSecondWork `(v  1 e 0 0 ]
-"1307
+"1304
 [v _getMajorVersion getMajorVersion `(uc  1 e 1 0 ]
-"1316
+"1313
 [v _getMinorVersion getMinorVersion `(uc  1 e 1 0 ]
-"1325
+"1322
 [v _getSubMinorVersion getSubMinorVersion `(uc  1 e 1 0 ]
-"1335
+"1332
 [v _vscp_setGUID vscp_setGUID `(v  1 e 0 0 ]
-"1347
+"1344
 [v _vscp_setManufacturerId vscp_setManufacturerId `(v  1 e 0 0 ]
-"1358
+"1355
 [v _getBootLoaderAlgorithm getBootLoaderAlgorithm `(uc  1 e 1 0 ]
-"1367
+"1364
 [v _getBufferSize getBufferSize `(uc  1 e 1 0 ]
-"1376
+"1373
 [v _vscp_readNicknamePermanent vscp_readNicknamePermanent `(uc  1 e 1 0 ]
-"1385
+"1382
 [v _vscp_writeNicknamePermanent vscp_writeNicknamePermanent `(v  1 e 0 0 ]
-"1394
+"1391
 [v _vscp_getZone vscp_getZone `(uc  1 e 1 0 ]
-"1403
+"1400
 [v _vscp_getSubzone vscp_getSubzone `(uc  1 e 1 0 ]
-"1414
+"1411
 [v _doWork doWork `(v  1 e 0 0 ]
-"1425
+"1422
 [v _vscp_readAppReg vscp_readAppReg `(uc  1 e 1 0 ]
-"1546
+"1547
 [v _vscp_writeAppReg vscp_writeAppReg `(uc  1 e 1 0 ]
-"2488
+"2497
 [v _sendDMatrixInfo sendDMatrixInfo `(v  1 e 0 0 ]
-"2508
+"2517
 [v _SendInformationEvent SendInformationEvent `(v  1 e 0 0 ]
-"2529
+"2538
 [v _doDM doDM `(v  1 e 0 0 ]
-"2659
+"2680
 [v _doActionOn doActionOn `(v  1 e 0 0 ]
-"2820
+"2770
 [v _doActionOff doActionOff `(v  1 e 0 0 ]
-"2900
-[v _doActionPulse doActionPulse `(v  1 e 0 0 ]
-"3034
-[v _doActionStatus doActionStatus `(v  1 e 0 0 ]
-"3122
-[v _doActionDisable doActionDisable `(v  1 e 0 0 ]
-"3151
+"2847
+[v _doActionPulseOn doActionPulseOn `(v  1 e 0 0 ]
+"2931
+[v _doActionPulseOff doActionPulseOff `(v  1 e 0 0 ]
+"3011
 [v _doActionToggle doActionToggle `(v  1 e 0 0 ]
-"3309
+"3165
+[v _doActionStatus doActionStatus `(v  1 e 0 0 ]
+"3247
+[v _doActionStatusAll doActionStatusAll `(v  1 e 0 0 ]
+"3268
 [v _vscp_getMajorVersion vscp_getMajorVersion `(uc  1 e 1 0 ]
-"3318
+"3277
 [v _vscp_getMinorVersion vscp_getMinorVersion `(uc  1 e 1 0 ]
-"3327
+"3286
 [v _vscp_getSubMinorVersion vscp_getSubMinorVersion `(uc  1 e 1 0 ]
-"3338
+"3297
 [v _vscp_getGUID vscp_getGUID `(uc  1 e 1 0 ]
-"3350
+"3309
 [v _vscp_getMDF_URL vscp_getMDF_URL `(uc  1 e 1 0 ]
-"3359
+"3318
 [v _vscp_getUserID vscp_getUserID `(uc  1 e 1 0 ]
-"3368
+"3327
 [v _vscp_setUserID vscp_setUserID `(v  1 e 0 0 ]
-"3379
+"3338
 [v _vscp_getManufacturerId vscp_getManufacturerId `(uc  1 e 1 0 ]
-"3388
+"3347
 [v _vscp_getBootLoaderAlgorithm vscp_getBootLoaderAlgorithm `(uc  1 e 1 0 ]
-"3397
+"3356
 [v _vscp_getBufferSize vscp_getBufferSize `(uc  1 e 1 0 ]
-"3407
+"3366
 [v _vscp_getNickname vscp_getNickname `(uc  1 e 1 0 ]
-"3416
+"3375
 [v _vscp_setNickname vscp_setNickname `(v  1 e 0 0 ]
-"3425
+"3384
 [v _vscp_getSegmentCRC vscp_getSegmentCRC `(uc  1 e 1 0 ]
-"3434
+"3393
 [v _vscp_setSegmentCRC vscp_setSegmentCRC `(v  1 e 0 0 ]
-"3443
+"3402
 [v _vscp_setControlByte vscp_setControlByte `(v  1 e 0 0 ]
-"3453
+"3412
 [v _vscp_getControlByte vscp_getControlByte `(uc  1 e 1 0 ]
-"3462
+"3421
 [v _vscp_getEmbeddedMdfInfo vscp_getEmbeddedMdfInfo `(v  1 e 0 0 ]
-"3503
+"3462
 [v _vscp_goBootloaderMode vscp_goBootloaderMode `(v  1 e 0 0 ]
-"3519
+"3478
 [v _vscp_getMatrixInfo vscp_getMatrixInfo `(v  1 e 0 0 ]
-"3536
+"3495
 [v _vscp_getFamilyCode vscp_getFamilyCode `(ul  1 e 4 0 ]
-"3545
+"3504
 [v _vscp_getFamilyType vscp_getFamilyType `(ul  1 e 4 0 ]
-"3553
+"3512
 [v _vscp_restoreDefaults vscp_restoreDefaults `(v  1 e 0 0 ]
-"3564
+"3523
 [v _vscp_getRegisterPagesUsed vscp_getRegisterPagesUsed `(uc  1 e 1 0 ]
-"3578
+"3537
 [v _sendVSCPFrame sendVSCPFrame `(uc  1 e 1 0 ]
-"3602
+"3561
 [v _getVSCPFrame getVSCPFrame `(uc  1 e 1 0 ]
-"3623
+"3582
 [v _sendCANFrame sendCANFrame `(uc  1 e 1 0 ]
-"3644
+"3603
 [v _getCANFrame getCANFrame `(uc  1 e 1 0 ]
-"3674
+"3633
 [v _calculateSetFilterMask calculateSetFilterMask `(v  1 e 0 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\common\abdiv.c
 [v ___abdiv __abdiv `(c  1 e 1 0 ]
@@ -745,7 +747,7 @@ ECAN_OP_MODE_CONFIG 128
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
 "29656
 [v _TRISCbits TRISCbits `VES944  1 e 1 @3988 ]
-[s S1505 . 1 `uc 1 RD 1 0 :1:0 
+[s S1518 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -755,11 +757,11 @@ ECAN_OP_MODE_CONFIG 128
 `uc 1 EEPGD 1 0 :1:7 
 ]
 "30635
-[s S1514 . 1 `uc 1 . 1 0 :6:0 
+[s S1527 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 EEFS 1 0 :1:6 
 ]
-[u S1517 . 1 `S1505 1 . 1 0 `S1514 1 . 1 0 ]
-[v _EECON1bits EECON1bits `VES1517  1 e 1 @4006 ]
+[u S1530 . 1 `S1518 1 . 1 0 `S1527 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES1530  1 e 1 @4006 ]
 "30679
 [v _EECON2 EECON2 `VEuc  1 e 1 @4007 ]
 "30685
@@ -770,7 +772,7 @@ ECAN_OP_MODE_CONFIG 128
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "33182
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
-[s S1682 . 1 `uc 1 T0PS 1 0 :3:0 
+[s S1695 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -778,16 +780,16 @@ ECAN_OP_MODE_CONFIG 128
 `uc 1 TMR0ON 1 0 :1:7 
 ]
 "33203
-[s S1689 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S1702 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 `uc 1 T0PS3 1 0 :1:3 
 ]
 "33203
-[u S1694 . 1 `S1682 1 . 1 0 `S1689 1 . 1 0 ]
+[u S1707 . 1 `S1695 1 . 1 0 `S1702 1 . 1 0 ]
 "33203
 "33203
-[v _T0CONbits T0CONbits `VES1694  1 e 1 @4053 ]
+[v _T0CONbits T0CONbits `VES1707  1 e 1 @4053 ]
 "33263
 [v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
 "33269
@@ -931,30 +933,30 @@ ECAN_OP_MODE_CONFIG 128
 [v _main main `(v  1 e 0 0 ]
 {
 "275
-[v main@dir dir `uc  1 a 1 65 ]
+[v main@dir dir `uc  1 a 1 2 ]
 "634
 } 0
-"1414
+"1411
 [v _doWork doWork `(v  1 e 0 0 ]
 {
-"1418
+"1415
 } 0
-"895
+"892
 [v _doApplicationOneSecondWork doApplicationOneSecondWork `(v  1 e 0 0 ]
 {
-"1266
-[v doApplicationOneSecondWork@data data `[3]uc  1 a 3 2 ]
-"898
-[v doApplicationOneSecondWork@iodirections iodirections `us  1 a 2 0 ]
+"1263
+[v doApplicationOneSecondWork@data data `[3]uc  1 a 3 60 ]
+"895
+[v doApplicationOneSecondWork@iodirections iodirections `us  1 a 2 58 ]
+"894
+[v doApplicationOneSecondWork@i i `uc  1 a 1 66 ]
+"896
+[v doApplicationOneSecondWork@ctrlreg ctrlreg `uc  1 a 1 65 ]
 "897
-[v doApplicationOneSecondWork@i i `uc  1 a 1 8 ]
-"899
-[v doApplicationOneSecondWork@ctrlreg ctrlreg `uc  1 a 1 7 ]
-"900
-[v doApplicationOneSecondWork@bOn bOn `E15660  1 a 1 6 ]
-"901
-[v doApplicationOneSecondWork@bInput bInput `E15660  1 a 1 5 ]
-"1300
+[v doApplicationOneSecondWork@bOn bOn `E15660  1 a 1 64 ]
+"898
+[v doApplicationOneSecondWork@bInput bInput `E15660  1 a 1 63 ]
+"1297
 } 0
 "524 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_doOneSecondWork vscp_doOneSecondWork `(v  1 e 0 0 ]
@@ -969,106 +971,126 @@ ECAN_OP_MODE_CONFIG 128
 [v vscp_sendHeartBeat@subzone subzone `uc  1 p 1 20 ]
 "389
 } 0
-"1403 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"1400 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_getSubzone vscp_getSubzone `(uc  1 e 1 0 ]
 {
-"1405
+"1402
 } 0
-"1394
+"1391
 [v _vscp_getZone vscp_getZone `(uc  1 e 1 0 ]
 {
-"1396
+"1393
 } 0
 "193 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_error vscp_error `(v  1 e 0 0 ]
 {
 "195
 } 0
-"2529 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"2538 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _doDM doDM `(v  1 e 0 0 ]
 {
-"2533
-[v doDM@class_mask class_mask `us  1 a 2 33 ]
-"2532
-[v doDM@class_filter class_filter `us  1 a 2 31 ]
-"2530
-[v doDM@i i `uc  1 a 1 43 ]
-"2531
-[v doDM@dmflags dmflags `uc  1 a 1 42 ]
-"2535
-[v doDM@type_mask type_mask `uc  1 a 1 36 ]
-"2534
-[v doDM@type_filter type_filter `uc  1 a 1 35 ]
-"2652
+"2542
+[v doDM@class_mask class_mask `us  1 a 2 32 ]
+"2541
+[v doDM@class_filter class_filter `us  1 a 2 30 ]
+"2539
+[v doDM@i i `uc  1 a 1 44 ]
+"2540
+[v doDM@dmflags dmflags `uc  1 a 1 43 ]
+"2544
+[v doDM@type_mask type_mask `uc  1 a 1 35 ]
+"2543
+[v doDM@type_filter type_filter `uc  1 a 1 34 ]
+"2673
 } 0
-"3151
+"3011
 [v _doActionToggle doActionToggle `(v  1 e 0 0 ]
 {
-[v doActionToggle@dmflags dmflags `uc  1 a 1 22 ]
-"3153
-[v doActionToggle@i i `uc  1 a 1 25 ]
-"3155
-[v doActionToggle@bOn bOn `E15660  1 a 1 24 ]
-"3154
-[v doActionToggle@val val `uc  1 a 1 23 ]
-"3151
-[v doActionToggle@dmflags dmflags `uc  1 a 1 22 ]
+[v doActionToggle@dmflags dmflags `uc  1 a 1 0 ]
+"3013
+[v doActionToggle@bOn bOn `E15660  1 a 1 80 ]
+"3012
+[v doActionToggle@ctrlreg ctrlreg `uc  1 a 1 79 ]
+"3011
+[v doActionToggle@dmflags dmflags `uc  1 a 1 0 ]
 [v doActionToggle@arg arg `uc  1 p 1 78 ]
-"3294
+"3157
 } 0
-"3034
+"3247
+[v _doActionStatusAll doActionStatusAll `(v  1 e 0 0 ]
+{
+[v doActionStatusAll@dmflags dmflags `uc  1 a 1 23 ]
+"3248
+[v doActionStatusAll@i i `uc  1 a 1 24 ]
+"3247
+[v doActionStatusAll@dmflags dmflags `uc  1 a 1 23 ]
+[v doActionStatusAll@arg arg `uc  1 p 1 22 ]
+"3254
+} 0
+"3165
 [v _doActionStatus doActionStatus `(v  1 e 0 0 ]
 {
-[v doActionStatus@dmflags dmflags `uc  1 a 1 22 ]
-"3035
-[v doActionStatus@i i `uc  1 a 1 25 ]
-"3037
-[v doActionStatus@bOn bOn `E15660  1 a 1 24 ]
-"3036
-[v doActionStatus@val val `uc  1 a 1 23 ]
-"3034
-[v doActionStatus@dmflags dmflags `uc  1 a 1 22 ]
+[v doActionStatus@dmflags dmflags `uc  1 a 1 0 ]
+"3167
+[v doActionStatus@bOn bOn `E15660  1 a 1 80 ]
+"3166
+[v doActionStatus@ctrlreg ctrlreg `uc  1 a 1 79 ]
+"3165
+[v doActionStatus@dmflags dmflags `uc  1 a 1 0 ]
 [v doActionStatus@arg arg `uc  1 p 1 78 ]
-"3115
+"3239
 } 0
-"2900
-[v _doActionPulse doActionPulse `(v  1 e 0 0 ]
+"2931
+[v _doActionPulseOff doActionPulseOff `(v  1 e 0 0 ]
 {
-[v doActionPulse@dmflags dmflags `uc  1 a 1 13 ]
-"2902
-[v doActionPulse@i i `uc  1 a 1 15 ]
-"2903
-[v doActionPulse@val val `uc  1 a 1 14 ]
-"2900
-[v doActionPulse@dmflags dmflags `uc  1 a 1 13 ]
-[v doActionPulse@arg arg `uc  1 p 1 9 ]
-"3027
+[v doActionPulseOff@dmflags dmflags `uc  1 a 1 0 ]
+"2933
+[v doActionPulseOff@bEvent bEvent `E15660  1 a 1 80 ]
+"2932
+[v doActionPulseOff@ctrlreg ctrlreg `uc  1 a 1 79 ]
+"2931
+[v doActionPulseOff@dmflags dmflags `uc  1 a 1 0 ]
+[v doActionPulseOff@arg arg `uc  1 p 1 78 ]
+"3003
 } 0
-"2659
+"2847
+[v _doActionPulseOn doActionPulseOn `(v  1 e 0 0 ]
+{
+[v doActionPulseOn@dmflags dmflags `uc  1 a 1 0 ]
+"2849
+[v doActionPulseOn@bEvent bEvent `E15660  1 a 1 80 ]
+"2848
+[v doActionPulseOn@ctrlreg ctrlreg `uc  1 a 1 79 ]
+"2847
+[v doActionPulseOn@dmflags dmflags `uc  1 a 1 0 ]
+[v doActionPulseOn@arg arg `uc  1 p 1 78 ]
+"2924
+} 0
+"2680
 [v _doActionOn doActionOn `(v  1 e 0 0 ]
 {
-[v doActionOn@dmflags dmflags `uc  1 a 1 25 ]
-"2661
-[v doActionOn@i i `uc  1 a 1 27 ]
-"2662
-[v doActionOn@val val `uc  1 a 1 26 ]
-"2659
-[v doActionOn@dmflags dmflags `uc  1 a 1 25 ]
+[v doActionOn@dmflags dmflags `uc  1 a 1 0 ]
+"2682
+[v doActionOn@bEvent bEvent `E15660  1 a 1 23 ]
+"2681
+[v doActionOn@ctrlreg ctrlreg `uc  1 a 1 22 ]
+"2680
+[v doActionOn@dmflags dmflags `uc  1 a 1 0 ]
 [v doActionOn@arg arg `uc  1 p 1 78 ]
-"2813
+"2763
 } 0
-"2820
+"2770
 [v _doActionOff doActionOff `(v  1 e 0 0 ]
 {
-[v doActionOff@dmflags dmflags `uc  1 a 1 22 ]
-"2822
-[v doActionOff@i i `uc  1 a 1 24 ]
-"2823
-[v doActionOff@val val `uc  1 a 1 23 ]
-"2820
-[v doActionOff@dmflags dmflags `uc  1 a 1 22 ]
+[v doActionOff@dmflags dmflags `uc  1 a 1 0 ]
+"2772
+[v doActionOff@bEvent bEvent `E15660  1 a 1 80 ]
+"2771
+[v doActionOff@ctrlreg ctrlreg `uc  1 a 1 79 ]
+"2770
+[v doActionOff@dmflags dmflags `uc  1 a 1 0 ]
 [v doActionOff@arg arg `uc  1 p 1 78 ]
-"2893
+"2840
 } 0
 "797 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_handleProtocolEvent vscp_handleProtocolEvent `(v  1 e 0 0 ]
@@ -1076,11 +1098,11 @@ ECAN_OP_MODE_CONFIG 128
 "988
 [v vscp_handleProtocolEvent@bytes bytes `uc  1 a 1 48 ]
 "1235
-[v vscp_handleProtocolEvent@page_save_1500 page_save `us  1 a 2 44 ]
+[v vscp_handleProtocolEvent@page_save_1513 page_save `us  1 a 2 44 ]
 "1234
-[v vscp_handleProtocolEvent@i_1499 i `uc  1 a 1 54 ]
+[v vscp_handleProtocolEvent@i_1512 i `uc  1 a 1 54 ]
 "1158
-[v vscp_handleProtocolEvent@bytes_1495 bytes `us  1 a 2 58 ]
+[v vscp_handleProtocolEvent@bytes_1508 bytes `us  1 a 2 58 ]
 [v vscp_handleProtocolEvent@page_save page_save `us  1 a 2 42 ]
 "1159
 [v vscp_handleProtocolEvent@byte byte `uc  1 a 1 57 ]
@@ -1089,14 +1111,14 @@ ECAN_OP_MODE_CONFIG 128
 [v vscp_handleProtocolEvent@bytes_this_time bytes_this_time `uc  1 a 1 52 ]
 "1081
 [v vscp_handleProtocolEvent@j j `uc  1 a 1 62 ]
-[v vscp_handleProtocolEvent@i_1491 i `uc  1 a 1 60 ]
+[v vscp_handleProtocolEvent@i_1504 i `uc  1 a 1 60 ]
 [v vscp_handleProtocolEvent@k k `uc  1 a 1 55 ]
 "1014
-[v vscp_handleProtocolEvent@i_1488 i `uc  1 a 1 56 ]
+[v vscp_handleProtocolEvent@i_1501 i `uc  1 a 1 56 ]
 "1016
-[v vscp_handleProtocolEvent@len_1490 len `uc  1 a 1 51 ]
+[v vscp_handleProtocolEvent@len_1503 len `uc  1 a 1 51 ]
 "1015
-[v vscp_handleProtocolEvent@pos_1489 pos `uc  1 a 1 50 ]
+[v vscp_handleProtocolEvent@pos_1502 pos `uc  1 a 1 50 ]
 "978
 [v vscp_handleProtocolEvent@i i `uc  1 a 1 61 ]
 "981
@@ -1139,19 +1161,19 @@ ECAN_OP_MODE_CONFIG 128
 [v vscp_writeStdReg@value value `uc  1 p 1 53 ]
 "790
 } 0
-"3553 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"3512 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_restoreDefaults vscp_restoreDefaults `(v  1 e 0 0 ]
 {
-"3556
+"3515
 } 0
-"761
+"759
 [v _init_app_ram init_app_ram `(v  1 e 0 0 ]
 {
-"762
+"760
 [v init_app_ram@i i `uc  1 a 1 52 ]
-"763
+"761
 [v init_app_ram@dir dir `uc  1 a 1 51 ]
-"827
+"824
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\common\memset.c
 [v _memset memset `(*.39v  1 e 2 0 ]
@@ -1164,84 +1186,84 @@ ECAN_OP_MODE_CONFIG 128
 [v memset@n n `ui  1 p 2 11 ]
 "22
 } 0
-"835 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"832 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _init_app_eeprom init_app_eeprom `(v  1 e 0 0 ]
 {
-"836
+"833
 [v init_app_eeprom@i i `uc  1 a 1 14 ]
 [v init_app_eeprom@j j `uc  1 a 1 13 ]
-"888
+"885
 } 0
-"3368
+"3327
 [v _vscp_setUserID vscp_setUserID `(v  1 e 0 0 ]
 {
 [v vscp_setUserID@idx idx `uc  1 a 1 12 ]
 [v vscp_setUserID@idx idx `uc  1 a 1 12 ]
 [v vscp_setUserID@data data `uc  1 p 1 11 ]
-"3370
+"3329
 } 0
-"1347
+"1344
 [v _vscp_setManufacturerId vscp_setManufacturerId `(v  1 e 0 0 ]
 {
 [v vscp_setManufacturerId@idx idx `uc  1 a 1 12 ]
 [v vscp_setManufacturerId@idx idx `uc  1 a 1 12 ]
 [v vscp_setManufacturerId@data data `uc  1 p 1 11 ]
-"1350
+"1347
 } 0
-"1335
+"1332
 [v _vscp_setGUID vscp_setGUID `(v  1 e 0 0 ]
 {
 [v vscp_setGUID@idx idx `uc  1 a 1 12 ]
 [v vscp_setGUID@idx idx `uc  1 a 1 12 ]
 [v vscp_setGUID@data data `uc  1 p 1 11 ]
-"1338
+"1335
 } 0
-"1546
+"1547
 [v _vscp_writeAppReg vscp_writeAppReg `(uc  1 e 1 0 ]
 {
 [v vscp_writeAppReg@reg reg `uc  1 a 1 33 ]
-"2454
-[v vscp_writeAppReg@val_1262 val `uc  1 a 1 29 ]
-"1549
+"2463
+[v vscp_writeAppReg@val_1273 val `uc  1 a 1 29 ]
+"1550
 [v vscp_writeAppReg@bOn bOn `E15660  1 a 1 32 ]
-"1547
-[v vscp_writeAppReg@rv rv `uc  1 a 1 31 ]
 "1548
+[v vscp_writeAppReg@rv rv `uc  1 a 1 31 ]
+"1549
 [v vscp_writeAppReg@bInfoEvent bInfoEvent `E15660  1 a 1 30 ]
-"1546
+"1547
 [v vscp_writeAppReg@reg reg `uc  1 a 1 33 ]
 [v vscp_writeAppReg@val val `uc  1 p 1 78 ]
-"2481
+"2490
 } 0
-"3674
+"3633
 [v _calculateSetFilterMask calculateSetFilterMask `(v  1 e 0 0 ]
 {
-"3678
+"3637
 [v calculateSetFilterMask@rowfilter rowfilter `ul  1 a 4 61 ]
-"3682
+"3641
 [v calculateSetFilterMask@filter filter `ul  1 a 4 57 ]
-"3681
+"3640
 [v calculateSetFilterMask@mask mask `ul  1 a 4 53 ]
-"3677
+"3636
 [v calculateSetFilterMask@rowmask rowmask `ul  1 a 4 48 ]
-"3675
+"3634
 [v calculateSetFilterMask@i i `uc  1 a 1 66 ]
 [v calculateSetFilterMask@j j `uc  1 a 1 65 ]
-"3676
+"3635
 [v calculateSetFilterMask@lastOID lastOID `uc  1 a 1 52 ]
-"3785
+"3744
 } 0
-"2508
+"2517
 [v _SendInformationEvent SendInformationEvent `(v  1 e 0 0 ]
 {
 [v SendInformationEvent@idx idx `uc  1 a 1 77 ]
-"2509
+"2518
 [v SendInformationEvent@data data `[3]uc  1 a 3 74 ]
-"2508
+"2517
 [v SendInformationEvent@idx idx `uc  1 a 1 77 ]
 [v SendInformationEvent@eventClass eventClass `uc  1 p 1 20 ]
 [v SendInformationEvent@eventTypeId eventTypeId `uc  1 p 1 21 ]
-"2520
+"2529
 } 0
 "561 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_readRegister vscp_readRegister `(uc  1 e 1 0 ]
@@ -1255,9 +1277,9 @@ ECAN_OP_MODE_CONFIG 128
 {
 [v vscp_readStdReg@reg reg `uc  1 a 1 27 ]
 "675
-[v vscp_readStdReg@code_1473 code `ul  1 a 4 20 ]
+[v vscp_readStdReg@code_1486 code `ul  1 a 4 20 ]
 "676
-[v vscp_readStdReg@idx_1474 idx `uc  1 a 1 25 ]
+[v vscp_readStdReg@idx_1487 idx `uc  1 a 1 25 ]
 "668
 [v vscp_readStdReg@code code `ul  1 a 4 16 ]
 "669
@@ -1268,73 +1290,73 @@ ECAN_OP_MODE_CONFIG 128
 [v vscp_readStdReg@reg reg `uc  1 a 1 27 ]
 "694
 } 0
-"3564 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"3523 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_getRegisterPagesUsed vscp_getRegisterPagesUsed `(uc  1 e 1 0 ]
 {
-"3566
+"3525
 } 0
-"3545
+"3504
 [v _vscp_getFamilyType vscp_getFamilyType `(ul  1 e 4 0 ]
 {
-"3547
+"3506
 } 0
-"3536
+"3495
 [v _vscp_getFamilyCode vscp_getFamilyCode `(ul  1 e 4 0 ]
 {
-"3538
+"3497
 } 0
-"3397
+"3356
 [v _vscp_getBufferSize vscp_getBufferSize `(uc  1 e 1 0 ]
 {
-"3399
+"3358
 } 0
-"3388
+"3347
 [v _vscp_getBootLoaderAlgorithm vscp_getBootLoaderAlgorithm `(uc  1 e 1 0 ]
 {
-"3390
+"3349
 } 0
-"3379
+"3338
 [v _vscp_getManufacturerId vscp_getManufacturerId `(uc  1 e 1 0 ]
 {
 [v vscp_getManufacturerId@idx idx `uc  1 a 1 9 ]
 [v vscp_getManufacturerId@idx idx `uc  1 a 1 9 ]
-"3381
+"3340
 } 0
-"3359
+"3318
 [v _vscp_getUserID vscp_getUserID `(uc  1 e 1 0 ]
 {
 [v vscp_getUserID@idx idx `uc  1 a 1 9 ]
 [v vscp_getUserID@idx idx `uc  1 a 1 9 ]
-"3361
+"3320
 } 0
-"3350
+"3309
 [v _vscp_getMDF_URL vscp_getMDF_URL `(uc  1 e 1 0 ]
 {
 [v vscp_getMDF_URL@idx idx `uc  1 a 1 8 ]
 [v vscp_getMDF_URL@idx idx `uc  1 a 1 8 ]
-"3352
+"3311
 } 0
-"3338
+"3297
 [v _vscp_getGUID vscp_getGUID `(uc  1 e 1 0 ]
 {
 [v vscp_getGUID@idx idx `uc  1 a 1 9 ]
 [v vscp_getGUID@idx idx `uc  1 a 1 9 ]
-"3340
+"3299
 } 0
-"3327
+"3286
 [v _vscp_getSubMinorVersion vscp_getSubMinorVersion `(uc  1 e 1 0 ]
 {
-"3329
+"3288
 } 0
-"3318
+"3277
 [v _vscp_getMinorVersion vscp_getMinorVersion `(uc  1 e 1 0 ]
 {
-"3320
+"3279
 } 0
-"3309
+"3268
 [v _vscp_getMajorVersion vscp_getMajorVersion `(uc  1 e 1 0 ]
 {
-"3311
+"3270
 } 0
 "502 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_newNodeOnline vscp_newNodeOnline `(v  1 e 0 0 ]
@@ -1353,10 +1375,10 @@ ECAN_OP_MODE_CONFIG 128
 {
 "158
 } 0
-"1376 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"1373 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_readNicknamePermanent vscp_readNicknamePermanent `(uc  1 e 1 0 ]
 {
-"1378
+"1375
 } 0
 "422 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_handleSetNickname vscp_handleSetNickname `(v  1 e 0 0 ]
@@ -1368,22 +1390,22 @@ ECAN_OP_MODE_CONFIG 128
 {
 "415
 } 0
-"3519 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"3478 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_getMatrixInfo vscp_getMatrixInfo `(v  1 e 0 0 ]
 {
 [v vscp_getMatrixInfo@pData pData `*.30uc  1 a 1 0 ]
-"3520
+"3479
 [v vscp_getMatrixInfo@i i `uc  1 a 1 7 ]
-"3519
+"3478
 [v vscp_getMatrixInfo@pData pData `*.30uc  1 a 1 0 ]
-"3530
+"3489
 } 0
-"3503
+"3462
 [v _vscp_goBootloaderMode vscp_goBootloaderMode `(v  1 e 0 0 ]
 {
 [v vscp_goBootloaderMode@algorithm algorithm `uc  1 a 1 11 ]
 [v vscp_goBootloaderMode@algorithm algorithm `uc  1 a 1 11 ]
-"3512
+"3471
 } 0
 "202 C:\Users\grodansparadis\development/vscp_firmware/common/vscp_firmware.c
 [v _vscp_handleProbeState vscp_handleProbeState `(v  1 e 0 0 ]
@@ -1400,30 +1422,30 @@ ECAN_OP_MODE_CONFIG 128
 {
 "1301
 } 0
-"3578 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"3537 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _sendVSCPFrame sendVSCPFrame `(uc  1 e 1 0 ]
 {
-"3579
+"3538
 [v sendVSCPFrame@id id `ul  1 a 4 70 ]
-"3578
+"3537
 [v sendVSCPFrame@vscpclass vscpclass `us  1 p 2 62 ]
 [v sendVSCPFrame@vscptype vscptype `uc  1 p 1 64 ]
 [v sendVSCPFrame@nodeid nodeid `uc  1 p 1 65 ]
 [v sendVSCPFrame@priority priority `uc  1 p 1 66 ]
 [v sendVSCPFrame@size size `uc  1 p 1 67 ]
 [v sendVSCPFrame@pData pData `*.39uc  1 p 2 68 ]
-"3589
+"3548
 } 0
-"3623
+"3582
 [v _sendCANFrame sendCANFrame `(uc  1 e 1 0 ]
 {
-"3624
+"3583
 [v sendCANFrame@rv rv `uc  1 a 1 61 ]
-"3623
+"3582
 [v sendCANFrame@id id `ul  1 p 4 54 ]
 [v sendCANFrame@dlc dlc `uc  1 p 1 58 ]
 [v sendCANFrame@pdata pdata `*.39uc  1 p 2 59 ]
-"3637
+"3596
 } 0
 "617 C:\Users\grodansparadis\development\can4vscp_beijing/ECAN.c
 [v _ECANSendMessage ECANSendMessage `(E15660  1 e 1 0 ]
@@ -1496,32 +1518,32 @@ ECAN_OP_MODE_CONFIG 128
 [v vscp_getEvent@rv rv `uc  1 a 1 43 ]
 "1330
 } 0
-"3602 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"3561 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _getVSCPFrame getVSCPFrame `(uc  1 e 1 0 ]
 {
 [v getVSCPFrame@pvscpclass pvscpclass `*.30us  1 a 1 38 ]
-"3603
+"3562
 [v getVSCPFrame@id id `ul  1 a 4 39 ]
-"3602
+"3561
 [v getVSCPFrame@pvscpclass pvscpclass `*.30us  1 a 1 38 ]
 [v getVSCPFrame@pvscptype pvscptype `*.30uc  1 p 1 29 ]
 [v getVSCPFrame@pNodeId pNodeId `*.30uc  1 p 1 30 ]
 [v getVSCPFrame@pPriority pPriority `*.30uc  1 p 1 31 ]
 [v getVSCPFrame@pSize pSize `*.30uc  1 p 1 32 ]
 [v getVSCPFrame@pData pData `*.30uc  1 p 1 33 ]
-"3615
+"3574
 } 0
-"3644
+"3603
 [v _getCANFrame getCANFrame `(uc  1 e 1 0 ]
 {
 [v getCANFrame@pid pid `*.29ul  1 a 1 27 ]
-"3645
+"3604
 [v getCANFrame@flags flags `E16425  1 a 1 28 ]
-"3644
+"3603
 [v getCANFrame@pid pid `*.29ul  1 a 1 27 ]
 [v getCANFrame@pdlc pdlc `*.30uc  1 p 1 25 ]
 [v getCANFrame@pdata pdata `*.30uc  1 p 1 26 ]
-"3664
+"3623
 } 0
 "803 C:\Users\grodansparadis\development\can4vscp_beijing/ECAN.c
 [v _ECANReceiveMessage ECANReceiveMessage `(E15660  1 e 1 0 ]
@@ -1595,31 +1617,31 @@ ECAN_OP_MODE_CONFIG 128
 {
 "186
 } 0
-"3443 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"3402 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_setControlByte vscp_setControlByte `(v  1 e 0 0 ]
 {
 [v vscp_setControlByte@ctrl ctrl `uc  1 a 1 11 ]
 [v vscp_setControlByte@ctrl ctrl `uc  1 a 1 11 ]
-"3445
+"3404
 } 0
-"3434
+"3393
 [v _vscp_setSegmentCRC vscp_setSegmentCRC `(v  1 e 0 0 ]
 {
 [v vscp_setSegmentCRC@crc crc `uc  1 a 1 11 ]
 [v vscp_setSegmentCRC@crc crc `uc  1 a 1 11 ]
-"3436
+"3395
 } 0
-"3425
+"3384
 [v _vscp_getSegmentCRC vscp_getSegmentCRC `(uc  1 e 1 0 ]
 {
-"3427
+"3386
 } 0
-"1385
+"1382
 [v _vscp_writeNicknamePermanent vscp_writeNicknamePermanent `(v  1 e 0 0 ]
 {
 [v vscp_writeNicknamePermanent@nickname nickname `uc  1 a 1 11 ]
 [v vscp_writeNicknamePermanent@nickname nickname `uc  1 a 1 11 ]
-"1387
+"1384
 } 0
 "31 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\pic18\plib\EEP\write_B.c
 [v _Write_b_eep Write_b_eep `(v  1 e 0 0 ]
@@ -1639,7 +1661,7 @@ ECAN_OP_MODE_CONFIG 128
 "641 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _init init `(v  1 e 0 0 ]
 {
-"754
+"752
 } 0
 "19 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\pic18\plib\Timers\t0open.c
 [v _OpenTimer0 OpenTimer0 `(v  1 e 0 0 ]
@@ -1651,9 +1673,9 @@ ECAN_OP_MODE_CONFIG 128
 "17 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\pic18\plib\Timers\t0write.c
 [v _WriteTimer0 WriteTimer0 `(v  1 e 0 0 ]
 {
-[u S1718 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[u S1731 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
 "18
-[v WriteTimer0@timer timer `S1718  1 a 2 9 ]
+[v WriteTimer0@timer timer `S1731  1 a 2 9 ]
 "17
 [v WriteTimer0@timer0 timer0 `ui  1 p 2 7 ]
 "24
@@ -1670,15 +1692,15 @@ ECAN_OP_MODE_CONFIG 128
 [v ECANSetOperationMode@mode mode `E16346  1 a 1 7 ]
 "1017
 } 0
-"1425 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
+"1422 C:\Users\grodansparadis\development\can4vscp_beijing/main.c
 [v _vscp_readAppReg vscp_readAppReg `(uc  1 e 1 0 ]
 {
 [v vscp_readAppReg@reg reg `uc  1 a 1 17 ]
-"1426
+"1423
 [v vscp_readAppReg@rv rv `uc  1 a 1 16 ]
-"1425
+"1422
 [v vscp_readAppReg@reg reg `uc  1 a 1 17 ]
-"1539
+"1540
 } 0
 "24 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\pic18\plib\EEP\read_B.c
 [v _Read_b_eep Read_b_eep `(uc  1 e 1 0 ]
@@ -1694,8 +1716,8 @@ ECAN_OP_MODE_CONFIG 128
 "17 C:\Program Files (x86)\Microchip\xc8\v1.21\sources\pic18\plib\Timers\t0write.c
 [v i1_WriteTimer0 WriteTimer0 `(v  1 e 0 0 ]
 {
-[u S1718 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
-[v i1WriteTimer0@timer WriteTimer0 `S1718  1 a 2 2 ]
+[u S1731 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[v i1WriteTimer0@timer WriteTimer0 `S1731  1 a 2 2 ]
 [v i1WriteTimer0@timer0 timer0 `ui  1 p 2 0 ]
 "24
 } 0

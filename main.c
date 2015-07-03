@@ -638,9 +638,7 @@ void main()
 //  
 
 void init()
-{
-    unsigned char dir;
-    
+{   
     //uint8_t msgdata[ 8 ];
 
     // Initialize the uP
@@ -823,7 +821,6 @@ void init_app_ram( void )
                         ( CHANNEL2 << 2 ) +
                         ( CHANNEL1 << 1 ) +
                         CHANNEL0;
-    
 }
 
 
@@ -1529,8 +1526,12 @@ uint8_t vscp_readAppReg(uint8_t reg)
     }
     // * * *  Page 2  * * *
     else if ( 2 == vscp_page_select ) {
-        if ( reg < 8*DESCION_MATRIX_ROWS ) {
-            rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + REG1_COUNT + reg );
+        if ( reg < ( REG_DESCION_MATRIX + 8*DESCION_MATRIX_ROWS ) ) {
+            rv = eeprom_read( VSCP_EEPROM_END + 
+                                REG_DESCION_MATRIX + 
+                                REG0_COUNT + 
+                                REG1_COUNT + 
+                                reg );
         }
     }
     
@@ -2438,9 +2439,17 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
     else if ( 2 == vscp_page_select ) {
     
         if ( reg < (REG_DESCION_MATRIX + DESCION_MATRIX_ROWS * 8) ) {
-            eeprom_write( VSCP_EEPROM_END + REG0_COUNT + REG1_COUNT + reg, val );
+            eeprom_write( VSCP_EEPROM_END + 
+                            REG_DESCION_MATRIX +
+                            REG0_COUNT + 
+                            REG1_COUNT + 
+                            reg, val );
             calculateSetFilterMask();  // Calculate new hardware filter
-            rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + REG1_COUNT + reg );
+            rv = eeprom_read( VSCP_EEPROM_END + 
+                            REG_DESCION_MATRIX + 
+                            REG0_COUNT + 
+                            REG1_COUNT + 
+                            reg );
         }
         
     } // page 2
@@ -2537,10 +2546,15 @@ void doDM(void)
     // Don't deal with the protocol functionality
     if ( VSCP_CLASS1_PROTOCOL == vscp_imsg.vscp_class ) return;
 
-    for (i = 0; i < DESCION_MATRIX_ROWS; i++) {
+    for (i = 0; i<DESCION_MATRIX_ROWS; i++) {
 
         // Get DM flags for this row
-        dmflags = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + REG1_COUNT + REG_DESCION_MATRIX + 1 + (8 * i) );
+        dmflags = eeprom_read( VSCP_EEPROM_END + 
+                                    REG0_COUNT + 
+                                    REG1_COUNT + 
+                                    REG_DESCION_MATRIX + 
+                                    VSCP_DM_POS_FLAGS + 
+                                    (8 * i) );
 
         // Is the DM row enabled?
         if ( dmflags & VSCP_DM_FLAG_ENABLED ) {
@@ -2562,21 +2576,21 @@ void doDM(void)
 
             // Check if sub zone should match and if so if it match
             if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE ) {
-                if ( 255 != vscp_imsg.data[ 1 ] ) {
-                    if ( vscp_imsg.data[ 1 ] != eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_SUBZONE ) ) {
+                if ( 255 != vscp_imsg.data[ 2 ] ) {
+                    if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_SUBZONE ) ) {
                         continue;
                     }
                 }
             }
             
-            class_filter = ( dmflags & VSCP_DM_FLAG_CLASS_FILTER)*256 +
+            class_filter = ( ( dmflags & VSCP_DM_FLAG_CLASS_FILTER) << 8 ) +
                     eeprom_read( VSCP_EEPROM_END +
                                     REG0_COUNT + REG1_COUNT + 
                                     REG_DESCION_MATRIX +
                                     (8 * i) +
                                     VSCP_DM_POS_CLASSFILTER);
             
-            class_mask = ( dmflags & VSCP_DM_FLAG_CLASS_MASK)*256 +
+            class_mask = ( ( dmflags & VSCP_DM_FLAG_CLASS_MASK ) << 7 ) +
                     eeprom_read( VSCP_EEPROM_END +
                                     REG0_COUNT + REG1_COUNT + 
                                     REG_DESCION_MATRIX +
@@ -2619,21 +2633,28 @@ void doDM(void)
                         break;
 
                     case BEIJING_ACTION_PULSEON: // Pulse Channels in arg. bitarry, zone, subzone
-                        doActionPulse( dmflags, eeprom_read( VSCP_EEPROM_END + 
+                        doActionPulseOn( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
+                        
+                    case BEIJING_ACTION_PULSEOFF: // Pulse Channels in arg. bitarry, zone, subzone
+                        doActionPulseOff( dmflags, eeprom_read( VSCP_EEPROM_END + 
+                                                                REG0_COUNT + REG1_COUNT + 
+                                                                REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
+                        break;    
 
                     case BEIJING_ACTION_STATUS: // Send status for all Channels
                         doActionStatus( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
-
-                    /*case ACTION_DISABLE: // Disable Channels in bitarray
-                        doActionDisable( dmflags, eeprom_read( VSCP_EEPROM_END + REG0_COUNT + REG1_COUNT + 
+                        
+                    case BEIJING_ACTION_STATUSALL: // Send status for all Channels
+                        doActionStatusAll( dmflags, eeprom_read( VSCP_EEPROM_END + 
+                                                                REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
-                        break;*/
+                        break;    
 
                     case BEIJING_ACTION_TOGGLE: // Toggle Channels
                         doActionToggle( dmflags, eeprom_read( VSCP_EEPROM_END + 
@@ -2658,63 +2679,65 @@ void doDM(void)
 void doActionOn( unsigned char dmflags, unsigned char arg )
 {
     unsigned char ctrlreg;
-    
+    BOOL bEvent = FALSE;
+            
     // Check for a valid argument
     if ( arg > 9 ) return;
 
-    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
 
     // Do nothing if disabled
     if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
-    
-    // Check if sub zone should match and if so check if it match
-    if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE ) {
-        if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
-                                                        REG0_BEIJING_CH1_SUBZONE +
-                                                        i ) ) {
-            return;
-        }
-    }
 
     switch ( arg ) {
 
         case 0:
+            if ( 0 == CHANNEL0 ) bEvent = TRUE;
             CHANNEL0 = 1; 
             break;
 
         case 1:
+            if ( 0 == CHANNEL1 ) bEvent = TRUE;
             CHANNEL1 = 1;
             break;
 
         case 2:
+            if ( 0 == CHANNEL2 ) bEvent = TRUE;
             CHANNEL2 = 1;
             break;
 
         case 3:
+            if ( 0 == CHANNEL3 ) bEvent = TRUE;
             CHANNEL3 = 1;
             break;
 
         case 4:
+            if ( 0 == CHANNEL4 ) bEvent = TRUE;
             CHANNEL4 = 1;
             break;
 
         case 5:
+            if ( 0 == CHANNEL5 ) bEvent = TRUE;
             CHANNEL5 = 1;
             break;
 
         case 6:
+            if ( 0 == CHANNEL6 ) bEvent = TRUE;
             CHANNEL6 = 1;
             break;
                 
         case 7:
+            if ( 0 == CHANNEL7 ) bEvent = TRUE;
             CHANNEL7 = 1;
             break;
                 
         case 8:
+            if ( 0 == CHANNEL8 ) bEvent = TRUE;
             CHANNEL8 = 1;
             break;    
                 
         case 9:
+            if ( 0 == CHANNEL9 ) bEvent = TRUE;
             CHANNEL7 = 1;
             break;    
 
@@ -2733,8 +2756,8 @@ void doActionOn( unsigned char dmflags, unsigned char arg )
     }
 
     // Should off event be sent?
-    if ( val & OUTPUT_CTRL_ONEVENT ) {
-        SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+    if ( bEvent && ( ctrlreg & OUTPUT_CTRL_ONEVENT ) ) {
+        SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
     }
 
 }
@@ -2745,330 +2768,240 @@ void doActionOn( unsigned char dmflags, unsigned char arg )
 
 void doActionOff( unsigned char dmflags, unsigned char arg )
 {
+    unsigned char ctrlreg;
+    BOOL bEvent = FALSE;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
 
-    unsigned char i;
-    unsigned char val;
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
 
-    for ( i = 0; i < 8; i++ ) {
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
 
-        // If the rely should not be handled just move on
-        if ( !( arg & ( 1 << i ) ) ) continue;
+    switch ( arg ) {
 
-        // Check if sub zone should match and if so check if it match
-        if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE ) {
-            if ( vscp_imsg.data[ 2 ] != eeprom_read(VSCP_EEPROM_END +
-                                                    REG0_BEIJING_CH1_SUBZONE +
-                                                    i ) ) {
-                continue;
-            }
-        }
+        case 0:
+            if ( 1 == CHANNEL0 ) bEvent = TRUE;
+            CHANNEL0 = 0; 
+            break;
 
-        val = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
+        case 1:
+            if ( 1 == CHANNEL1 ) bEvent = TRUE;            
+            CHANNEL1 = 0;
+            break;
 
-        // Do nothing if disabled
-        if ( !( val & OUTPUT_CTRL_ENABLED ) ) continue;
+        case 2:
+            if ( 1 == CHANNEL2 ) bEvent = TRUE;
+            CHANNEL2 = 0;
+            break;
 
-        switch ( i ) {
+        case 3:
+            if ( 1 == CHANNEL3 ) bEvent = TRUE;
+            CHANNEL3 = 0;
+            break;
 
-            case 0:
-                CHANNEL0 = 0;
-                break;
+        case 4:
+            if ( 1 == CHANNEL4 ) bEvent = TRUE;
+            CHANNEL4 = 0;
+            break;
 
-            case 1:
-                CHANNEL1 = 0;
-                break;
+        case 5:
+            if ( 1 == CHANNEL5 ) bEvent = TRUE;
+            CHANNEL5 = 0;
+            break;
 
-            case 2:
-                CHANNEL2 = 0;
-                break;
-
-            case 3:
-                CHANNEL3 = 0;
-                break;
-
-            case 4:
-                CHANNEL4 = 0;
-                break;
-
-            case 5:
-                CHANNEL5 = 0;
-                break;
-
-            case 6:
-                CHANNEL6 = 0;
-                break;
+        case 6:
+            if ( 1 == CHANNEL6 ) bEvent = TRUE;
+            CHANNEL6 = 0;
+            break;
                 
-            case 7:
-                CHANNEL7 = 0;
-                break;    
-            
-            case 8:
-                CHANNEL8 = 0;
-                break;  
+        case 7:
+            if ( 1 == CHANNEL7 ) bEvent = TRUE;
+            CHANNEL7 = 0;
+            break;
                 
-            case 9:
-                CHANNEL9 = 0;
-                break;    
-        }
+        case 8:
+            if ( 1 == CHANNEL8 ) bEvent = TRUE;
+            CHANNEL8 = 0;
+            break;    
+                
+        case 9:
+            if ( 1 == CHANNEL9 ) bEvent = TRUE;
+            CHANNEL7 = 0;
+            break;    
 
-        // Should off event be sent?
-        if ( val & OUTPUT_CTRL_OFFEVENT ) {
-            SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
-        }
-
+    }
+    
+    // Should off event be sent?
+    if ( bEvent && ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) ) {
+        SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// doActionPulse
+// doActionPulseOn
 // 
 
-void doActionPulse(unsigned char dmflags, unsigned char arg)
+void doActionPulseOn(unsigned char dmflags, unsigned char arg)
 {
+    unsigned char ctrlreg;
+    BOOL bEvent = FALSE;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
 
-    unsigned char i;
-    unsigned char val;
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
 
-    for ( i = 0; i < 8; i++ ) {
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
 
-        // If the rely should not be handled just move on
-        if ( !( arg & ( 1 << i ) ) ) continue;
+    switch ( arg ) {
 
-        // Check if subzone should match and if so if it match
-        if (dmflags & VSCP_DM_FLAG_CHECK_SUBZONE) {
-            if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
-                                                        REG0_BEIJING_CH1_SUBZONE +
-                                                        i ) ) {
-                continue;
-            }
-        }
+        case 0:
+            if ( 1 == CHANNEL0 ) bEvent = TRUE;
+            CHANNEL0 = 0; // Start out at a known state
+            break;
 
-        val = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
+        case 1:
+            if ( 1 == CHANNEL1 ) bEvent = TRUE;
+            CHANNEL1 = 0;
+            break;
 
-        // Do nothing if disabled
-        if ( !( val & OUTPUT_CTRL_ENABLED ) ) continue;
+        case 2:
+            if ( 1 == CHANNEL2 ) bEvent = TRUE;
+            CHANNEL2 = 0;
+            break;
 
-        switch (i) {
+        case 3:
+            if ( 1 == CHANNEL3 ) bEvent = TRUE;
+            CHANNEL3 = 0;
+            break;
 
-            case 0:
-                CHANNEL0 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x01; // Enable pulse output
-                channel_pulse_timer[ 0 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH0_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH0_TIMING_PULSE_LSB );
-                break;
+        case 4:
+            if ( 1 == CHANNEL4 ) bEvent = TRUE;
+            CHANNEL4 = 0;
+            break;
 
-            case 1:
-                CHANNEL1 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x02; // Enable pulse output
-                channel_pulse_timer[ 1 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH1_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH1_TIMING_PULSE_LSB );
-                break;
+        case 5:
+            if ( 1 == CHANNEL5 ) bEvent = TRUE;
+            CHANNEL5 = 0;
+            break;
 
-            case 2:
-                CHANNEL2 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x04; // Enable pulse output
-                channel_pulse_timer[ 2 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH2_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH2_TIMING_PULSE_LSB );
-                break;
-
-            case 3:
-                CHANNEL3 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x08; // Enable pulse output
-                channel_pulse_timer[ 3 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH3_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH3_TIMING_PULSE_LSB );
-                break;
-
-            case 4:
-                CHANNEL4 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x10; // Enable pulse output
-                channel_pulse_timer[ 4 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH4_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH4_TIMING_PULSE_LSB );
-                break;
-
-            case 5:
-                CHANNEL5 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x20; // Enable pulse output
-                channel_pulse_timer[ 5 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH5_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH5_TIMING_PULSE_LSB );
-                break;
-
-            case 6:
-                CHANNEL6 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x40; // Enable pulse output
-                channel_pulse_timer[ 6 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH6_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH6_TIMING_PULSE_LSB );
-                break;
-
-            case 7:
-                CHANNEL7 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x40; // Enable pulse output
-                channel_pulse_timer[ 7 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH7_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH7_TIMING_PULSE_LSB );
-                break; 
+        case 6:
+            if ( 1 == CHANNEL6 ) bEvent = TRUE;
+            CHANNEL6 = 0;
+            break;
                 
-            case 8:
-                CHANNEL7 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x40; // Enable pulse output
-                channel_pulse_timer[ 8 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH8_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH8_TIMING_PULSE_LSB );
-                break;  
+        case 7:
+            if ( 1 == CHANNEL7 ) bEvent = TRUE;
+            CHANNEL7 = 0;
+            break;
                 
-            case 9:
-                CHANNEL7 = 0; // Start out at a known state
-                channel_pulse_flags |= 0x40; // Enable pulse output
-                channel_pulse_timer[ 9 ] =
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH9_TIMING_PULSE_MSB ) * 256 +
-                        eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
-                                        REG1_BEIJING_CH9_TIMING_PULSE_LSB );
-                break;    
-        }
+        case 8:
+            if ( 1 == CHANNEL8 ) bEvent = TRUE;
+            CHANNEL8 = 0;
+            break;    
+                
+        case 9:
+            if ( 1 == CHANNEL9 ) bEvent = TRUE;
+            CHANNEL7 = 0;
+            break;    
+
     }
+    
+    // Should off event be sent?
+    if ( bEvent && ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) ) {
+        SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+    }
+    
+    channel_pulse_flags |= ( 1 << arg ); // Enable pulse output
+    channel_pulse_timer[ 0 ] =
+            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
+                            REG1_BEIJING_CH0_TIMING_PULSE_MSB + arg ) * 256 +
+            eeprom_read( VSCP_EEPROM_END + REG0_COUNT +
+                            REG1_BEIJING_CH0_TIMING_PULSE_LSB + arg );
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// doActionStatus
+// doActionPulseOff
 // 
 
-void doActionStatus(unsigned char dmflags, unsigned char arg)
+void doActionPulseOff(unsigned char dmflags, unsigned char arg)
 {
-    unsigned char i;
-    unsigned char val;
-    BOOL bOn = FALSE;
+    unsigned char ctrlreg;
+    BOOL bEvent = FALSE;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
 
-    for (i = 0; i < 8; i++) {
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
 
-        // If the rely should not be handled just move on
-        if (!(arg & (1 << i))) continue;
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
 
-        // Check if subzone should match and if so if it match
-        if (dmflags & VSCP_DM_FLAG_CHECK_SUBZONE) {
-            if (vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
-                                                    REG0_BEIJING_CH1_SUBZONE +
-                                                    i ) ) {
-                continue;
-            }
-        }
+    switch ( arg ) {
 
-        val = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
+        case 0:
+            if ( 1 == CHANNEL0 ) bEvent = TRUE;
+            CHANNEL0 = 0; // Start out at a known state
+            break;
 
-        switch (i) {
+        case 1:
+            if ( 1 == CHANNEL1 ) bEvent = TRUE;
+            CHANNEL1 = 0;
+            break;
 
-            case 0:
-                bOn = CHANNEL0;
-                break;
+        case 2:
+            if ( 1 == CHANNEL2 ) bEvent = TRUE;
+            CHANNEL2 = 0;
+            break;
 
-            case 1:
-                bOn = CHANNEL1;
-                break;
+        case 3:
+            if ( 1 == CHANNEL3 ) bEvent = TRUE;
+            CHANNEL3 = 0;
+            break;
 
-            case 2:
-                bOn = CHANNEL2;
-                break;
+        case 4:
+            if ( 1 == CHANNEL4 ) bEvent = TRUE;
+            CHANNEL4 = 0;
+            break;
 
-            case 3:
-                bOn = CHANNEL3;
-                break;
+        case 5:
+            if ( 1 == CHANNEL5 ) bEvent = TRUE;
+            CHANNEL5 = 0;
+            break;
 
-            case 4:
-                bOn = CHANNEL4;
-                break;
-
-            case 5:
-                bOn = CHANNEL5;
-                break;
-
-            case 6:
-                bOn = CHANNEL6;
-                break;
+        case 6:
+            if ( 1 == CHANNEL6 ) bEvent = TRUE;
+            CHANNEL6 = 0;
+            break;
                 
-            case 7:
-                bOn = CHANNEL7;
-                break;    
+        case 7:
+            if ( 1 == CHANNEL7 ) bEvent = TRUE;
+            CHANNEL7 = 0;
+            break;
                 
-            case 8:
-                bOn = CHANNEL8;
-                break;    
+        case 8:
+            if ( 1 == CHANNEL8 ) bEvent = TRUE;
+            CHANNEL8 = 0;
+            break;    
+                
+        case 9:
+            if ( 1 == CHANNEL9 ) bEvent = TRUE;
+            CHANNEL7 = 0;
+            break;    
 
-            case 9:
-                bOn = CHANNEL9;
-                break;    
-        }
-
-        if (bOn) {
-
-            // Should off event be sent?
-            if ( val & OUTPUT_CTRL_OFFEVENT ) {
-                SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
-            }
-
-        }
-        else {
-
-            // Should off event be sent?
-            if ( val & OUTPUT_CTRL_OFFEVENT ) {
-                SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
-            }
-
-        }
     }
+    
+    // Should off event be sent?
+    if ( bEvent && ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) ) {
+        SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+    }
+    
+    channel_pulse_flags &= ~( 1 << arg ); // Disable pulse output
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// doActionDisable
-// 
-
-void doActionDisable(unsigned char dmflags, unsigned char arg)
-{
-    unsigned char i;
-    unsigned char val;
-
-    for ( i = 0; i < 8; i++ ) {
-
-        // If the rely should not be handled just move on
-        if ( !( arg & (1 << i) ) ) continue;
-
-        // Check if subzone should match and if so if it match
-        if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE) {
-            if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
-                                                        REG0_BEIJING_CH1_SUBZONE +
-                                                        i ) ) {
-                continue;
-            }
-        }
-
-        val = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i );
-        eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i, val & ~OUTPUT_CTRL_ENABLED );
-    }
-
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // doActionToggle
@@ -3076,150 +3009,249 @@ void doActionDisable(unsigned char dmflags, unsigned char arg)
 
 void doActionToggle( unsigned char dmflags, unsigned char arg )
 {
-
-    unsigned char i;
-    unsigned char val;
+    unsigned char ctrlreg;
     BOOL bOn = FALSE;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
 
-    for ( i = 0; i < 8; i++ ) {
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
 
-        // If the Channel should not be handled just move on
-        if ( !( arg & (1 << i) ) ) continue;
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
 
-        // Check if sub zone should match and if so if it match
-        if ( dmflags & VSCP_DM_FLAG_CHECK_SUBZONE ) {
-            if ( vscp_imsg.data[ 2 ] != eeprom_read( VSCP_EEPROM_END +
-                                                        REG0_BEIJING_CH1_SUBZONE +
-                                                        i ) ) {
-                continue;
+    switch ( arg ) {
+
+        case 0:
+            if ( CHANNEL0 ) {
+                CHANNEL0 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL0 = 1;
+                bOn = TRUE;
             }
-        }
+            break;
 
-        val = eeprom_read(VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i);
+        case 1:
+            if ( CHANNEL1 ) {
+                CHANNEL1 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL1 = 1;
+                bOn = TRUE;
+            }
+            break;
 
-        switch ( i ) {
-
-            case 0:
-                if ( CHANNEL0 ) {
-                    CHANNEL0 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL0 = 1;
-                    bOn = TRUE;
-                }
+        case 2:
+            if ( CHANNEL2 ) {
+                CHANNEL2 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL2 = 1;
+                bOn = TRUE;
+            }
                 break;
 
-            case 1:
-                if ( CHANNEL1 ) {
-                    CHANNEL1 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL1 = 1;
-                    bOn = TRUE;
-                }
-                break;
+        case 3:
+            if ( CHANNEL3 ) {
+                CHANNEL3 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL3 = 1;
+                bOn = TRUE;
+            }
+            break;
 
-            case 2:
-                if ( CHANNEL2 ) {
-                    CHANNEL2 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL2 = 1;
-                    bOn = TRUE;
-                }
-                break;
+        case 4:
+            if ( CHANNEL4 ) {
+                CHANNEL4 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL4 = 1;
+                bOn = TRUE;
+            }
+            break;
 
-            case 3:
-                if ( CHANNEL3 ) {
-                    CHANNEL3 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL3 = 1;
-                    bOn = TRUE;
-                }
-                break;
+        case 5:
+            if ( CHANNEL5 ) {
+                CHANNEL5 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL5 = 1;
+                bOn = TRUE;
+            }
+            break;
 
-            case 4:
-                if ( CHANNEL4 ) {
-                    CHANNEL4 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL4 = 1;
-                    bOn = TRUE;
-                }
-                break;
-
-            case 5:
-                if ( CHANNEL5 ) {
-                    CHANNEL5 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL5 = 1;
-                    bOn = TRUE;
-                }
-                break;
-
-            case 6:
-                if ( CHANNEL6 ) {
-                    CHANNEL6 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL6 = 1;
-                    bOn = TRUE;
-                }
-                break;
+        case 6:
+            if ( CHANNEL6 ) {
+                CHANNEL6 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL6 = 1;
+                bOn = TRUE;
+            }
+            break;
                 
-            case 7:
-                if ( CHANNEL7 ) {
-                    CHANNEL7 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL7 = 1;
-                    bOn = TRUE;
-                }
-                break; 
+        case 7:
+            if ( CHANNEL7 ) {
+                CHANNEL7 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL7 = 1;
+                bOn = TRUE;
+            }
+            break; 
                 
-            case 8:
-                if ( CHANNEL8 ) {
-                    CHANNEL8 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL8 = 1;
-                    bOn = TRUE;
-                }
-                break;    
-
-            case 9:
-                if ( CHANNEL9 ) {
-                    CHANNEL9 = 0;
-                    bOn = FALSE;
-                } else {
-                    CHANNEL9 = 1;
-                    bOn = TRUE;
-                }
-                break;    
-        }
-
-        if ( bOn ) {
-
-            // Should on event be sent?
-            if ( val & OUTPUT_CTRL_ONEVENT ) {
-                SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+        case 8:
+            if ( CHANNEL8 ) {
+                CHANNEL8 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL8 = 1;
+                bOn = TRUE;
             }
+            break;    
 
-        }
-        else {
-
-            // Should off event be sent?
-            if ( val & OUTPUT_CTRL_OFFEVENT ) {
-                SendInformationEvent( i, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+        case 9:
+            if ( CHANNEL9 ) {
+                CHANNEL9 = 0;
+                bOn = FALSE;
+            } 
+            else {
+                CHANNEL9 = 1;
+                bOn = TRUE;
             }
+            break;    
+    }
 
+    if ( bOn ) {
+
+        // Should on event be sent?
+        if ( ctrlreg & OUTPUT_CTRL_ONEVENT ) {
+            SendInformationEvent( arg, 
+                                    VSCP_CLASS1_INFORMATION, 
+                                    VSCP_TYPE_INFORMATION_ON );
         }
 
     }
+    else {
+
+        // Should off event be sent?
+        if ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) {
+            SendInformationEvent( arg, 
+                                    VSCP_CLASS1_INFORMATION, 
+                                    VSCP_TYPE_INFORMATION_OFF );
+        }
+
+    }
+
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+// doActionStatus
+// 
+
+void doActionStatus(unsigned char dmflags, unsigned char arg)
+{
+    unsigned char ctrlreg;
+    BOOL bOn = FALSE;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
+
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
+
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
+
+    switch ( arg ) {
+
+        case 0:
+            bOn = CHANNEL0;
+            break;
+
+        case 1:
+            bOn = CHANNEL1;
+            break;
+
+        case 2:
+            bOn = CHANNEL2;
+            break;
+
+        case 3:
+            bOn = CHANNEL3;
+            break;
+
+        case 4:
+            bOn = CHANNEL4;
+            break;
+
+        case 5:
+            bOn = CHANNEL5;
+            break;
+
+        case 6:
+            bOn = CHANNEL6;
+            break;
+                
+        case 7:
+            bOn = CHANNEL7;
+            break;    
+                
+        case 8:
+            bOn = CHANNEL8;
+            break;    
+
+        case 9:
+            bOn = CHANNEL9;
+            break;    
+    
+    }
+
+    if ( bOn ) {
+
+        // Should off event be sent?
+        if ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) {
+            SendInformationEvent( arg, 
+                                    VSCP_CLASS1_INFORMATION, 
+                                    VSCP_TYPE_INFORMATION_OFF );
+        }
+
+    }
+    else {
+        // Should off event be sent?
+        if ( ctrlreg & OUTPUT_CTRL_OFFEVENT ) {
+            SendInformationEvent( arg, 
+                                    VSCP_CLASS1_INFORMATION, 
+                                    VSCP_TYPE_INFORMATION_OFF );
+        }
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// doActionStatusAll
+// 
+
+void doActionStatusAll(unsigned char dmflags, unsigned char arg)
+{
+    uint8_t i;
+    
+    for ( i=0; i<9; i++ ) {
+        doActionStatus( dmflags, i );
+    }
+  
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -2385,7 +2385,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="8" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="9" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 1: flags </name>
 			<description lang="en">
 			Flags. Set selection behaviour.\n
@@ -3039,7 +3039,7 @@
 		
 		
 		<!-- DM Row 7 -->
-		<reg page="2" offset="48" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="56" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Oaddr </name>
 			<description lang="en">
 			Originating address. Set to nickname for node that should trigger 
@@ -3051,13 +3051,13 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="49" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="57" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: flags </name>
 			<description lang="en">
 			Flags. Set selection behaviour.\n
 			The enable bit can be used to disable a decision matrix row while it is edited.\n
 			The zone and use sub zone bits can be activated to have a check on the zone/sub zone information 
-			of an event. That is the zone/subz one of the machine must match the one of the event to trigger 
+			of an event. That is the zone/subzone one of the machine must match the one of the event to trigger 
 			the DM row.  
 			</description>
 			<access>rw</access>
@@ -3095,7 +3095,7 @@
 			</bit>												
 		</reg>		
 		
-		<reg page="2" offset="50" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="58" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Class mask (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class mask that defines the events that should trigger the action 
@@ -3105,7 +3105,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="51" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="59" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Class filter (low eight bits) </name>
 			<description lang="en">
 			The lowest eight bits of the class filter that defines the events that should trigger the action 
@@ -3115,7 +3115,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="52" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="60" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Type mask</name>
 			<description lang="en">
 			Type mask that defines the events that should trigger the action of this decision matrix row.		
@@ -3123,7 +3123,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="53" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="61" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Type filter</name>
 			<description lang="en">
 			Type filter that defines the events that should trigger the action of this decision matrix row.		
@@ -3131,7 +3131,7 @@
 			<access>rw</access>
 		</reg>	
 		
-		<reg page="2" offset="54" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="62" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only 
@@ -3141,7 +3141,7 @@
 			<access>rw</access>
 		</reg>
 		
-		<reg page="2" offset="55" default="0" bgcolor="0xE6E6E6" >
+		<reg page="2" offset="63" default="0" bgcolor="0xE6E6E6" >
 			<name lang="en">Decision matrix row 7: Action parameter</name>
 			<description lang="en">
 			A numeric action parameter can be set and its meaning is application specific.
