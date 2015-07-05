@@ -19295,304 +19295,290 @@ vscp_handleProtocolEvent();
 
 }
 else {
+doDM();
+}
+
+}
 
 if ( measurement_clock_10ms >= 10 ) {
 
-uint8_t dir = Read_b_eep(0x43 + 12) << 8 +
+uint8_t dir =
+( Read_b_eep(0x43 + 12) << 8 ) +
 
-# 277
+# 282
 Read_b_eep(0x43 + 13);
 
-# 280
+# 285
 measurement_clock_10ms = 0;
 
 if ( ( dir & ( 1 << current_debounce ) ) &&
 ( Read_b_eep(0x43 + 34 + current_debounce) &
 
-# 286
+# 291
 0x40 ) &&
 ( Read_b_eep(0x43 + 34 + current_debounce) &
 
-# 290
+# 295
 0x80 ) ) {
-switch ( current_debounce ) {
+asm(" nop");
+switch (current_debounce) {
 
 case 0:
-if ( !PORTBbits.RB0 ) {
+if (!PORTBbits.RB0) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 304
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 310
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 1:
-if ( !PORTBbits.RB1 ) {
+if (!PORTBbits.RB1) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 332
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 336
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 2:
-if ( !PORTCbits.RC3 ) {
+if (!PORTCbits.RC3) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 360
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 362
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 3:
-if ( !PORTCbits.RC4 ) {
+if (!PORTCbits.RC4) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
 # 388
-0x04 ) {
-SendInformationEvent( current_debounce,
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 4:
-if ( !PORTCbits.RC5 ) {
+if (!PORTCbits.RC5) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 416
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 414
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 5:
-if ( !PORTCbits.RC6 ) {
+if (!PORTCbits.RC6) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 444
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 440
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 6:
-if ( !PORTCbits.RC7 ) {
+if (!PORTCbits.RC7) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 472
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 466
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 7:
-if ( !PORTAbits.RA2 ) {
+if (!PORTAbits.RA2) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 500
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 492
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 8:
-if ( !PORTAbits.RA1 ) {
+if (!PORTAbits.RA1) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 528
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 518
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
 
 case 9:
-if ( !PORTAbits.RA0 ) {
+if (!PORTAbits.RA0) {
 debounce_cnt[ current_debounce ]++;
-if ( debounce_cnt[ current_debounce ] > 3 ) {
+if (debounce_cnt[ current_debounce ] > 3) {
 
 debounce_cnt[ current_debounce ] = 0;
 
 
-if ( Read_b_eep(0x43 + 24 + current_debounce) &
+if (Read_b_eep(0x43 + 24 + current_debounce) &
 
-# 556
-0x04 ) {
-SendInformationEvent( current_debounce,
+# 544
+0x04) {
+SendInformationEvent(current_debounce,
 20,
-3 );
-}
-else {
-SendInformationEvent( current_debounce,
+3);
+} else {
+SendInformationEvent(current_debounce,
 30,
-5 );
+5);
 }
 }
-}
-else {
+} else {
 debounce_cnt[ current_debounce ] = 0;
 }
 break;
@@ -19603,13 +19589,12 @@ break;
 }
 
 }
-}
 
-doDM();
-
-}
+current_debounce++;
+if ( current_debounce > 9 ) current_debounce = 0;
 
 }
+
 break;
 
 case 0x04:
@@ -19660,26 +19645,26 @@ doWork();
 }
 }
 
-# 640
+# 625
 void init()
 {
 
-# 648
+# 633
 ADCON1 = 0x0f;
 
-# 658
+# 643
 TRISA = 0b00000000;
 PORTA = 0x00;
 
-# 671
+# 656
 TRISB = 0b00001000;
 PORTB = 0x00;
 
-# 682
+# 667
 TRISC = 0b00000001;
 PORTC = 0x00;
 
-# 709
+# 694
 OpenTimer0( 0b11111111 & 0b10111111 & 0b11011111 & 0b11110010 );
 WriteTimer0( 0xfb1d );
 
@@ -19698,7 +19683,7 @@ PORTAbits.RA0 = 0;
 
 ECANInitialize();
 
-# 746
+# 731
 INTCONbits.PEIE = 1;
 
 
@@ -19707,7 +19692,7 @@ INTCONbits.GIE = 1;
 return;
 }
 
-# 758
+# 743
 void init_app_ram( void )
 {
 uint8_t i;
@@ -19776,7 +19761,7 @@ current_iostate = ( PORTAbits.RA0 << 9 ) +
 PORTBbits.RB0;
 }
 
-# 831
+# 816
 void init_app_eeprom(void)
 {
 unsigned char i, j;
@@ -19794,13 +19779,13 @@ for ( i=0; i<10; i++ ) {
 for ( i=0; i<10; i++ ) {
 (Busy_eep(), Write_b_eep(0x43 + 24 + i,0x08 | 0x10 | 0x80));
 
-# 850
+# 835
 }
 
 for ( i=0; i<10; i++ ) {
 (Busy_eep(), Write_b_eep(0x43 + 34 + i,0x01 | 0x02 | 0x80));
 
-# 857
+# 842
 }
 
 (Busy_eep(), Write_b_eep(0x43 + 44,0));
@@ -19810,13 +19795,13 @@ for ( i=0; i<10; i++ ) {
 for ( i=0; i<20; i++ ) {
 (Busy_eep(), Write_b_eep(0x43 + 46 + 0u + i,0));
 
-# 867
+# 852
 }
 
 for ( i=0; i<20; i++ ) {
 (Busy_eep(), Write_b_eep(0x43 + 46 + 20u + i,0));
 
-# 873
+# 858
 }
 
 
@@ -19825,13 +19810,13 @@ for ( i = 0; i < 8; i++ ) {
 for ( j = 0; j < 8; j++ ) {
 (Busy_eep(), Write_b_eep(0x43 + 46 + 40u + 0 + i * 8 + j,0));
 
-# 882
+# 867
 }
 }
 
 }
 
-# 891
+# 876
 void doApplicationOneSecondWork(void)
 {
 
@@ -20019,10 +20004,10 @@ else {
 channel_protection_timer[ i ] =
 Read_b_eep(0x43 + 46 + 20u + i) * 256 +
 
-# 1078
+# 1063
 Read_b_eep(0x43 + 46 + 21u + i);
 
-# 1080
+# 1065
 }
 
 
@@ -20152,10 +20137,10 @@ break;
 channel_pulse_timer[ i ] =
 Read_b_eep(0x43 + 46 + 0u + 2 * i) * 256 +
 
-# 1209
+# 1194
 Read_b_eep(0x43 + 46 + 0u + 2 * i);
 
-# 1212
+# 1197
 if ( bOn ) {
 
 
@@ -20164,10 +20149,10 @@ if ( Read_b_eep(0x43 + 24 + i) &
 channel_protection_timer[ i ] =
 Read_b_eep(0x43 + 46 + 20u + 2 * i) * 256 +
 
-# 1220
+# 1205
 Read_b_eep(0x43 + 46 + 21u + 2 * i);
 
-# 1222
+# 1207
 }
 
 if ( ctrlreg & 0x08 ) {
@@ -20195,10 +20180,10 @@ else {
 channel_pulse_timer[ i ] =
 Read_b_eep(0x43 + 46 + 0u + 2 * i) * 256 +
 
-# 1249
+# 1234
 Read_b_eep(0x43 + 46 + 1u + 2 * i);
 
-# 1251
+# 1236
 }
 
 }
@@ -20247,73 +20232,73 @@ current_iostate = ( PORTAbits.RA0 << 9 ) +
 PORTBbits.RB0;
 }
 
-# 1303
+# 1288
 unsigned char getMajorVersion()
 {
 return 1;
 }
 
-# 1312
+# 1297
 unsigned char getMinorVersion()
 {
 return 0;
 }
 
-# 1321
+# 1306
 unsigned char getSubMinorVersion()
 {
 return 0;
 }
 
-# 1332
+# 1317
 void vscp_setGUID(uint8_t idx, uint8_t data ) {
 if ( idx>15 ) return;
 (Busy_eep(), Write_b_eep(0x13 + idx,data));
 }
 
-# 1344
+# 1329
 void vscp_setManufacturerId( uint8_t idx, uint8_t data ) {
 if ( idx>7 ) return;
 (Busy_eep(), Write_b_eep(0x0B + idx,data));
 }
 
-# 1354
+# 1339
 unsigned char getBootLoaderAlgorithm(void)
 {
 return 0x01;
 }
 
-# 1363
+# 1348
 unsigned char getBufferSize(void)
 {
 return 8;
 }
 
-# 1372
+# 1357
 uint8_t vscp_readNicknamePermanent(void)
 {
 return Read_b_eep(0x01);
 }
 
-# 1381
+# 1366
 void vscp_writeNicknamePermanent(uint8_t nickname)
 {
 (Busy_eep(), Write_b_eep(0x01,nickname));
 }
 
-# 1390
+# 1375
 uint8_t vscp_getZone(void)
 {
 return Read_b_eep(0x43 + 0);
 }
 
-# 1399
+# 1384
 uint8_t vscp_getSubzone(void)
 {
 return Read_b_eep(0x43 + 1);
 }
 
-# 1410
+# 1395
 void doWork(void)
 {
 if ( 0x03 == vscp_node_state ) {
@@ -20321,7 +20306,7 @@ if ( 0x03 == vscp_node_state ) {
 }
 }
 
-# 1421
+# 1406
 uint8_t vscp_readAppReg(uint8_t reg)
 {
 uint8_t rv;
@@ -20342,7 +20327,7 @@ else if ( ( reg >= 2 ) &&
 ( reg <= 11 ) ) {
 rv = Read_b_eep(0x43 + 2 + ( reg - 2 ));
 
-# 1442
+# 1427
 }
 else if ( reg == 12 ) {
 rv = ( TRISAbits.TRISA0 << 1 ) +
@@ -20433,7 +20418,7 @@ else if ( 2 == vscp_page_select ) {
 if ( reg < ( 0 + 8*8 ) ) {
 rv = Read_b_eep(0x43 + 0 + 46 + 40u + reg);
 
-# 1535
+# 1520
 }
 }
 
@@ -20441,7 +20426,7 @@ return rv;
 
 }
 
-# 1546
+# 1531
 uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 {
 uint8_t rv;
@@ -20468,16 +20453,16 @@ else if ( ( reg >= 2 ) &&
 ( reg <= 11 ) ) {
 (Busy_eep(), Write_b_eep(0x43 + 2 + ( reg - 2 ),val));
 
-# 1573
+# 1558
 rv = Read_b_eep(0x43 + 2 + ( reg - 2 ));
 
-# 1576
+# 1561
 }
 else if ( reg == 12 ) {
 
 (Busy_eep(), Write_b_eep(0x43 + 12,( val & 0x03 )));
 
-# 1583
+# 1568
 TRISAbits.TRISA0 = ( val & 0x02 ) ? 1 : 0;
 TRISAbits.TRISA1 = ( val & 0x01 ) ? 1 : 0;
 
@@ -20488,7 +20473,7 @@ else if ( reg == 13 ) {
 
 (Busy_eep(), Write_b_eep(0x43 + 13,val));
 
-# 1595
+# 1580
 TRISAbits.TRISA2 = ( val & 0x80 ) ? 1 : 0;
 TRISCbits.TRISC7 = ( val & 0x40 ) ? 1 : 0;
 TRISCbits.TRISC6 = ( val & 0x20 ) ? 1 : 0;
@@ -20514,7 +20499,7 @@ else if ( (reg >= 14) && (reg <= 23) ) {
 
 if ( Read_b_eep(0x43 + 24 + ( reg - 14 )) &
 
-# 1621
+# 1606
 0x80 ) {
 
 switch ( reg ) {
@@ -20535,10 +20520,10 @@ if ( Read_b_eep(0x43 + 24) & 0x04 ) {
 channel_protection_timer[ 0 ] =
 Read_b_eep(0x43 + 46 + 20u) * 256 +
 
-# 1641
+# 1626
 Read_b_eep(0x43 + 46 + 21u);
 
-# 1643
+# 1628
 }
 
 }
@@ -20564,10 +20549,10 @@ if (Read_b_eep(0x43 + 25) & 0x04) {
 channel_protection_timer[ 1 ] =
 Read_b_eep(0x43 + 46 + 22u) * 256 +
 
-# 1668
+# 1653
 Read_b_eep(0x43 + 46 + 23u);
 
-# 1670
+# 1655
 }
 
 }
@@ -20593,10 +20578,10 @@ if ( Read_b_eep(0x43 + 26) & 0x04) {
 channel_protection_timer[ 2 ] =
 Read_b_eep(0x43 + 46 + 24u) * 256 +
 
-# 1695
+# 1680
 Read_b_eep(0x43 + 46 + 25u);
 
-# 1697
+# 1682
 }
 
 }
@@ -20623,10 +20608,10 @@ if (Read_b_eep(0x43 + 27) & 0x04) {
 channel_protection_timer[ 3 ] =
 Read_b_eep(0x43 + 46 + 26u) * 256 +
 
-# 1723
+# 1708
 Read_b_eep(0x43 + 46 + 27u);
 
-# 1725
+# 1710
 }
 
 }
@@ -20653,10 +20638,10 @@ if (Read_b_eep(0x43 + 28) & 0x04) {
 channel_protection_timer[ 4 ] =
 Read_b_eep(0x43 + 46 + 28u) * 256 +
 
-# 1751
+# 1736
 Read_b_eep(0x43 + 46 + 29u);
 
-# 1753
+# 1738
 }
 
 }
@@ -20683,10 +20668,10 @@ if (Read_b_eep(0x43 + 29) & 0x04) {
 channel_protection_timer[ 5 ] =
 Read_b_eep(0x43 + 46 + 30u) * 256 +
 
-# 1779
+# 1764
 Read_b_eep(0x43 + 46 + 31u);
 
-# 1781
+# 1766
 }
 
 }
@@ -20712,10 +20697,10 @@ if (Read_b_eep(0x43 + 30) & 0x04) {
 channel_protection_timer[ 6 ] =
 Read_b_eep(0x43 + 46 + 32u) * 256 +
 
-# 1806
+# 1791
 Read_b_eep(0x43 + 46 + 33u);
 
-# 1808
+# 1793
 }
 
 }
@@ -20741,10 +20726,10 @@ if (Read_b_eep(0x43 + 31) & 0x04) {
 channel_protection_timer[ 7 ] =
 Read_b_eep(0x43 + 46 + 34u) * 256 +
 
-# 1833
+# 1818
 Read_b_eep(0x43 + 46 + 35u);
 
-# 1835
+# 1820
 }
 
 }
@@ -20770,10 +20755,10 @@ if ( Read_b_eep(0x43 + 32) & 0x04 ) {
 channel_protection_timer[ 8 ] =
 Read_b_eep(0x43 + 46 + 36u) * 256 +
 
-# 1860
+# 1845
 Read_b_eep(0x43 + 46 + 37u);
 
-# 1862
+# 1847
 }
 
 }
@@ -20799,10 +20784,10 @@ if ( Read_b_eep(0x43 + 33) & 0x04 ) {
 channel_protection_timer[ 9 ] =
 Read_b_eep(0x43 + 46 + 38u) * 256 +
 
-# 1887
+# 1872
 Read_b_eep(0x43 + 46 + 39u);
 
-# 1889
+# 1874
 }
 
 }
@@ -20837,10 +20822,10 @@ channel_pulse_flags |= 0b0000000001;
 channel_pulse_timer[ 0 ] =
 Read_b_eep(0x43 + 46 + 0u) * 256 +
 
-# 1923
+# 1908
 Read_b_eep(0x43 + 46 + 0u);
 
-# 1925
+# 1910
 }
 else {
 channel_pulse_flags &= 0b1111111110;
@@ -20852,10 +20837,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 0 ] =
 Read_b_eep(0x43 + 46 + 20u) * 256 +
 
-# 1936
+# 1921
 Read_b_eep(0x43 + 46 + 21u);
 
-# 1938
+# 1923
 }
 break;
 
@@ -20873,10 +20858,10 @@ channel_pulse_flags |= 0b0000000010;
 channel_pulse_timer[ 1 ] =
 Read_b_eep(0x43 + 46 + 0u) * 256 +
 
-# 1955
+# 1940
 Read_b_eep(0x43 + 46 + 1u);
 
-# 1957
+# 1942
 }
 else {
 channel_pulse_flags &= 0b1111111101;
@@ -20888,10 +20873,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 1 ] =
 Read_b_eep(0x43 + 46 + 20u) * 256 +
 
-# 1968
+# 1953
 Read_b_eep(0x43 + 46 + 21u);
 
-# 1970
+# 1955
 }
 break;
 
@@ -20909,10 +20894,10 @@ channel_pulse_flags |= 0b0000000100;
 channel_pulse_timer[ 2 ] =
 Read_b_eep(0x43 + 46 + 4u) * 256 +
 
-# 1987
+# 1972
 Read_b_eep(0x43 + 46 + 5u);
 
-# 1989
+# 1974
 }
 else {
 channel_pulse_flags &= 0b1111111011;
@@ -20924,10 +20909,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 2 ] =
 Read_b_eep(0x43 + 46 + 24u) * 256 +
 
-# 2000
+# 1985
 Read_b_eep(0x43 + 46 + 25u);
 
-# 2002
+# 1987
 }
 break;
 
@@ -20945,10 +20930,10 @@ channel_pulse_flags |= 0b0000001000;
 channel_pulse_timer[ 3 ] =
 Read_b_eep(0x43 + 46 + 6u) * 256 +
 
-# 2019
+# 2004
 Read_b_eep(0x43 + 46 + 7u);
 
-# 2021
+# 2006
 }
 else {
 channel_pulse_flags &= 0b1111110111;
@@ -20960,10 +20945,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 3 ] =
 Read_b_eep(0x43 + 46 + 26u) * 256 +
 
-# 2032
+# 2017
 Read_b_eep(0x43 + 46 + 27u);
 
-# 2034
+# 2019
 }
 break;
 
@@ -20981,10 +20966,10 @@ channel_pulse_flags |= 0b0000010000;
 channel_pulse_timer[ 4 ] =
 Read_b_eep(0x43 + 46 + 8u) * 256 +
 
-# 2051
+# 2036
 Read_b_eep(0x43 + 46 + 9u);
 
-# 2053
+# 2038
 }
 else {
 channel_pulse_flags &= 0b1111101111;
@@ -20996,10 +20981,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 4 ] =
 Read_b_eep(0x43 + 46 + 28u) * 256 +
 
-# 2064
+# 2049
 Read_b_eep(0x43 + 46 + 29u);
 
-# 2066
+# 2051
 }
 break;
 
@@ -21017,10 +21002,10 @@ channel_pulse_flags |= 0b0000100000;
 channel_pulse_timer[ 5 ] =
 Read_b_eep(0x43 + 46 + 10u) * 256 +
 
-# 2083
+# 2068
 Read_b_eep(0x43 + 46 + 11u);
 
-# 2085
+# 2070
 }
 else {
 channel_pulse_flags &= 0b1111011111;
@@ -21032,10 +21017,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 5 ] =
 Read_b_eep(0x43 + 46 + 30u) * 256 +
 
-# 2096
+# 2081
 Read_b_eep(0x43 + 46 + 31u);
 
-# 2098
+# 2083
 }
 break;
 
@@ -21053,10 +21038,10 @@ channel_pulse_flags |= 0b0001000000;
 channel_pulse_timer[ 6 ] =
 Read_b_eep(0x43 + 46 + 12u) * 256 +
 
-# 2115
+# 2100
 Read_b_eep(0x43 + 46 + 13u);
 
-# 2117
+# 2102
 }
 else {
 channel_pulse_flags &= 0b1110111111;
@@ -21068,10 +21053,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 6 ] =
 Read_b_eep(0x43 + 46 + 32u) * 256 +
 
-# 2128
+# 2113
 Read_b_eep(0x43 + 46 + 33u);
 
-# 2130
+# 2115
 }
 break;
 
@@ -21089,10 +21074,10 @@ channel_pulse_flags |= 0b0010000000;
 channel_pulse_timer[ 7 ] =
 Read_b_eep(0x43 + 46 + 14u) * 256 +
 
-# 2147
+# 2132
 Read_b_eep(0x43 + 46 + 15u);
 
-# 2149
+# 2134
 }
 else {
 channel_pulse_flags &= 0b1101111111;
@@ -21104,10 +21089,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 7 ] =
 Read_b_eep(0x43 + 46 + 34u) * 256 +
 
-# 2160
+# 2145
 Read_b_eep(0x43 + 46 + 35u);
 
-# 2162
+# 2147
 }
 break;
 
@@ -21125,10 +21110,10 @@ channel_pulse_flags |= 0b0100000000;
 channel_pulse_timer[ 8 ] =
 Read_b_eep(0x43 + 46 + 16u) * 256 +
 
-# 2179
+# 2164
 Read_b_eep(0x43 + 46 + 17u);
 
-# 2181
+# 2166
 }
 else {
 channel_pulse_flags &= 0b1011111111;
@@ -21140,10 +21125,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 8 ] =
 Read_b_eep(0x43 + 46 + 36u) * 256 +
 
-# 2192
+# 2177
 Read_b_eep(0x43 + 46 + 37u);
 
-# 2194
+# 2179
 }
 break;
 
@@ -21161,10 +21146,10 @@ channel_pulse_flags |= 0b1000000000;
 channel_pulse_timer[ 9 ] =
 Read_b_eep(0x43 + 46 + 18u) * 256 +
 
-# 2211
+# 2196
 Read_b_eep(0x43 + 46 + 19u);
 
-# 2213
+# 2198
 }
 else {
 channel_pulse_flags &= 0b0111111111;
@@ -21176,10 +21161,10 @@ if ( val & 0x04 ) {
 channel_protection_timer[ 9 ] =
 Read_b_eep(0x43 + 46 + 38u) * 256 +
 
-# 2224
+# 2209
 Read_b_eep(0x43 + 46 + 39u);
 
-# 2226
+# 2211
 }
 break;
 
@@ -21213,100 +21198,100 @@ case 1u:
 channel_pulse_timer[ 0 ] =
 Read_b_eep(0x43 + 46 + 0u) * 256 +
 
-# 2259
+# 2244
 Read_b_eep(0x43 + 46 + 1u);
 
-# 2261
+# 2246
 break;
 
 case 3u:
 channel_pulse_timer[ 1 ] =
 Read_b_eep(0x43 + 46 + 2u) * 256 +
 
-# 2267
+# 2252
 Read_b_eep(0x43 + 46 + 3u);
 
-# 2269
+# 2254
 break;
 
 case 5u:
 channel_pulse_timer[ 2 ] =
 Read_b_eep(0x43 + 46 + 4u) * 256 +
 
-# 2275
+# 2260
 Read_b_eep(0x43 + 46 + 5u);
 
-# 2277
+# 2262
 break;
 
 case 7u:
 channel_pulse_timer[ 3 ] =
 Read_b_eep(0x43 + 46 + 6u) * 256 +
 
-# 2283
+# 2268
 Read_b_eep(0x43 + 46 + 7u);
 
-# 2285
+# 2270
 break;
 
 case 9u:
 channel_pulse_timer[ 4 ] =
 Read_b_eep(0x43 + 46 + 8u) * 256 +
 
-# 2291
+# 2276
 Read_b_eep(0x43 + 46 + 9u);
 
-# 2293
+# 2278
 break;
 
 case 11u:
 channel_pulse_timer[ 5 ] =
 Read_b_eep(0x43 + 46 + 10u) * 256 +
 
-# 2299
+# 2284
 Read_b_eep(0x43 + 46 + 11u);
 
-# 2301
+# 2286
 break;
 
 case 13u:
 channel_pulse_timer[ 6 ] =
 Read_b_eep(0x43 + 46 + 12u) * 256 +
 
-# 2307
+# 2292
 Read_b_eep(0x43 + 46 + 13u);
 
-# 2309
+# 2294
 break;
 
 case 15u:
 channel_pulse_timer[ 7 ] =
 Read_b_eep(0x43 + 46 + 14u) * 256 +
 
-# 2315
+# 2300
 Read_b_eep(0x43 + 46 + 15u);
 
-# 2317
+# 2302
 break;
 
 case 17u:
 channel_pulse_timer[ 8 ] =
 Read_b_eep(0x43 + 46 + 16u) * 256 +
 
-# 2323
+# 2308
 Read_b_eep(0x43 + 46 + 17u);
 
-# 2325
+# 2310
 break;
 
 case 19u:
 channel_pulse_timer[ 9 ] =
 Read_b_eep(0x43 + 46 + 18u) * 256 +
 
-# 2331
+# 2316
 Read_b_eep(0x43 + 46 + 19u);
 
-# 2333
+# 2318
 break;
 
 default:
@@ -21328,100 +21313,100 @@ case 21u:
 channel_protection_timer[ 0 ] =
 Read_b_eep(0x43 + 46 + 20u) * 256 +
 
-# 2354
+# 2339
 Read_b_eep(0x43 + 46 + 21u);
 
-# 2356
+# 2341
 break;
 
 case 23u:
 channel_protection_timer[ 1 ] =
 Read_b_eep(0x43 + 46 + 22u) * 256 +
 
-# 2362
+# 2347
 Read_b_eep(0x43 + 46 + 23u);
 
-# 2364
+# 2349
 break;
 
 case 25u:
 channel_protection_timer[ 2 ] =
 Read_b_eep(0x43 + 46 + 24u) * 256 +
 
-# 2370
+# 2355
 Read_b_eep(0x43 + 46 + 25u);
 
-# 2372
+# 2357
 break;
 
 case 27u:
 channel_protection_timer[ 3 ] =
 Read_b_eep(0x43 + 46 + 26u) * 256 +
 
-# 2378
+# 2363
 Read_b_eep(0x43 + 46 + 27u);
 
-# 2380
+# 2365
 break;
 
 case 29u:
 channel_protection_timer[ 4 ] =
 Read_b_eep(0x43 + 46 + 28u) * 256 +
 
-# 2386
+# 2371
 Read_b_eep(0x43 + 46 + 29u);
 
-# 2388
+# 2373
 break;
 
 case 31u:
 channel_protection_timer[ 5 ] =
 Read_b_eep(0x43 + 46 + 30u) * 256 +
 
-# 2394
+# 2379
 Read_b_eep(0x43 + 46 + 31u);
 
-# 2396
+# 2381
 break;
 
 case 33u:
 channel_protection_timer[ 6 ] =
 Read_b_eep(0x43 + 46 + 32u) * 256 +
 
-# 2402
+# 2387
 Read_b_eep(0x43 + 46 + 33u);
 
-# 2404
+# 2389
 break;
 
 case 35u:
 channel_protection_timer[ 7 ] =
 Read_b_eep(0x43 + 46 + 34u) * 256 +
 
-# 2410
+# 2395
 Read_b_eep(0x43 + 46 + 35u);
 
-# 2412
+# 2397
 break;
 
 case 37u:
 channel_protection_timer[ 8 ] =
 Read_b_eep(0x43 + 46 + 36u) * 256 +
 
-# 2418
+# 2403
 Read_b_eep(0x43 + 46 + 37u);
 
-# 2420
+# 2405
 break;
 
 case 39u:
 channel_protection_timer[ 9 ] =
 Read_b_eep(0x43 + 46 + 38u) * 256 +
 
-# 2426
+# 2411
 Read_b_eep(0x43 + 46 + 39u);
 
-# 2428
+# 2413
 break;
 
 default:
@@ -21438,22 +21423,22 @@ else if ( 2 == vscp_page_select ) {
 if ( reg < (0 + 8 * 8) ) {
 (Busy_eep(), Write_b_eep(0x43 + 0 + 46 + 40u + reg,val));
 
-# 2447
+# 2432
 calculateSetFilterMask();
 rv = Read_b_eep(0x43 + 0 + 46 + 40u + reg);
 
-# 2453
+# 2438
 }
 
 }
 
-# 2461
+# 2446
 if ( bInfoEvent ) {
 
 unsigned char val;
 val = Read_b_eep(0x43 + 14 + ( reg - 14 ));
 
-# 2468
+# 2453
 if ( bOn ) {
 
 if ( val & 0x08 ) {
@@ -21478,7 +21463,7 @@ return rv;
 
 }
 
-# 2496
+# 2481
 void sendDMatrixInfo(void)
 {
 vscp_omsg.priority = 0x03;
@@ -21492,7 +21477,7 @@ vscp_omsg.data[ 1 ] = 0;
 vscp_sendEvent();
 }
 
-# 2514
+# 2499
 void SendInformationEvent( unsigned char idx,
 unsigned char eventClass,
 unsigned char eventTypeId )
@@ -21510,7 +21495,7 @@ vscp_nickname,
 data );
 }
 
-# 2537
+# 2522
 void doDM(void)
 {
 unsigned char i;
@@ -21528,7 +21513,7 @@ for (i = 0; i<8; i++) {
 
 dmflags = Read_b_eep(0x43 + 46 + 40u + 0 + 1 + (8 * i));
 
-# 2560
+# 2545
 if ( dmflags & 0x80 ) {
 
 
@@ -21558,67 +21543,67 @@ continue;
 class_filter = ( ( dmflags & 0x01) << 8 ) +
 Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 3);
 
-# 2593
+# 2578
 class_mask = ( ( dmflags & 0x02 ) << 7 ) +
 Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 2);
 
-# 2600
+# 2585
 type_filter = Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 5);
 
-# 2606
+# 2591
 type_mask = Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 4);
 
-# 2612
+# 2597
 if ( !( ( class_filter ^ vscp_imsg.vscp_class ) & class_mask ) &&
 !( ( type_filter ^ vscp_imsg.vscp_type ) & type_mask ) ) {
 
 
 switch ( Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 6) ) {
 
-# 2620
+# 2605
 case 0:
 break;
 
 case 1:
 doActionOn( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2627
+# 2612
 break;
 
 case 2:
 doActionOff( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2633
+# 2618
 break;
 
 case 3:
 doActionPulseOn( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2639
+# 2624
 break;
 
 case 4:
 doActionPulseOff( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2645
+# 2630
 break;
 
 case 6:
 doActionStatus( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2651
+# 2636
 break;
 
 case 7:
 doActionStatusAll( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2657
+# 2642
 break;
 
 case 5:
 doActionToggle( dmflags, Read_b_eep(0x43 + 46 + 40u + 0 + (8 * i) + 7) );
 
-# 2663
+# 2648
 break;
 
 }
@@ -21631,7 +21616,7 @@ break;
 
 }
 
-# 2679
+# 2664
 void doActionOn( unsigned char dmflags, unsigned char arg )
 {
 unsigned char ctrlreg;
@@ -21703,10 +21688,10 @@ if ( ctrlreg & 0x04 ) {
 channel_protection_timer[ arg ] =
 Read_b_eep(0x43 + 46 + 20u + 2 * arg) * 256 +
 
-# 2752
+# 2737
 Read_b_eep(0x43 + 46 + 21u + 2 * arg);
 
-# 2756
+# 2741
 }
 
 
@@ -21716,7 +21701,7 @@ SendInformationEvent( arg, 20, 3 );
 
 }
 
-# 2769
+# 2754
 void doActionOff( unsigned char dmflags, unsigned char arg )
 {
 unsigned char ctrlreg;
@@ -21790,7 +21775,7 @@ SendInformationEvent( arg, 20, 4 );
 }
 }
 
-# 2846
+# 2831
 void doActionPulseOn(unsigned char dmflags, unsigned char arg)
 {
 unsigned char ctrlreg;
@@ -21867,13 +21852,13 @@ channel_pulse_flags |= ( 1 << arg );
 channel_pulse_timer[ 0 ] =
 Read_b_eep(0x43 + 46 + 0u + arg) * 256 +
 
-# 2922
+# 2907
 Read_b_eep(0x43 + 46 + 1u + arg);
 
-# 2924
+# 2909
 }
 
-# 2930
+# 2915
 void doActionPulseOff(unsigned char dmflags, unsigned char arg)
 {
 unsigned char ctrlreg;
@@ -21949,7 +21934,7 @@ SendInformationEvent( arg, 20, 4 );
 channel_pulse_flags &= ~( 1 << arg );
 }
 
-# 3010
+# 2995
 void doActionToggle( unsigned char dmflags, unsigned char arg )
 {
 unsigned char ctrlreg;
@@ -22099,7 +22084,7 @@ SendInformationEvent( arg,
 
 }
 
-# 3164
+# 3149
 void doActionStatus(unsigned char dmflags, unsigned char arg)
 {
 unsigned char ctrlreg;
@@ -22177,7 +22162,7 @@ SendInformationEvent( arg,
 }
 }
 
-# 3246
+# 3231
 void doActionStatusAll(unsigned char dmflags, unsigned char arg)
 {
 uint8_t i;
@@ -22188,103 +22173,103 @@ doActionStatus( dmflags, i );
 
 }
 
-# 3267
+# 3252
 unsigned char vscp_getMajorVersion()
 {
 return 1;
 }
 
-# 3276
+# 3261
 unsigned char vscp_getMinorVersion()
 {
 return 0;
 }
 
-# 3285
+# 3270
 unsigned char vscp_getSubMinorVersion()
 {
 return 0;
 }
 
-# 3296
+# 3281
 uint8_t vscp_getGUID(uint8_t idx)
 {
 return Read_b_eep(0x13 + idx);
 }
 
-# 3308
+# 3293
 uint8_t vscp_getMDF_URL(uint8_t idx)
 {
 return vscp_deviceURL[ idx ];
 }
 
-# 3317
+# 3302
 uint8_t vscp_getUserID(uint8_t idx)
 {
 return Read_b_eep(0x06 + idx);
 }
 
-# 3326
+# 3311
 void vscp_setUserID(uint8_t idx, uint8_t data)
 {
 (Busy_eep(), Write_b_eep(idx + 0x06,data));
 }
 
-# 3337
+# 3322
 uint8_t vscp_getManufacturerId(uint8_t idx)
 {
 return Read_b_eep(0x0B + idx);
 }
 
-# 3346
+# 3331
 uint8_t vscp_getBootLoaderAlgorithm(void)
 {
 return 0x01;
 }
 
-# 3355
+# 3340
 uint8_t vscp_getBufferSize(void)
 {
 return 8;
 }
 
-# 3365
+# 3350
 uint8_t vscp_getNickname(void)
 {
 return Read_b_eep(0x01);
 }
 
-# 3374
+# 3359
 void vscp_setNickname(uint8_t nickname)
 {
 (Busy_eep(), Write_b_eep(0x01,nickname));
 }
 
-# 3383
+# 3368
 uint8_t vscp_getSegmentCRC(void)
 {
 return Read_b_eep(0x02);
 }
 
-# 3392
+# 3377
 void vscp_setSegmentCRC(uint8_t crc)
 {
 (Busy_eep(), Write_b_eep(0x02,crc));
 }
 
-# 3401
+# 3386
 void vscp_setControlByte(uint8_t ctrl)
 {
 (Busy_eep(), Write_b_eep(0x03,ctrl));
 }
 
-# 3411
+# 3396
 uint8_t vscp_getControlByte(void)
 {
 return Read_b_eep(0x03);
 }
 
-# 3420
+# 3405
 void vscp_getEmbeddedMdfInfo(void)
 {
 
@@ -22302,7 +22287,7 @@ vscp_omsg.data[ 2 ] = 0;
 vscp_sendEvent();
 }
 
-# 3461
+# 3446
 void vscp_goBootloaderMode( uint8_t algorithm )
 {
 if ( 0x01 != algorithm ) return;
@@ -22315,7 +22300,7 @@ if ( 0x01 != algorithm ) return;
 asm(" reset");
 }
 
-# 3477
+# 3462
 void vscp_getMatrixInfo(char *pData)
 {
 uint8_t i;
@@ -22330,29 +22315,29 @@ vscp_omsg.data[ i ] = 0;
 
 }
 
-# 3495
+# 3480
 uint32_t vscp_getFamilyCode() {
 return 0L;
 }
 
-# 3504
+# 3489
 uint32_t vscp_getFamilyType() {
 return 0;
 }
 
-# 3512
+# 3497
 void vscp_restoreDefaults() {
 init_app_eeprom();
 init_app_ram();
 }
 
-# 3522
+# 3507
 uint8_t vscp_getRegisterPagesUsed( void )
 {
 return 3;
 }
 
-# 3531
+# 3516
 int8_t sendVSCPFrame( uint16_t vscpclass,
 uint8_t vscptype,
 uint8_t nodeid,
@@ -22372,7 +22357,7 @@ return 0;
 return 1;
 }
 
-# 3555
+# 3540
 int8_t getVSCPFrame(uint16_t *pvscpclass,
 uint8_t *pvscptype,
 uint8_t *pNodeId,
@@ -22394,7 +22379,7 @@ return 0;
 return 1;
 }
 
-# 3581
+# 3566
 int8_t sendCANFrame(uint32_t id, uint8_t dlc, uint8_t *pdata)
 {
 uint8_t rv = 0;
@@ -22412,7 +22397,7 @@ vscp_omsg.flags = 0;
 return rv;
 }
 
-# 3602
+# 3587
 int8_t getCANFrame(uint32_t *pid, uint8_t *pdlc, uint8_t *pdata)
 {
 ECAN_RX_MSG_FLAGS flags;
@@ -22436,7 +22421,7 @@ return 1;
 return 0;
 }
 
-# 3632
+# 3617
 void calculateSetFilterMask( void )
 {
 uint8_t i,j;
@@ -22454,7 +22439,7 @@ for ( i=0; i < 8; i++ ) {
 
 if ( Read_b_eep(0x43 + 8*i + 1) & 0x80 ) {
 
-# 3656
+# 3641
 rowmask =
 
 ( (uint32_t)( Read_b_eep(0x43 + 8*i + 1) & 2 ) << 23 ) |
@@ -22496,7 +22481,7 @@ mask &= ~(1<<j);
 }
 }
 
-# 3701
+# 3686
 filter &= rowfilter;
 
 
