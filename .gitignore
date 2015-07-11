@@ -26,7 +26,6 @@
 *.app
 *.i*86
 *.x86_64
-*.hex
 
 # Debug files
 *.dSYM/
@@ -65,3 +64,39 @@
 /Bejing.X/dist/bejing_debug/production/*.rlf
 /Bejing.X/dist/bejing_debug/production/*.sdb
 /Bejing.X/dist/bejing_debug/production/*.sym
+/Bejing.X/build/bejing_2580_release/production/_ext/1472/ECAN.p1
+/Bejing.X/build/bejing_2580_release/production/_ext/1472/ECAN.p1.d
+/Bejing.X/build/bejing_2580_release/production/_ext/1472/ECAN.pre
+/Bejing.X/build/bejing_2580_release/production/_ext/1472/main.p1
+/Bejing.X/build/bejing_2580_release/production/_ext/1472/main.p1.d
+/Bejing.X/build/bejing_2580_release/production/_ext/1472/main.pre
+/Bejing.X/build/bejing_2580_release/production/_ext/1935753226/vscp_firmware.p1
+/Bejing.X/build/bejing_2580_release/production/_ext/1935753226/vscp_firmware.p1.d
+/Bejing.X/build/bejing_2580_release/production/_ext/1935753226/vscp_firmware.pre
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1472/ECAN.p1
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1472/ECAN.p1.d
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1472/ECAN.pre
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1472/main.p1
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1472/main.p1.d
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1472/main.pre
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1935753226/vscp_firmware.p1
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1935753226/vscp_firmware.p1.d
+/Bejing.X/build/bejing_2580_relocated/production/_ext/1935753226/vscp_firmware.pre
+/Bejing.X/dist/bejing_2580_release/production/Bejing.X.production.cmf
+/Bejing.X/dist/bejing_2580_release/production/Bejing.X.production.hxl
+/Bejing.X/dist/bejing_2580_release/production/Bejing.X.production.lst
+/Bejing.X/dist/bejing_2580_release/production/Bejing.X.production.rlf
+/Bejing.X/dist/bejing_2580_release/production/Bejing.X.production.sdb
+/Bejing.X/dist/bejing_2580_release/production/Bejing.X.production.sym
+/Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production.cmf
+/Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production.hxl
+/Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production.lst
+/Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production.rlf
+/Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production.sdb
+/Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production.sym
+/Bejing.X/nbproject/Makefile-bejing_2580_release.mk
+/Bejing.X/nbproject/Makefile-bejing_2580_relocated.mk
+/Bejing.X/nbproject/Makefile-local-bejing_2580_release.mk
+/Bejing.X/nbproject/Makefile-local-bejing_2580_relocated.mk
+/Bejing.X/nbproject/Package-bejing_2580_release.bash
+/Bejing.X/nbproject/Package-bejing_2580_relocated.bash

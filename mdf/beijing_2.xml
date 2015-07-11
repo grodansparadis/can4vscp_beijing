@@ -4,8 +4,8 @@
 <module>
 	<name>Beijing IO controller</name>
 	<model>B</model>
-	<version>1.0.3</version>
-	<changed>2015-07-02</changed>
+	<version>1.0.4</version>
+	<changed>2015-07-07</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -51,15 +51,27 @@
 	</picture>
 	
 	<!-- Firmware for the device -->
-	<firmware path="http://www.auto.grodansparadis.com/beijing/downloads/firmware_beijing_1_0_0.hex" 
+	<firmware path="http://www.auto.grodansparadis.com/beijing/downloads/firmware_bejing_1_1_0_relocated.hex" 
 		format="intelhex8"
-		size="32000"
-		date="2012-01-01"
+		date="2015-07-07"
 		version_major="1"
 		version_minor="0"
 		version_subminor="0">
 		<description lang="en" >
 		Firmware version 1.0.0 for the Beijing module.
+		Relocated version for use with bootloader.
+		</description> 
+	</firmware>
+	
+	<firmware path="http://www.auto.grodansparadis.com/beijing/downloads/firmware_bejing_1_1_0_release.hex" 
+		format="intelhex8"
+		date="2015-07-07"
+		version_major="1"
+		version_minor="0"
+		version_subminor="0">
+		<description lang="en" >
+		Firmware version 1.0.0 for the Beijing module.
+		Standalone version for use without bootloader.
 		</description> 
 	</firmware>
 
