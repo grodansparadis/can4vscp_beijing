@@ -779,11 +779,14 @@ void init_app_ram( void )
     }
     
     dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB );
-    TRISA = ( dir & 0x03 ) | 0b00000000;
+    TRISA = ( dir & 0x03 ) | 0b00000000;    // Channel 8/9
 
     dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_LSB );
-    TRISB = ( dir & 0x03 ) | 0b00001000;  // Channel 0/1
+    TRISB = ( dir & 0x03 ) | 0b00001000;    // Channel 0/1
     
+    dir = ( dir >> 5 ) & 0b00000100;        // Channel 7
+    TRISA |= dir;
+            
     // Should the weak pull-ups be activated?
     if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_MODULE_CTRL ) & MODULE_CTRL_PULLUP ) {
         INTCON2bits.RBPU = 0;
@@ -866,6 +869,9 @@ void init_app_eeprom(void)
                             REG_DESCION_MATRIX + i * 8 + j, 0 );
         }
     }
+    
+    // Calculate dynamic filter
+    calculateSetFilterMask();
 
 }
 
@@ -1561,15 +1567,13 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
         }
         else if ( reg == REG0_BEIJING_IO_DIRECTION_MSB ) {
             
-            eeprom_write( VSCP_EEPROM_END + 
-                                    REG0_BEIJING_IO_DIRECTION_MSB,
-                                    ( val & 0x03 ) );
+            eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB,
+                            ( val & 0x03 ) );
             
             TRISAbits.TRISA0 = ( val & 0x02 ) ? 1 : 0;
             TRISAbits.TRISA1 = ( val & 0x01 ) ? 1 : 0;
             
-            rv = ( TRISAbits.TRISA0 << 1 ) +
-                    TRISAbits.TRISA1;
+            rv = ( TRISAbits.TRISA0 << 1 ) + TRISAbits.TRISA1;
         }
         else if ( reg == REG0_BEIJING_IO_DIRECTION_LSB ) {
             

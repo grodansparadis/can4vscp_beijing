@@ -56,7 +56,7 @@
 //
 // Timer2 use 250 and prescaler 1:4
 //
-//#define TIMER0_RELOAD_VALUE		0xfc17
+//#define TIMER0_RELOAD_VALUE               0xfc17
 
 //
 // 10 MHz with PLL => 40 MHz
@@ -66,7 +66,7 @@
 //
 // Timer2 use 156 and prescaler 1:8
 //
-#define TIMER0_RELOAD_VALUE		0xfb1d
+#define TIMER0_RELOAD_VALUE                 0xfb1d
 
 //
 // Timer 2 is used as a 1 ms clock
@@ -74,33 +74,33 @@
 // Timer2 use 156 and prescaler 1:4, Postscaler 1:16
 // 100 ns * 56 * 4 * 16 ~ 1 ms
 //
-#define TIMER2_RELOAD_VALUE		156
+#define TIMER2_RELOAD_VALUE                 156
 
-#define STATUS_LED              PORTCbits.RC1
-#define INIT_BUTTON             PORTCbits.RC0
+#define STATUS_LED                          PORTCbits.RC1
+#define INIT_BUTTON                         PORTCbits.RC0
 
 // Defines for channels LATBbits.LATB0
-#define CHANNEL0                PORTBbits.RB0
-#define CHANNEL1                PORTBbits.RB1
-#define CHANNEL2                PORTCbits.RC3
-#define CHANNEL3                PORTCbits.RC4
-#define CHANNEL4                PORTCbits.RC5
-#define CHANNEL5                PORTCbits.RC6
-#define CHANNEL6                PORTCbits.RC7
-#define CHANNEL7                PORTAbits.RA2
-#define CHANNEL8                PORTAbits.RA1
-#define CHANNEL9                PORTAbits.RA0
+#define CHANNEL0                            PORTBbits.RB0
+#define CHANNEL1                            PORTBbits.RB1
+#define CHANNEL2                            PORTCbits.RC3
+#define CHANNEL3                            PORTCbits.RC4
+#define CHANNEL4                            PORTCbits.RC5
+#define CHANNEL5                            PORTCbits.RC6
+#define CHANNEL6                            PORTCbits.RC7
+#define CHANNEL7                            PORTAbits.RA2
+#define CHANNEL8                            PORTAbits.RA1
+#define CHANNEL9                            PORTAbits.RA0
 
-#define LATCH_CHANNEL0          LATBbits.LATB0
-#define LATCH_CHANNEL1          LATBbits.LATB1
-#define LATCH_CHANNEL2          LATCbits.LATC3
-#define LATCH_CHANNEL3          LATCbits.LATC4
-#define LATCH_CHANNEL4          LATCbits.LATC5
-#define LATCH_CHANNEL5          LATCbits.LATC6
-#define LATCH_CHANNEL6          LATCbits.LATC7
-#define LATCH_CHANNEL7          LATAbits.LATA2
-#define LATCH_CHANNEL8          LATAbits.LATA1
-#define LATCH_CHANNEL9          LATAbits.LATA0
+#define LATCH_CHANNEL0                      LATBbits.LATB0
+#define LATCH_CHANNEL1                      LATBbits.LATB1
+#define LATCH_CHANNEL2                      LATCbits.LATC3
+#define LATCH_CHANNEL3                      LATCbits.LATC4
+#define LATCH_CHANNEL4                      LATCbits.LATC5
+#define LATCH_CHANNEL5                      LATCbits.LATC6
+#define LATCH_CHANNEL6                      LATCbits.LATC7
+#define LATCH_CHANNEL7                      LATAbits.LATA2
+#define LATCH_CHANNEL8                      LATAbits.LATA1
+#define LATCH_CHANNEL9                      LATAbits.LATA0
 
 #define CHANNEL_DIRECTION_OUTPUT            0
 #define CHANNEL_DIRECTION_INPUT             1
