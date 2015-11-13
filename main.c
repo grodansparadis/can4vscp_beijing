@@ -312,13 +312,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -338,13 +340,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -364,13 +368,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -390,13 +396,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -416,13 +424,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -442,13 +452,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -468,13 +480,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -494,13 +508,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -520,13 +536,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -546,13 +564,15 @@ void main()
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON);
-                                        } else {
+                                        } 
+                                        else {
                                             SendInformationEvent(current_debounce,
                                                     VSCP_CLASS1_CONTROL,
                                                     VSCP_TYPE_CONTROL_TURNON);
                                         }
                                     }
-                                } else {
+                                } 
+                                else {
                                     debounce_cnt[ current_debounce ] = 0;
                                 }
                                 break;
@@ -954,6 +974,7 @@ void doApplicationOneSecondWork(void)
                     
                     // Yes if last state was zero
                     if ( !( current_iostate & ( 1 << i ) ) ) {
+                        
                         if ( ctrlreg &  INPUT_CTRL_EVENT_SELECT ) {
                             SendInformationEvent( i, 
                                                     VSCP_CLASS1_CONTROL,
