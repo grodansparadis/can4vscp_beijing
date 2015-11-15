@@ -4,8 +4,8 @@
 <module>
 	<name>Beijing IO controller</name>
 	<model>B</model>
-	<version>1.0.4</version>
-	<changed>2015-07-07</changed>
+	<version>1.1.0</version>
+	<changed>2015-11-15</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -1114,7 +1114,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1153,7 +1153,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1174,7 +1174,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1213,7 +1213,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1234,7 +1234,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1273,7 +1273,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1294,7 +1294,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1333,7 +1333,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1354,7 +1354,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1391,7 +1391,7 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.</name>
       	    <description lang="en">
       	    Debounce functionality is activated
       	    </description> 
@@ -1414,7 +1414,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1451,7 +1451,7 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.</name>
       	    <description lang="en">
       	    Debounce functionality is activated
       	    </description> 
@@ -1474,7 +1474,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1513,7 +1513,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1534,7 +1534,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1573,7 +1573,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1594,7 +1594,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1633,7 +1633,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1654,7 +1654,7 @@
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce\n
+			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1693,7 +1693,7 @@
  			<bit pos="6" default="false" >
       	    <name lang="en">Activate debounce</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1708,14 +1708,14 @@
 			<name lang="en">Module Control register</name>
       	<description lang="en">
       	It is possible to control general module behaviour in this register.\n
-		Bit 0 - Reserved.\n
+		Bit 0 - Turn of input event repeat.\n
 		Bit 1 - Reserved.\n
 		Bit 2 - Reserved.\n
 		Bit 3 - Reserved.\n
 		Bit 4 - Reserved.\n
 		Bit 5 - Reserved.\n
 		Bit 6 - Reserved.\n
-		Bit 7 - Reserved.\n
+		Bit 7 - Enable weak pullups.\n
       	</description>
       	<access>rw</access>
 		<bit pos="0" default="false" >
@@ -1774,6 +1774,15 @@
       	This is the time in seconds between input stream samples. Set to zero to disable.\n
 		CLASS1.DATA is sent with data coding=0(bits), unit=0, sensor=0 for the inputs/outputs 
 		as set here. First byte is outputs, second byte is inputs.
+      	</description>
+      	<access>rw</access>
+		</reg>
+        
+        <reg page="0" offset="46" default="3" bgcolor="0xCCFFEB">
+		<name lang="en">Debounce count</name>
+      	<description lang="en">
+      	This is the number of counts a debounced input should be low to
+        be regarded as actice. Each count represents 10 ms.
       	</description>
       	<access>rw</access>
 		</reg>

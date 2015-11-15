@@ -131,7 +131,8 @@
 #define INPUT_CTRL_ENABLE                   0x80    // Enable Input.
 
 // Bits for module control byte
-#define MODULE_CTRL_PULLUP                  0x01    // Activate pullups
+#define MODULE_CTRL_DISABLE_REPEAT          0x01    // Disable repeat
+#define MODULE_CTRL_PULLUP                  0x80    // Activate pullups
         
 // I/O Direction 0 = output 1= input
 #define CHANNEL_DEFAULT_DIRECTION_MSB       0x00    // Channel 8/9
@@ -141,6 +142,8 @@
 #define ALARM_STATE_PROTECTION              0x01    // One of the protection timers has ellapsed
 #define ALARM_INPUT_HIGH                    0x02    // Input has gone low
 #define ALARM_INPUT_LOW                     0x04    // Input has gone high
+
+#define DEBOUNCE_COUNT_DEFAULT              3       // 10 ms counts times this value.
 
 // -----------------------------------------------
 
@@ -202,7 +205,9 @@
 
 #define REG0_BEIJING_STREAM_TIMING          45
 
-#define REG0_COUNT                          46  // Needed for EEPROM writes
+#define REG0_BEIJING_DEBOUNCE_COUNT         46
+
+#define REG0_COUNT                          47  // Needed for EEPROM writes
 
 // * * * * Page 1 * * * *
 

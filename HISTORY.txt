@@ -1,5 +1,9 @@
 Beijing I/O module
 ==================
 
+2015-11-15 AKHE - Version 1.1.0
+2015-11-15 AKHE - Debounce time can now be set to make the debounce less responsive or more responsive (reg 46). 
+Also input button repeats can now be turned off (bit 1 in module control register).
+2015-11-13 AKHE - Fixed resend timer if can is busy sending message.
 2015-11-10 AKHE - Start up initialization of I/O 7 was not initialized.
 2015-06-16 AKHE - Started development.
