@@ -257,6 +257,7 @@
 
 //      Page 2
 
+#define DESCION_MATRIX_PAGE                 2
 #define DESCION_MATRIX_ROWS                 8
 #define REG_DESCION_MATRIX                  0    // Start of matrix
 

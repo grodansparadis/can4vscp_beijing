@@ -3386,14 +3386,13 @@ void vscp_getMatrixInfo(char *pData)
 {
     uint8_t i;
 
-    vscp_omsg.data[ 0 ] = 7; // Matrix is seven rows
-    vscp_omsg.data[ 1 ] = 72; // Matrix start offset
-
-    // The rest set to zero no paging
-    for ( i = 2; i < 8; i++ ) {
-        vscp_omsg.data[ i ] = 0;
-    }
-
+    vscp_omsg.data[ 0 ] = DESCION_MATRIX_ROWS;  // Matrix is seven rows
+    vscp_omsg.data[ 1 ] = REG_DESCION_MATRIX;   // Matrix start offset
+    vscp_omsg.data[ 2 ] = 0;                    // Matrix start page
+    vscp_omsg.data[ 3 ] = DESCION_MATRIX_PAGE;
+    vscp_omsg.data[ 4 ] = 0;                    // Matrix end page
+    vscp_omsg.data[ 5 ] = DESCION_MATRIX_PAGE;
+    vscp_omsg.data[ 6 ] = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -51,19 +51,18 @@
 	</picture>
 	
 	<!-- Firmware for the device -->
-	<firmware path="http://www.auto.grodansparadis.com/beijing/downloads/firmware_bejing_1_1_0_relocated.hex" 
+	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
 		format="intelhex8"
-		date="2015-07-07"
+		date="2015-11-15"
 		version_major="1"
-		version_minor="0"
+		version_minor="1"
 		version_subminor="0">
 		<description lang="en" >
-		Firmware version 1.0.0 for the Beijing module.
-		Relocated version for use with bootloader.
+		Firmware version 1.1.0 for the Beijing module.
 		</description> 
 	</firmware>
 	
-	<firmware path="http://www.auto.grodansparadis.com/beijing/downloads/firmware_bejing_1_1_0_release.hex" 
+	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.0.0/Bejing_1_1_0_release.hex" 
 		format="intelhex8"
 		date="2015-07-07"
 		version_major="1"
@@ -71,7 +70,6 @@
 		version_subminor="0">
 		<description lang="en" >
 		Firmware version 1.0.0 for the Beijing module.
-		Standalone version for use without bootloader.
 		</description> 
 	</firmware>
 

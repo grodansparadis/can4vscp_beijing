@@ -1,6 +1,7 @@
 Beijing I/O module
 ==================
 
+2015-11-17 AKHE - Request for decision matrix information returned invalid information. Fixed
 2015-11-15 AKHE - Version 1.1.0
 2015-11-15 AKHE - Debounce time can now be set to make the debounce less responsive or more responsive (reg 46). 
 Also input button repeats can now be turned off (bit 1 in module control register).
