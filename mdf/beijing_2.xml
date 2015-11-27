@@ -4,8 +4,8 @@
 <module>
 	<name>Beijing IO controller</name>
 	<model>B</model>
-	<version>1.1.0</version>
-	<changed>2015-11-15</changed>
+	<version>1.1.1</version>
+	<changed>2015-11-27</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -2290,7 +2290,7 @@
 			<name lang="en">Decision matrix row 0: Oaddr </name>
 			<description lang="en">
 			Originating address. Set to nickname for node that should trigger action. 
-			Oaddr is the originating address. We are only interested in messages from the node given here. 0×00 
+			Oaddr is the originating address. We are only interested in messages from the node given here. 0x00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will not 
 			be checked and events from all nodes will be accepted. 			
 			</description>
@@ -2379,7 +2379,7 @@
 		<reg page="2" offset="6" default="0" bgcolor="0xCCCCCC" >
 			<name lang="en">Decision matrix row 0: Action</name>
 			<description lang="en">
-			This is the action or operation that should be performed if the filtering is satisfied. Only action code 0×00 is predefined and means No-Operation. All other codes are application specific and typical application defined codes could do measurement, send predefined event etc.		
+			This is the action or operation that should be performed if the filtering is satisfied. Only action code 0x00 is predefined and means No-Operation. All other codes are application specific and typical application defined codes could do measurement, send predefined event etc.		
 			</description>
 			<access>rw</access>
 		</reg>
@@ -2488,7 +2488,7 @@
 			<name lang="en">Decision matrix row 1: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only action 
-			code 0×00 is predefined and means No-Operation. All other codes are application specific and typical 
+			code 0x00 is predefined and means No-Operation. All other codes are application specific and typical 
 			application defined codes could do measurement, send predefined event etc.		
 			</description>
 			<access>rw</access>
@@ -2507,7 +2507,7 @@
 			<name lang="en">Decision matrix row 2: Oaddr </name>
 			<description lang="en">
 			Originating address. Set to nickname for node that should trigger action. 
-			Oaddr is the originating address. We are only interested in messages from the node given here. 0×00 
+			Oaddr is the originating address. We are only interested in messages from the node given here. 0x00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will not 
 			be checked and events from all nodes will be accepted. 			
 			</description>
@@ -2598,7 +2598,7 @@
 			<name lang="en">Decision matrix row 2: Action</name>
 			<description lang="en">
 			This is the action or operation that should be performed if the filtering is satisfied. Only action 
-			code 0×00 is predefined and means No-Operation. All other codes are application specific and typical 
+			code 0x00 is predefined and means No-Operation. All other codes are application specific and typical 
 			application defined codes could do measurement, send predefined event etc.		
 			</description>
 			<access>rw</access>
@@ -2617,7 +2617,7 @@
 			<name lang="en">Decision matrix row 3: Oaddr </name>
 			<description lang="en">
 			Originating address. Set to nickname for node that should trigger action. 
-			Oaddr is the originating address. We are only interested in messages from the node given here. 0×00 
+			Oaddr is the originating address. We are only interested in messages from the node given here. 0x00 
 			is segment controller and 0xff is a node without a nickname. If bit 6 of flags is set oaddr will 
 			not be checked and events from all nodes will be accepted. 			
 			</description>

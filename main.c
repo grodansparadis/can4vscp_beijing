@@ -101,7 +101,7 @@ volatile unsigned long measurement_clock_sec;  // Clock for one second work
 volatile unsigned long measurement_clock_10ms;  // Debounce clock
 uint8_t debounce_cnt[ 10 ];                     // Debounce counter
 BOOL event_sent[ 10 ];                          // Event markers
-uint8_t current_channel_to_check;                  // I/O channel to check
+uint8_t current_channel_to_check;              // I/O channel to check
 
 uint16_t sendTimer; // Timer for CAN send
 uint8_t seconds;    // counter for seconds
@@ -284,20 +284,20 @@ void main()
                 //////////////////////////////////////////////////////////////
                 if ( measurement_clock_10ms >= 10 ) {
                     
-                    uint8_t dir = 
-                        ( eeprom_read( VSCP_EEPROM_END +
+                    uint16_t dir = 
+                        ( (uint16_t)eeprom_read( VSCP_EEPROM_END +
                                         REG0_BEIJING_IO_DIRECTION_MSB ) << 8 ) +
-                        eeprom_read( VSCP_EEPROM_END +
+                        (uint16_t)eeprom_read( VSCP_EEPROM_END +
                                         REG0_BEIJING_IO_DIRECTION_LSB );
 
                     measurement_clock_10ms = 0;
 
-                    if ( ( dir & ( 1 << current_channel_to_check ) ) &&    // Input))
-                            ( eeprom_read( VSCP_EEPROM_END +            // debounce
+                    if ( ( dir & ( 1 << current_channel_to_check ) ) &&     // Input))
+                            ( eeprom_read( VSCP_EEPROM_END +                // debounce
                                             REG0_BEIJING_CH0_INPUT_CTRL +
                                             current_channel_to_check ) &
                                                 INPUT_CTRL_DEBOUNCE ) &&
-                            ( eeprom_read( VSCP_EEPROM_END +            // Enabled
+                            ( eeprom_read( VSCP_EEPROM_END +                // Enabled
                                             REG0_BEIJING_CH0_INPUT_CTRL +
                                             current_channel_to_check ) &
                                                 INPUT_CTRL_ENABLE ) ) {
@@ -482,7 +482,7 @@ void handleButtonInput( void )
                                         
         debounce_cnt[ current_channel_to_check ] = 0;
                                        
-        // Send On/TurnOn event
+        // Send TurnOff/TurnOn event
         if ( eeprom_read(VSCP_EEPROM_END +
                 REG0_BEIJING_CH0_INPUT_CTRL +
                 current_channel_to_check ) &
@@ -498,8 +498,8 @@ void handleButtonInput( void )
                         MODULE_CTRL_DISABLE_REPEAT ) ) ) {
                                             
                 SendInformationEvent( current_channel_to_check,
-                                        VSCP_CLASS1_INFORMATION,
-                                        VSCP_TYPE_INFORMATION_ON );
+                                        VSCP_CLASS1_CONTROL,
+                                        VSCP_TYPE_CONTROL_TURNOFF );
                                             
                 event_sent[ current_channel_to_check ] = TRUE;
                                             

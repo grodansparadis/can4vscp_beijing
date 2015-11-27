@@ -119,3 +119,16 @@
 /Bejing.X/dist/bejing_2580_relocated/debug/Bejing.X.debug.sym
 /Bejing.X/dist/bejing_2580_relocated/production/Bejing.X.production_1_0_1.hex
 /eagle/Gerbers/Transcode Report.txt
+/Bejing.X/build/bejing_2580_release/debug/_ext/1472/*.p1
+/Bejing.X/build/bejing_2580_release/debug/_ext/1472/*.d
+/Bejing.X/build/bejing_2580_release/debug/_ext/1472/*.pre
+/Bejing.X/build/bejing_2580_release/debug/_ext/1935753226/*.p1
+/Bejing.X/build/bejing_2580_release/debug/_ext/1935753226/*.d
+/Bejing.X/build/bejing_2580_release/debug/_ext/1935753226/*.pre
+/Bejing.X/dist/bejing_2580_release/debug/*.cmf
+/Bejing.X/dist/bejing_2580_release/debug/*.hxl
+/Bejing.X/dist/bejing_2580_release/debug/*.lst
+/Bejing.X/dist/bejing_2580_release/debug/*.map
+/Bejing.X/dist/bejing_2580_release/debug/*.rlf
+/Bejing.X/dist/bejing_2580_release/debug/*.sdb
+/Bejing.X/dist/bejing_2580_release/debug/*.sym
