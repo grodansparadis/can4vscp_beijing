@@ -27,14 +27,14 @@
  * ******************************************************************************
 */
 
-#ifndef KELVIN_SMART_VERSION_H
-#define KELVIN_SMART_VERSION_H
+#ifndef ACCRA_VERSION_H
+#define ACCRA_VERSION_H
 
 // Firmware version
 
-#define FIRMWARE_MAJOR_VERSION		1
-#define FIRMWARE_MINOR_VERSION		1
-#define FIRMWARE_SUB_MINOR_VERSION	1
+#define FIRMWARE_MAJOR_VERSION      1
+#define FIRMWARE_MINOR_VERSION      1
+#define FIRMWARE_SUB_MINOR_VERSION  1
 
 
 // * * * History * * *

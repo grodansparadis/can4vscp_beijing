@@ -10,19 +10,17 @@
             </bookmark>
             <bookmark id="2">
                 <name/>
-                <line>1356</line>
+                <line>1357</line>
                 <key/>
             </bookmark>
             <bookmark id="1">
                 <name/>
-                <line>1502</line>
+                <line>1503</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/grodansparadis/development/can4vscp_beijing/main.c</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

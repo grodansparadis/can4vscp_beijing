@@ -1,6 +1,9 @@
 Beijing I/O module
 ==================
 
+2015-11-27 AKHE - "Debouce input" is now called "buutton input" in documentation.
+2015-11-27 AKHE - TurnON/TurnOff is now selectable instead of ON/TurnON for button inputs.
+2015-11-27 AKHE - Fixed problem with channel 8/9 in button (debounce) mode.
 2015-11-17 AKHE - Request for decision matrix information returned invalid information. Fixed
 2015-11-15 AKHE - Version 1.1.0
 2015-11-15 AKHE - Debounce time can now be set to make the debounce less responsive or more responsive (reg 46). 

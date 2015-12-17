@@ -4,8 +4,8 @@
 <module>
 	<name>Beijing IO controller</name>
 	<model>B</model>
-	<version>1.1.1</version>
-	<changed>2015-11-27</changed>
+	<version>8</version>
+	<changed>2015-12-08</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -62,7 +62,7 @@
 		</description> 
 	</firmware>
 	
-	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.0.0/Bejing_1_1_0_release.hex" 
+	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.0.0/Bejing_1_0_0.hex" 
 		format="intelhex8"
 		date="2015-07-07"
 		version_major="1"
@@ -70,6 +70,17 @@
 		version_subminor="0">
 		<description lang="en" >
 		Firmware version 1.0.0 for the Beijing module.
+		</description> 
+	</firmware>
+    
+    <firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
+		format="intelhex8"
+		date="2015-11-15"
+		version_major="1"
+		version_minor="1"
+		version_subminor="0">
+		<description lang="en" >
+		Firmware version 1.1.0 for the Beijing module.
 		</description> 
 	</firmware>
 
@@ -174,17 +185,17 @@
 			Bit 4 - Reserved.\n
 			Bit 3 - Reserved.\n
 			Bit 2 - Reserved.\n
-			Bit 1 - Direction for I/O channel 9 - (RA0).\n
-			Bit 0 - Direction for I/O channel 8 - (RA1).\n
+			Bit 1 - Direction for I/O channel 9 - (RA0). 0=output. 1=input.\n
+			Bit 0 - Direction for I/O channel 8 - (RA1). 0=output. 1=input.\n
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 8</name>
-				<description lang="en">Direction for I/O channel 8 - (RA1).</description> 
+				<description lang="en">Direction for I/O channel 8 - (RA1). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="1" default="false" >
 				<name lang="en">Direction 9</name>
-				<description lang="en">Direction for I/O channel 9 - (RA0).</description> 
+				<description lang="en">Direction for I/O channel 9 - (RA0). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="2" default="false" >
 				<name lang="en">Reserved</name>
@@ -217,47 +228,47 @@
 			<description lang="en">
 			Least significant part of I/O directions register.
 			Set bit to zero for output and one for input.\n\n
-			Bit 7 - Direction for I/O channel 7 - (RA2).\n
-			Bit 6 - Direction for I/O channel 6 - (RC7).\n
-			Bit 5 - Direction for I/O channel 5 - (RC6).\n
-			Bit 4 - Direction for I/O channel 4 - (RC5).\n
-			Bit 3 - Direction for I/O channel 3 - (RC4).\n
-			Bit 2 - Direction for I/O channel 2 - (RC3).\n
-			Bit 1 - Direction for I/O channel 1 - (RB1).\n
-			Bit 0 - Direction for I/O channel 0 - (RB0).\n
+			Bit 7 - Direction for I/O channel 7 - (RA2). 0=output. 1=input.\n
+			Bit 6 - Direction for I/O channel 6 - (RC7). 0=output. 1=input.\n
+			Bit 5 - Direction for I/O channel 5 - (RC6). 0=output. 1=input.\n
+			Bit 4 - Direction for I/O channel 4 - (RC5). 0=output. 1=input.\n
+			Bit 3 - Direction for I/O channel 3 - (RC4). 0=output. 1=input.\n
+			Bit 2 - Direction for I/O channel 2 - (RC3). 0=output. 1=input.\n
+			Bit 1 - Direction for I/O channel 1 - (RB1). 0=output. 1=input.\n
+			Bit 0 - Direction for I/O channel 0 - (RB0). 0=output. 1=input.\n
 			</description>
 			<access>rw</access>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 0</name>
-				<description lang="en">Direction for I/O channel 0 - (RB0).</description> 
+				<description lang="en">Direction for I/O channel 0 - (RB0). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 1</name>
-				<description lang="en">Direction for I/O channel 1 - (RB1).</description> 
+				<description lang="en">Direction for I/O channel 1 - (RB1). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 2</name>
-				<description lang="en">Direction for I/O channel 2 - (RC3).</description> 
+				<description lang="en">Direction for I/O channel 2 - (RC3). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 3</name>
-				<description lang="en">Direction for I/O channel 3 - (RC4).</description> 
+				<description lang="en">Direction for I/O channel 3 - (RC4). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 4</name>
-				<description lang="en">Direction for I/O channel 4 - (RC5).</description> 
+				<description lang="en">Direction for I/O channel 4 - (RC5). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 5</name>
-				<description lang="en">Direction for I/O channel 5 - ((RC6).</description> 
+				<description lang="en">Direction for I/O channel 5 - ((RC6). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 6</name>
-				<description lang="en">Direction for I/O channel 6 - ((RC7).</description> 
+				<description lang="en">Direction for I/O channel 6 - ((RC7). 0=output. 1=input.</description> 
         	</bit>
 			<bit pos="0" default="false" >
 				<name lang="en">Direction 7</name>
-				<description lang="en">Direction for I/O channel 7 - (RA2).</description> 
+				<description lang="en">Direction for I/O channel 7 - (RA2). 0=output. 1=input.</description> 
         	</bit>
 		</reg>
 		
@@ -1109,10 +1120,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                    Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1149,9 +1161,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1169,10 +1183,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1209,9 +1224,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1229,10 +1246,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1269,9 +1287,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1289,10 +1309,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1329,9 +1350,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1349,10 +1372,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1389,9 +1413,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.</name>
+      	    <name lang="en">Activate button input mode.</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1409,10 +1435,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1449,9 +1476,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1469,10 +1498,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1509,9 +1539,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1529,10 +1561,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1569,9 +1602,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1589,10 +1624,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n            
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1629,9 +1665,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1649,10 +1687,11 @@
 			Bit 0 - Send On/TurnOn event when input goes to active state.\n
 			Bit 1 - Send Off/TurnOff event when input goes to inactive state.\n
 			Bit 2 - 0 = Send On/off events. 1=Send turnon/turnoff events (if activated).\n
+                Different meaning in button input mode where 0 = TurnOn and 1 = TurnOff.\n
 			Bit 3 - Alarm event sent if input goes low.\n
 			Bit 4 - Alarm event sent if input goes high.\n
 			Bit 5 - Continuous alarm.\n
-			Bit 6 - Activate debounce. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.\n
+			Bit 6 - Activate Button imput mode. Only TurnOff or TurnOn is sent when an input goes low and button input mode is activated.\n
 			Bit 7 - Enable input.\n
 			</description>
 			<access>rw</access>
@@ -1689,9 +1728,11 @@
       	    </description> 
         	</bit>  
  			<bit pos="6" default="false" >
-      	    <name lang="en">Activate debounce</name>
+      	    <name lang="en">Activate button input mode</name>
       	    <description lang="en">
-      	    Debounce functionality is activated. Only ON or TurnOn is sent when an input goes low and debounce handling is activated on the input.
+      	    Activate Button input mode. Only TurnOff or TurnOn is sent when an input goes low and button 
+            input mode is activated. Which of them is sent is specified by bit 3 in the Input Control register. 
+            If it is set to 0 TurnOn is sent and if it is set to 1 TurnOff is sent.
       	    </description> 
         	</bit>    
   			<bit pos="7" default="true" >
@@ -1779,7 +1820,7 @@
         <reg page="0" offset="46" default="3" bgcolor="0xCCFFEB">
 		<name lang="en">Debounce count</name>
       	<description lang="en">
-      	This is the number of counts a debounced input should be low to
+      	This is the number of counts a button input signal should be low to
         be regarded as actice. Each count represents 10 ms.
       	</description>
       	<access>rw</access>

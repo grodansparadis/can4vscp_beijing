@@ -883,6 +883,7 @@ void doApplicationOneSecondWork(void)
                                                     VSCP_CLASS1_INFORMATION,
                                                     VSCP_TYPE_INFORMATION_ON );
                         }
+                        
                     }
                 }
             }
