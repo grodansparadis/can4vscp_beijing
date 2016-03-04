@@ -1,0 +1,93 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<registerset>
+<register offset='14' page='0'>
+<value>0x00</value>
+<description>I/O channel 0 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='15' page='0'>
+<value>0x00</value>
+<description>I/O channel 1 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='16' page='0'>
+<value>0x00</value>
+<description>I/O channel 2 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='17' page='0'>
+<value>0x00</value>
+<description>I/O channel 3 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='18' page='0'>
+<value>0x00</value>
+<description>I/O channel 4 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='19' page='0'>
+<value>0x00</value>
+<description>I/O channel 5 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='20' page='0'>
+<value>0x00</value>
+<description>I/O channel 6 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='21' page='0'>
+<value>0x00</value>
+<description>I/O channel 7 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+<register offset='22' page='0'>
+<value>0x00</value>
+<description>I/O channel 8 status register
+Read or write the state of I/O channel 0 in this register.
+0 - is returned for an inactive input or a low output. A written zero will set an
+output channel low.
+1 - is returned for an active input or a high output. A written one will set an
+output channel high.
+</description>
+</register>
+</registerset>
