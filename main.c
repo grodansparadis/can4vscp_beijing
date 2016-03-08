@@ -3,9 +3,10 @@
  * 	http://www.vscp.org
  *
  *  Beijing I/O module
- * 	akhe@grodansparadis.com
+ *  ==================
  *
- *  Copyright (C) 1995-2015 Ake Hedman, Grodans Paradis AB
+ *  Copyright (C)1995-2016 Ake Hedman, Grodans Paradis AB
+ *                          http://www.grodansparadis.com
  *                          <akhe@grodansparadis.com>
  *
  *  This work is licensed under the Creative Common 
@@ -20,6 +21,8 @@
  *
  * ******************************************************************************
  */
+
+
 
 #include "vscp_compiler.h"
 #include "vscp_projdefs.h"
@@ -110,7 +113,6 @@
 #else
 #pragma config WDTEN = ON       // WDT enabled in hardware; 
 #endif
-
 
 #endif
 
