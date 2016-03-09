@@ -1,6 +1,8 @@
+
 Beijing I/O module
 ==================
 
+2016-03-08 AKHE - Adopted to 1.6 firmware. Adopted for PIC18F26K80.
 2015-11-27 AKHE - "Debouce input" is now called "button input" in documentation.
 2015-11-27 AKHE - TurnON/TurnOff is now selectable instead of ON/TurnON for button inputs.
 2015-11-27 AKHE - Fixed problem with channel 8/9 in button (debounce) mode.
@@ -11,3 +13,4 @@ Also input button repeats can now be turned off (bit 1 in module control registe
 2015-11-13 AKHE - Fixed resend timer if can is busy sending message.
 2015-11-10 AKHE - Start up initialization of I/O 7 was not initialized.
 2015-06-16 AKHE - Started development.
+

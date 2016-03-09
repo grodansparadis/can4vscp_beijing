@@ -3,9 +3,10 @@
  * 	http://www.vscp.org
  *
  *  Beijing I/O module
- * 	akhe@grodansparadis.com
+ *  ==================
  *
- *  Copyright (C) 1995-2015 Ake Hedman, Grodans Paradis AB
+ *  Copyright (C)1995-2016 Ake Hedman, Grodans Paradis AB
+ *                          http://www.grodansparadis.com
  *                          <akhe@grodansparadis.com>
  *
  *  This work is licensed under the Creative Common 
@@ -21,6 +22,8 @@
  * ******************************************************************************
  */
 
+
+
 #include "vscp_compiler.h"
 #include "vscp_projdefs.h"
 
@@ -29,12 +32,14 @@
 #include <delays.h>
 #include <inttypes.h>
 #include <string.h>
-#include <ecan.h>
+#include <ECAN.h>
 #include <vscp_firmware.h>
 #include <vscp_class.h>
 #include <vscp_type.h>
 #include "beijing.h"
 #include "version.h"
+
+#if defined(_18F2580) 
 
 #if defined(RELEASE)
 
@@ -73,6 +78,41 @@
 #pragma config EBTR3 = OFF
 
 #pragma config EBTRB = OFF
+
+#endif
+
+#else if defined(_18F25K80) || defined(_18F26K80) || defined(_18F45K80) || defined(_18F46K80) || defined(_18F65K80) || defined(_18F66K80)
+
+
+// CONFIG1L
+#pragma config SOSCSEL = DIG    // RC0/RC is I/O
+#pragma config RETEN = OFF      // Ultra low-power regulator is Disabled (Controlled by REGSLP bit).
+#pragma config INTOSCSEL = HIGH // LF-INTOSC in High-power mode during Sleep.
+#pragma config XINST = OFF      // No extended instruction set
+
+// CONFIG1H
+#pragma config FOSC = HS2       // Crystal 10 MHz
+#pragma config PLLCFG = ON      // 4 x PLL
+
+// CONFIG2H
+#pragma config WDTPS = 1048576  // Watchdog prescaler
+#pragma config BOREN = SBORDIS  // Brown out enabled
+#pragma config BORV  = 1        // 2.7V
+
+// CONFIG3H
+#pragma config CANMX = PORTB    // ECAN TX and RX pins are located on RB2 and RB3, respectively.
+#pragma config MSSPMSK = MSK7   // 7 Bit address masking mode.
+#pragma config MCLRE = ON       // MCLR Enabled, RE3 Disabled.
+
+// CONFIG4L
+#pragma config STVREN = ON      // Stack Overflow Reset enabled
+#pragma config BBSIZ = BB2K     // Boot block size 2K
+
+#ifdef DEBUG
+#pragma config WDTEN = OFF      // WDT disabled in hardware; SWDTEN bit disabled.
+#else
+#pragma config WDTEN = ON       // WDT enabled in hardware; 
+#endif
 
 #endif
 
@@ -3277,30 +3317,13 @@ void vscp_setNickname(uint8_t nickname)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//  getSegmentCRC
-//
-
-uint8_t vscp_getSegmentCRC(void)
-{
-    return eeprom_read( VSCP_EEPROM_SEGMENT_CRC );
-}
-
-///////////////////////////////////////////////////////////////////////////////
-//  setSegmentCRC
-//
-
-void vscp_setSegmentCRC(uint8_t crc)
-{
-    eeprom_write( VSCP_EEPROM_SEGMENT_CRC, crc );
-}
-
-///////////////////////////////////////////////////////////////////////////////
 //  setVSCPControlByte
 //
 
-void vscp_setControlByte(uint8_t ctrl)
+void vscp_setControlByte( uint8_t ctrl, uint8_t idx )
 {
-    eeprom_write(VSCP_EEPROM_CONTROL, ctrl);
+    if ( idx > 1 ) return;
+    eeprom_write( VSCP_EEPROM_CONTROL1 + idx, ctrl );
 }
 
 
@@ -3308,9 +3331,19 @@ void vscp_setControlByte(uint8_t ctrl)
 //  getVSCPControlByte
 //
 
-uint8_t vscp_getControlByte(void)
+uint8_t vscp_getControlByte( uint8_t idx )
 {
-    return eeprom_read(VSCP_EEPROM_CONTROL);
+    if ( idx > 1 ) return 0;
+    return eeprom_read( VSCP_EEPROM_CONTROL1 + idx );
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//  vscp_init_pstorage(
+//
+
+void vscp_init_pstorage( void )
+{
+    init_app_eeprom();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

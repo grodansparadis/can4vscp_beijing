@@ -132,3 +132,7 @@
 /Bejing.X/dist/bejing_2580_release/debug/*.rlf
 /Bejing.X/dist/bejing_2580_release/debug/*.sdb
 /Bejing.X/dist/bejing_2580_release/debug/*.sym
+/Bejing.X/build/bejing_26k80_debug/
+/Bejing.X/dist/bejing_26k80_debug/
+/Bejing.X/build/bejing_26k80_relocated/
+/Bejing.X/dist/bejing_26k80_relocated/

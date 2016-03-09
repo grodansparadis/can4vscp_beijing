@@ -1,13 +1,12 @@
-// File:  main.h
-
 /* ******************************************************************************
  * 	VSCP (Very Simple Control Protocol) 
  * 	http://www.vscp.org
  *
- * 	Version: See project header
- * 	akhe@eurosource.se
+ *  Beijing I/O module
+ *  ==================
  *
- *  Copyright (C) 1995-2013 Ake Hedman, Grodans Paradis AB
+ *  Copyright (C)1995-2016 Ake Hedman, Grodans Paradis AB
+ *                          http://www.grodansparadis.com
  *                          <akhe@grodansparadis.com>
  *
  *  This work is licensed under the Creative Common 
@@ -21,7 +20,7 @@
  *	http://www.vscp.org
  *
  * ******************************************************************************
-*/
+ */
 
 #ifndef MAIN_H
 #define MAIN_H

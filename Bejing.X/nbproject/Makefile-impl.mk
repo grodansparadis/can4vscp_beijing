@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=Bejing.X
 
 # Active Configuration
-DEFAULTCONF=bejing_2580_relocated
+DEFAULTCONF=bejing_2580_debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=bejing_2580_debug bejing_2580_release bejing_2580_relocated bejing_25k80_debug bejing_25k80_release bejing_25k80_relocated 
+ALLCONFS=bejing_2580_debug bejing_2580_relocated bejing_26k80_debug bejing_26k80_relocated 
 
 
 # build
@@ -46,22 +46,18 @@ ALLCONFS=bejing_2580_debug bejing_2580_release bejing_2580_relocated bejing_25k8
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_2580_debug clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_2580_release clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_2580_relocated clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_25k80_debug clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_25k80_release clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_25k80_relocated clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_26k80_debug clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_26k80_relocated clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_2580_debug build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_2580_release build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_2580_relocated build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_25k80_debug build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_25k80_release build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_25k80_relocated build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_26k80_debug build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=bejing_26k80_relocated build
 
 
 
