@@ -5,7 +5,7 @@ Linker command line:
 --edf=/opt/microchip/xc8/v1.21/dat/en_msgs.txt -cs \
   -h+dist/bejing_2580_relocated/production/Bejing.X.production.sym \
   --cmf=dist/bejing_2580_relocated/production/Bejing.X.production.cmf -z \
-  -Q18F2580 -o/tmp/cgtsGkOJz \
+  -Q18F2580 -o/tmp/cgt9t6Yge \
   -Mdist/bejing_2580_relocated/production/Bejing.X.production.map -E1 \
   -ver=XC8 -ACODE=0800h-07FFFh -ACONST=0800h-07FFFh \
   -ASMALLCONST=0800h-08FFhx120 -AMEDIUMCONST=0800h-07FFFh -ACOMRAM=01h-05Fh \
@@ -21,7 +21,7 @@ Linker command line:
   -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
-  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtDg5RQn.obj \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtP0VXtA.obj \
   dist/bejing_2580_relocated/production/Bejing.X.production.obj 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgtDg5RQn.obj
+/tmp/cgtP0VXtA.obj
                 end_init                            8CA      8CA        4      40C       0
                 reset_vec                           800      800        4      400       0
                 idloc                            200000   200000        8   200000       0
@@ -483,19 +483,20 @@ __CANIDToRegs@Value                      cstackCOMRAM 000011
 __CANIDToRegs@ptr                        cstackCOMRAM 000008
 __CANIDToRegs@type                       cstackCOMRAM 00000E
 __CANIDToRegs@val                        cstackCOMRAM 00000A
+__CFG_BBSIZ$2048                         (abs)        000000
 __CFG_BOREN$BOACTIVE                     (abs)        000000
 __CFG_BORV$3                             (abs)        000000
-__CFG_CPB$OFF                            (abs)        000000
+__CFG_CPB$ON                             (abs)        000000
 __CFG_EBTR0$OFF                          (abs)        000000
 __CFG_EBTR1$OFF                          (abs)        000000
 __CFG_EBTR2$OFF                          (abs)        000000
 __CFG_EBTR3$OFF                          (abs)        000000
 __CFG_EBTRB$OFF                          (abs)        000000
-__CFG_LVP$OFF                            (abs)        000000
+__CFG_LVP$ON                             (abs)        000000
 __CFG_OSC$HSPLL                          (abs)        000000
-__CFG_PWRT$ON                            (abs)        000000
 __CFG_STVREN$ON                          (abs)        000000
-__CFG_WDT$OFF                            (abs)        000000
+__CFG_WDT$ON                             (abs)        000000
+__CFG_WDTPS$128                          (abs)        000000
 __CFG_WRTD$OFF                           (abs)        000000
 __ECANPointBuffer                        text62       004792
 __ECANPointBuffer@b                      cstackCOMRAM 00000B
