@@ -229,23 +229,17 @@ void interrupt low_priority  interrupt_at_low_vector( void )
 
 void main()
 {
-
     init();         // Initialize Micro controller
     
     // Check VSCP persistent storage and
     // restore if needed
-    if ( !vscp_check_pstorage() ) {
-
-        // Spoiled or not initialized - reinitialize
-        init_app_eeprom();
-
-    }
+    vscp_check_pstorage();
     
     // Initialize data
     init_app_ram();
         
     // Initialize the VSCP functionality
-    vscp_init();    
+    vscp_init();
     
     // Init. filter for DM
     calculateSetFilterMask();
@@ -257,6 +251,7 @@ void main()
         if ( ( vscp_initbtncnt > 250 ) && ( VSCP_STATE_INIT != vscp_node_state ) ) {
 
             // Init. button pressed
+            vscp_initledfunc = VSCP_LED_BLINK1;
             vscp_nickname = VSCP_ADDRESS_FREE;
             eeprom_write( VSCP_EEPROM_NICKNAME, VSCP_ADDRESS_FREE );
             vscp_init();
@@ -3318,12 +3313,11 @@ void vscp_setNickname(uint8_t nickname)
 //  setVSCPControlByte
 //
 
-void vscp_setControlByte( uint8_t ctrl, uint8_t idx )
+void vscp_setControlByte( uint8_t idx, uint8_t ctrl )
 {
     if ( idx > 1 ) return;
     eeprom_write( VSCP_EEPROM_CONTROL1 + idx, ctrl );
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 //  getVSCPControlByte

@@ -5,17 +5,17 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>../beijing.h</itemPath>
-      <itemPath>../version.h</itemPath>
-      <itemPath>../main.h</itemPath>
+      <itemPath>../ECAN.def</itemPath>
       <itemPath>../ECAN.h</itemPath>
-      <itemPath>../vscp_compiler.h</itemPath>
-      <itemPath>../vscp_projdefs.h</itemPath>
+      <itemPath>../../vscp_firmware/pic/common/eeprom.h</itemPath>
+      <itemPath>../main.h</itemPath>
+      <itemPath>../version.h</itemPath>
       <itemPath>../../vscp_firmware/common/vscp.h</itemPath>
       <itemPath>../../vscp_firmware/common/vscp_class.h</itemPath>
+      <itemPath>../vscp_compiler.h</itemPath>
       <itemPath>../../vscp_firmware/common/vscp_firmware.h</itemPath>
+      <itemPath>../vscp_projdefs.h</itemPath>
       <itemPath>../../vscp_firmware/common/vscp_type.h</itemPath>
-      <itemPath>../ECAN.def</itemPath>
-      <itemPath>../../vscp_firmware/pic/common/eeprom.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -260,7 +260,7 @@
         <platformTool>RealICEPlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>1.21</languageToolchainVersion>
-        <platform>2</platform>
+        <platform>3</platform>
       </toolsSet>
       <compileType>
         <linkerTool>
