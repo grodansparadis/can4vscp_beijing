@@ -22,12 +22,10 @@
  * ******************************************************************************
  */
 
-
-
 #include "vscp_compiler.h"
 #include "vscp_projdefs.h"
 
-#include <p18cxxx.h>
+#include <xc.h>
 #include <timers.h>
 #include <delays.h>
 #include <inttypes.h>

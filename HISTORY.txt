@@ -2,6 +2,7 @@
 Beijing I/O module
 ==================
 
+2016-03-21 AKHE - Enabled release build for relocated version 
 2016-03-08 AKHE - Adopted to 1.6 firmware. Adopted for PIC18F26K80.
 2015-11-27 AKHE - "Debouce input" is now called "button input" in documentation.
 2015-11-27 AKHE - TurnON/TurnOff is now selectable instead of ON/TurnON for button inputs.
