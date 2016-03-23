@@ -2,7 +2,7 @@
  * 	VSCP (Very Simple Control Protocol) 
  * 	http://www.vscp.org
  *
- *  Copyright (C) 1995-2013 Ake Hedman, Grodans Paradis AB,
+ *  Copyright (C) 1995-2016 Ake Hedman, Grodans Paradis AB,
  *                              <akhe@grodansparadis.com>
  *
  *  This work is licensed under the Creative Common 
@@ -26,7 +26,16 @@
 //
 // Described in vscp.h
 
+// Enable error reporting
+#define VSCP_FIRMWARE_ENABLE_ERROR_REPORTING
+
+// Enable logging functionality
+#define VSCP_FIRMWARE_ENABLE_LOGGING
+
 #define ENABLE_WRITE_2PROTECTED_LOCATIONS // Enable write to protected locations
+
+// Enable drop nickname specials
+//#define DROP_NICKNAME_EXTENDED_FEATURES
 
 // EEPROM bigger then 256 bytes
 //#define EEADRH

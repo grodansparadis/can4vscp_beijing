@@ -3330,7 +3330,7 @@ uint8_t vscp_getControlByte( uint8_t idx )
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//  vscp_init_pstorage(
+//  vscp_init_pstorage
 //
 
 void vscp_init_pstorage( void )
