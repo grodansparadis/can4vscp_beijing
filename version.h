@@ -22,14 +22,14 @@
  * ******************************************************************************
  */
 
-#ifndef ACCRA_VERSION_H
-#define ACCRA_VERSION_H
+#ifndef BEIJING_VERSION_H
+#define BEIJING_VERSION_H
 
 // Firmware version
 
 #define FIRMWARE_MAJOR_VERSION      1
 #define FIRMWARE_MINOR_VERSION      1
-#define FIRMWARE_SUB_MINOR_VERSION  4
+#define FIRMWARE_SUB_MINOR_VERSION  5
 
 
 // * * * History * * *
