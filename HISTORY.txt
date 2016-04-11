@@ -2,6 +2,7 @@
 Beijing I/O module
 ==================
 
+2016-04-11 AKHE - vscp_getMatrixInfo nw use the pointer supplied by the framework.
 2016-04-04 AKHE - Changed value of C14 to 10uF
 2016-03-23 AKHE - Version 1.1.5------------------------------------------------
 2016-03-23 AKHE - Adopted to 1.6.0 Firmware
