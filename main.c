@@ -1876,7 +1876,7 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
                     eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
                     rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
-                    if ( val & OUTPUT_CTRL_ALARM ) {
+                    if ( val & OUTPUT_CTRL_PULSE ) {
 
                         CHANNEL1 = 0; // Start out at a known state
                         bOn = FALSE;
