@@ -2761,7 +2761,7 @@ void doActionOff( unsigned char dmflags, unsigned char arg )
                 
         case 9:
             if ( 1 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 0;
+            CHANNEL9 = 0;
             break;    
 
     }
@@ -2838,7 +2838,7 @@ void doActionPulseOn(unsigned char dmflags, unsigned char arg)
                 
         case 9:
             if ( 1 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 0;
+            CHANNEL9 = 0;
             break;    
 
     }
@@ -2922,7 +2922,7 @@ void doActionPulseOff(unsigned char dmflags, unsigned char arg)
                 
         case 9:
             if ( 1 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 0;
+            CHANNEL9 = 0;
             break;    
 
     }
