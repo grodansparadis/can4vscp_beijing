@@ -2671,7 +2671,7 @@ void doActionOn( unsigned char dmflags, unsigned char arg )
                 
         case 9:
             if ( 0 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 1;
+            CHANNEL9 = 1;
             break;    
 
     }
