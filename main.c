@@ -1876,7 +1876,7 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
                     eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
                     rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
 
-                    if ( val & OUTPUT_CTRL_ALARM ) {
+                    if ( val & OUTPUT_CTRL_PULSE ) {
 
                         CHANNEL1 = 0; // Start out at a known state
                         bOn = FALSE;
@@ -2671,7 +2671,7 @@ void doActionOn( unsigned char dmflags, unsigned char arg )
                 
         case 9:
             if ( 0 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 1;
+            CHANNEL9 = 1;
             break;    
 
     }
@@ -2761,7 +2761,7 @@ void doActionOff( unsigned char dmflags, unsigned char arg )
                 
         case 9:
             if ( 1 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 0;
+            CHANNEL9 = 0;
             break;    
 
     }
@@ -2838,7 +2838,7 @@ void doActionPulseOn(unsigned char dmflags, unsigned char arg)
                 
         case 9:
             if ( 1 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 0;
+            CHANNEL9 = 0;
             break;    
 
     }
@@ -2922,7 +2922,7 @@ void doActionPulseOff(unsigned char dmflags, unsigned char arg)
                 
         case 9:
             if ( 1 == CHANNEL9 ) bEvent = TRUE;
-            CHANNEL7 = 0;
+            CHANNEL9 = 0;
             break;    
 
     }
