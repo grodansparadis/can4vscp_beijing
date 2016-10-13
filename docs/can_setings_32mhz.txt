@@ -1,0 +1,30 @@
+// SJW value - Value must be between 1-4 inclusive.
+#define ECAN_SJW_VAL 1
+//
+// BRP value - Value must be between 1-64 inclusive.
+#define ECAN_BRP_VAL 	7		// 10 for 40 MHzx
+//
+// PHSEG1 value - Value must be between 1-8 inclusive.
+#define ECAN_PHSEG1_VAL 8		// same for 40 MHz
+//
+// PHSEG2 value - Value must be between 1-8 inclusive.
+#define ECAN_PHSEG2_VAL 2		// same for 40 MHz
+//
+// PROPSEG value - Value must be between 1-8 inclusive.
+#define ECAN_PROPSEG_VAL 5		//same for 40 MHz
+
+
+From report 
+
+http://www.port.de/en/bit-timing.html
+http://www.port.de/cgi-scripts/tq_v1_3.cgi?ctype=pic18&CLK=16&sample_point=87.5
+
+    BRGCON1 = 0x07;
+    BRGCON2 = 0xBC;
+    BRGCON3 = 0x01;
+
+Reported to work
+
+    BRGCON1 = 0x07;
+    BRGCON2 = 0xB8;
+    BRGCON3 = 0x05;

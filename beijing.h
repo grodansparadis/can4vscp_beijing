@@ -142,63 +142,65 @@
 
 // * * * * Page 0 * * * *
 
-#define REG0_BEIJING_ZONE                   0
-#define REG0_BEIJING_SUBZONE                1
+#define REG0_BEIJING_ZONE                   0u
+#define REG0_BEIJING_SUBZONE                1u
 
-#define REG0_BEIJING_CH0_SUBZONE            2
-#define REG0_BEIJING_CH1_SUBZONE            3
-#define REG0_BEIJING_CH2_SUBZONE            4
-#define REG0_BEIJING_CH3_SUBZONE            5
-#define REG0_BEIJING_CH4_SUBZONE            6
-#define REG0_BEIJING_CH5_SUBZONE            7
-#define REG0_BEIJING_CH6_SUBZONE            8
-#define REG0_BEIJING_CH7_SUBZONE            9
-#define REG0_BEIJING_CH8_SUBZONE            10
-#define REG0_BEIJING_CH9_SUBZONE            11
+#define REG0_BEIJING_CH0_SUBZONE            2u
+#define REG0_BEIJING_CH1_SUBZONE            3u
+#define REG0_BEIJING_CH2_SUBZONE            4u
+#define REG0_BEIJING_CH3_SUBZONE            5u
+#define REG0_BEIJING_CH4_SUBZONE            6u
+#define REG0_BEIJING_CH5_SUBZONE            7u
+#define REG0_BEIJING_CH6_SUBZONE            8u
+#define REG0_BEIJING_CH7_SUBZONE            9u
+#define REG0_BEIJING_CH8_SUBZONE            10u
+#define REG0_BEIJING_CH9_SUBZONE            11u
 
-#define REG0_BEIJING_IO_DIRECTION_MSB       12
-#define REG0_BEIJING_IO_DIRECTION_LSB       13
+#define REG0_BEIJING_IO_DIRECTION_MSB       12u
+#define REG0_BEIJING_IO_DIRECTION_LSB       13u
 
-#define REG0_BEIJING_CH0_STATUS             14  // Not written to EEPROM
-#define REG0_BEIJING_CH1_STATUS             15  // Not written to EEPROM
-#define REG0_BEIJING_CH2_STATUS             16  // Not written to EEPROM
-#define REG0_BEIJING_CH3_STATUS             17  // Not written to EEPROM
-#define REG0_BEIJING_CH4_STATUS             18  // Not written to EEPROM
-#define REG0_BEIJING_CH5_STATUS             19  // Not written to EEPROM
-#define REG0_BEIJING_CH6_STATUS             20  // Not written to EEPROM
-#define REG0_BEIJING_CH7_STATUS             21  // Not written to EEPROM
-#define REG0_BEIJING_CH8_STATUS             22  // Not written to EEPROM
-#define REG0_BEIJING_CH9_STATUS             23  // Not written to EEPROM
+#define REG0_BEIJING_CH0_STATUS             14u  // Not written to EEPROM
+#define REG0_BEIJING_CH1_STATUS             15u  // Not written to EEPROM
+#define REG0_BEIJING_CH2_STATUS             16u  // Not written to EEPROM
+#define REG0_BEIJING_CH3_STATUS             17u  // Not written to EEPROM
+#define REG0_BEIJING_CH4_STATUS             18u  // Not written to EEPROM
+#define REG0_BEIJING_CH5_STATUS             19u  // Not written to EEPROM
+#define REG0_BEIJING_CH6_STATUS             20u  // Not written to EEPROM
+#define REG0_BEIJING_CH7_STATUS             21u  // Not written to EEPROM
+#define REG0_BEIJING_CH8_STATUS             22u  // Not written to EEPROM
+#define REG0_BEIJING_CH9_STATUS             23u  // Not written to EEPROM
 
-#define REG0_BEIJING_CH0_OUTPUT_CTRL        24
-#define REG0_BEIJING_CH1_OUTPUT_CTRL        25
-#define REG0_BEIJING_CH2_OUTPUT_CTRL        26
-#define REG0_BEIJING_CH3_OUTPUT_CTRL        27
-#define REG0_BEIJING_CH4_OUTPUT_CTRL        28
-#define REG0_BEIJING_CH5_OUTPUT_CTRL        29
-#define REG0_BEIJING_CH6_OUTPUT_CTRL        30
-#define REG0_BEIJING_CH7_OUTPUT_CTRL        31
-#define REG0_BEIJING_CH8_OUTPUT_CTRL        32
-#define REG0_BEIJING_CH9_OUTPUT_CTRL        33
+#define REG0_BEIJING_CH0_OUTPUT_CTRL        24u
+#define REG0_BEIJING_CH1_OUTPUT_CTRL        25u
+#define REG0_BEIJING_CH2_OUTPUT_CTRL        26u
+#define REG0_BEIJING_CH3_OUTPUT_CTRL        27u
+#define REG0_BEIJING_CH4_OUTPUT_CTRL        28u
+#define REG0_BEIJING_CH5_OUTPUT_CTRL        29u
+#define REG0_BEIJING_CH6_OUTPUT_CTRL        30u
+#define REG0_BEIJING_CH7_OUTPUT_CTRL        31u
+#define REG0_BEIJING_CH8_OUTPUT_CTRL        32u
+#define REG0_BEIJING_CH9_OUTPUT_CTRL        33u
 
-#define REG0_BEIJING_CH0_INPUT_CTRL         34
-#define REG0_BEIJING_CH1_INPUT_CTRL         35
-#define REG0_BEIJING_CH2_INPUT_CTRL         36
-#define REG0_BEIJING_CH3_INPUT_CTRL         37
-#define REG0_BEIJING_CH4_INPUT_CTRL         38
-#define REG0_BEIJING_CH5_INPUT_CTRL         39
-#define REG0_BEIJING_CH6_INPUT_CTRL         40
-#define REG0_BEIJING_CH7_INPUT_CTRL         41
-#define REG0_BEIJING_CH8_INPUT_CTRL         42
-#define REG0_BEIJING_CH9_INPUT_CTRL         43
+#define REG0_BEIJING_CH0_INPUT_CTRL         34u
+#define REG0_BEIJING_CH1_INPUT_CTRL         35u
+#define REG0_BEIJING_CH2_INPUT_CTRL         36u
+#define REG0_BEIJING_CH3_INPUT_CTRL         37u
+#define REG0_BEIJING_CH4_INPUT_CTRL         38u
+#define REG0_BEIJING_CH5_INPUT_CTRL         39u
+#define REG0_BEIJING_CH6_INPUT_CTRL         40u
+#define REG0_BEIJING_CH7_INPUT_CTRL         41u
+#define REG0_BEIJING_CH8_INPUT_CTRL         42u
+#define REG0_BEIJING_CH9_INPUT_CTRL         43u
 
-#define REG0_BEIJING_MODULE_CTRL            44
+#define REG0_BEIJING_MODULE_CTRL            44u
 
-#define REG0_BEIJING_STREAM_TIMING          45
+#define REG0_BEIJING_STREAM_TIMING          45u
 
-#define REG0_BEIJING_DEBOUNCE_COUNT         46
+#define REG0_BEIJING_DEBOUNCE_COUNT         46u
 
-#define REG0_COUNT                          47  // Needed for EEPROM writes
+#define REG0_BEIJING_SHORT_PULSE_TIME       47u
+
+#define REG0_COUNT                          48  // Needed for EEPROM writes
 
 // * * * * Page 1 * * * *
 
@@ -302,6 +304,7 @@
 #define BEIJING_ACTION_TOGGLE               5
 #define BEIJING_ACTION_STATUS               6
 #define BEIJING_ACTION_STATUSALL            7
+#define BEIJING_ACTION_SHORTPULSE           8
 
 // Function Prototypes
 
@@ -323,6 +326,7 @@ void doActionPulseOff(unsigned char dmflags, unsigned char arg);
 void doActionStatus(unsigned char dmflags, unsigned char arg);
 void doActionStatusAll(unsigned char dmflags, unsigned char arg);
 void doActionToggle(unsigned char dmflags, unsigned char arg);
+void doActionShortPulse( unsigned char dmflags, unsigned char arg );
 
 void doApplicationOneSecondWork(void);
 

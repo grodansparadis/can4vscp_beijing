@@ -127,10 +127,11 @@ const uint8_t vscp_deviceURL[] = "www.eurosource.se/beijing_2.xml";
 volatile unsigned long measurement_clock_sec;  // Clock for one second work
 
 
-volatile unsigned long measurement_clock_10ms;  // Debounce clock
+volatile unsigned long measurement_clock_10ms;  // Debounce clock (10 ms)
 uint8_t debounce_cnt[ 10 ];                     // Debounce counter
 BOOL event_sent[ 10 ];                          // Event markers
-uint8_t current_channel_to_check;              // I/O channel to check
+uint8_t current_channel_to_check;               // I/O channel to check
+uint8_t shortpulse[ 10 ];                       // Short pulse timings (10ms))
 
 uint16_t sendTimer; // Timer for CAN send
 uint8_t seconds;    // counter for seconds
@@ -436,13 +437,85 @@ void main()
                                 break;
                         }
 
-                    }
+                    }                    
                     
                     current_channel_to_check++;
                     if ( current_channel_to_check > 9 ) current_channel_to_check = 0;
                     
+                    ////////////////////////////////////////////////////////////////
+                    //                    Short pulse logic
+                    ////////////////////////////////////////////////////////////////
+                    if ( shortpulse[ 0 ] ) {            
+                        shortpulse[ 0 ]--;
+                        if ( !shortpulse[ 0 ] ) {
+                            CHANNEL0 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 1 ] ) {            
+                        shortpulse[ 1 ]--;
+                        if ( !shortpulse[ 1 ] ) {
+                            CHANNEL1 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 2 ] ) {            
+                        shortpulse[ 2 ]--;
+                        if ( !shortpulse[ 2 ] ) {
+                            CHANNEL2 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 3 ] ) {            
+                        shortpulse[ 3 ]--;
+                        if ( !shortpulse[ 3 ] ) {
+                            CHANNEL3 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 4 ] ) {            
+                        shortpulse[ 4 ]--;
+                        if ( !shortpulse[ 4 ] ) {
+                            CHANNEL4 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 5 ] ) {            
+                        shortpulse[ 5 ]--;
+                        if ( !shortpulse[ 5 ] ) {
+                            CHANNEL5 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 6 ] ) {            
+                        shortpulse[ 6 ]--;
+                        if ( !shortpulse[ 6 ] ) {
+                            CHANNEL6 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 7 ] ) {            
+                        shortpulse[ 7 ]--;
+                        if ( !shortpulse[ 7 ] ) {
+                            CHANNEL7 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 8 ] ) {            
+                        shortpulse[ 8 ]--;
+                        if ( !shortpulse[ 8 ] ) {
+                            CHANNEL8 = 0;   // Turn off
+                        }
+                    }
+                    
+                    if ( shortpulse[ 9 ] ) {            
+                        shortpulse[ 9 ]--;
+                        if ( !shortpulse[ 9 ] ) {
+                            CHANNEL9 = 0;   // Turn off
+                        }
+                    }
+                    
                 }
-                
                 break;
 
             case VSCP_STATE_ERROR: // Everything is *very* *very* bad.
@@ -466,8 +539,10 @@ void main()
             // Temperature report timers are only updated if in active
             // state GUID_reset
             if ( VSCP_STATE_ACTIVE == vscp_node_state ) {
+                
                 // Do VSCP one second jobs
                 doApplicationOneSecondWork();
+                
             }
 
         }
@@ -714,6 +789,9 @@ void init_app_ram( void )
         }
 
     }
+    
+    // Init. short pulse timings
+    memset( shortpulse, 0, sizeof( shortpulse ) );
     
     dir = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_IO_DIRECTION_MSB );
     TRISA = ( dir & 0x03 ) | 0b00000000;    // Channel 8/9
@@ -2594,6 +2672,12 @@ void doDM(void)
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
+                        
+                    case BEIJING_ACTION_SHORTPULSE: // Short pulse on Channels
+                        doActionShortPulse( dmflags, eeprom_read( VSCP_EEPROM_END + 
+                                                                REG0_COUNT + REG1_COUNT + 
+                                                                REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
+                        break;    
 
                 } // case
                 
@@ -3184,6 +3268,158 @@ void doActionStatusAll(unsigned char dmflags, unsigned char arg)
         doActionStatus( dmflags, i );
     }
   
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// doActionShortPulse
+// 
+
+void doActionShortPulse( unsigned char dmflags, unsigned char arg )
+{
+    uint8_t ctrlreg;
+    uint8_t pulseTime;
+    BOOL bEvent = FALSE;
+    
+    // Check for a valid argument
+    if ( arg > 9 ) return;
+
+    ctrlreg = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg );
+    pulseTime = eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_SHORT_PULSE_TIME );
+    
+    // Do nothing if disabled
+    if ( !( ctrlreg & OUTPUT_CTRL_ENABLED ) ) return;
+            
+    switch ( arg ) {
+
+        case 0:      
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL0 = 1; 
+                CHANNEL0 = 0;
+            }
+            else {
+                if ( 0 == CHANNEL0 ) bEvent = TRUE;
+                CHANNEL0 = 1;
+                shortpulse[ 1 ] = pulseTime;
+            }
+            break;
+
+        case 1:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL1 = 1; 
+                CHANNEL1 = 0;
+            }
+            else {
+                CHANNEL1 = 1;
+                shortpulse[ 1 ] = pulseTime;
+            }
+            break;
+
+        case 2:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL2 = 1; 
+                CHANNEL2 = 0;
+            }
+            else {
+                CHANNEL2 = 1;
+                shortpulse[ 2 ] = pulseTime;
+            }
+            break;
+
+        case 3:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL3 = 1; 
+                CHANNEL3 = 0;
+            }
+            else {
+                CHANNEL3 = 1;
+                shortpulse[ 3 ] = pulseTime;
+            }
+            break;
+
+        case 4:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL4 = 1; 
+                CHANNEL4 = 0;
+            }
+            else {
+                CHANNEL4 = 1;
+                shortpulse[ 4 ] = pulseTime;
+            }
+            break;
+
+        case 5:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL5 = 1; 
+                CHANNEL5 = 0;
+            }
+            else {
+                CHANNEL5 = 1;
+                shortpulse[ 5 ] = pulseTime;
+            }
+            break;
+
+        case 6:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL6 = 1; 
+                CHANNEL6 = 0;
+            }
+            else {
+                CHANNEL6 = 1;
+                shortpulse[ 6 ] = pulseTime;
+            }
+            break;
+                
+        case 7:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL7 = 1; 
+                CHANNEL7 = 0;
+            }
+            else {
+                CHANNEL7 = 1;
+                shortpulse[ 7 ] = pulseTime;
+            }
+            break;
+                
+        case 8:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL8 = 1; 
+                CHANNEL8 = 0;
+            }
+            else {
+                CHANNEL8 = 1;
+                shortpulse[ 8 ] = pulseTime;
+            }
+            break;    
+                
+        case 9:
+            if ( 0 == pulseTime ) {
+                // Do fastest possible toggle
+                CHANNEL9 = 1; 
+                CHANNEL9 = 0;
+            }
+            else {
+                CHANNEL9 = 1;
+                shortpulse[ 9 ] = pulseTime;
+            }
+            break;    
+
+    }
+    
+    // Should on event be sent?
+    if ( bEvent && ( ctrlreg & OUTPUT_CTRL_ONEVENT ) ) {
+        SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+    }
+
 }
 
 

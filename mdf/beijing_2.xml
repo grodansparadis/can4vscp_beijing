@@ -5,7 +5,7 @@
 	<name>Beijing IO controller</name>
 	<model>B</model>
 	<version>8</version>
-	<changed>2015-12-08</changed>
+	<changed>2016-10-12</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -1822,6 +1822,15 @@
       	<description lang="en">
       	This is the number of counts a button input signal should be low to
         be regarded as actice. Each count represents 10 ms.
+      	</description>
+      	<access>rw</access>
+		</reg>
+        
+        <reg page="0" offset="47" default="0" bgcolor="0x80FFCC">
+		<name lang="en">Short pulse duration</name>
+      	<description lang="en">
+      	This is the duration for the short pulse action. Each count represents 10 ms. 
+        A zero vaue gives a pulse that is the shortest possible.
       	</description>
       	<access>rw</access>
 		</reg>
@@ -3984,6 +3993,63 @@
       	    <description lang="en">
 			Not used.
 			</description>
+			</param>
+		</action>
+        
+        <action code="0x06">				
+      	<name lang="en">Send short pulse on I/O channel</name>
+        	<description lang="en">
+			Send a short pulse on the I/O channel given by the argument. The argument is an integer 
+			where 0 is output 0 and so on and can be in the range 0-9.\n 
+            Register 0:47 set the pulse duration time.
+        	</description>
+        	<param>							
+      		<name lang="en">Channel to send status for</name> 
+      	    <description lang="en">
+			Integer representing the I/O channel to send status for.	      	   
+      	    </description>
+      	    <valuelist>
+			<item value = "0x0">                 
+				<name lang="en">Channel 0</name>                 
+				<description lang="en">I/O channel 0</description>                
+			</item>
+			<item value = "0x01">                 
+				<name lang="en">Channel 1</name>                 
+				<description lang="en">I/O channel 1</description>                
+			</item>
+			<item value = "0x02">                 
+				<name lang="en">Channel 2</name>                 
+				<description lang="en">I/O channel 2</description>                
+			</item>
+			<item value = "0x03">                 
+				<name lang="en">Channel 3</name>                 
+				<description lang="en">I/O channel 3</description>                
+			</item>
+			<item value = "0x04">                 
+				<name lang="en">Channel 4</name>                 
+				<description lang="en">I/O channel 4</description>                
+			</item>
+			<item value = "0x05">                 
+				<name lang="en">Channel 5</name>                 
+				<description lang="en">I/O channel 5</description>                
+			</item>
+			<item value = "0x06">                 
+				<name lang="en">Channel 6</name>                 
+				<description lang="en">I/O channel 6</description>                
+			</item>
+			<item value = "0x07">                 
+				<name lang="en">Channel 7</name>                 
+				<description lang="en">I/O channel 7</description>                
+			</item>
+			<item value = "0x08">                 
+				<name lang="en">Channel 8</name>                 
+				<description lang="en">I/O channel 8</description>                
+			</item>
+			<item value = "0x09">                 
+				<name lang="en">Channel 9</name>                 
+				<description lang="en">I/O channel 9</description>                
+			</item>
+			</valuelist>       		      		      		      		      		
 			</param>
 		</action>
 		
