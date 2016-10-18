@@ -134,7 +134,9 @@
 #define ALARM_INPUT_HIGH                    0x02    // Input has gone low
 #define ALARM_INPUT_LOW                     0x04    // Input has gone high
 
-#define DEBOUNCE_COUNT_DEFAULT              3       // 10 ms counts times this value.
+#define DEBOUNCE_COUNT_DEFAULT              3       // 30 ms debounce
+
+#define SHORT_PULSE_DEFAULT                 2       // 20 ms short pulse
 
 // -----------------------------------------------
 
@@ -200,7 +202,7 @@
 
 #define REG0_BEIJING_SHORT_PULSE_TIME       47u
 
-#define REG0_COUNT                          48  // Needed for EEPROM writes
+#define REG0_COUNT                          48u  // Needed for EEPROM writes
 
 // * * * * Page 1 * * * *
 

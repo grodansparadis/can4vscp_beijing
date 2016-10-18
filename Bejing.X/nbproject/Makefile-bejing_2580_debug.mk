@@ -38,6 +38,12 @@ DEBUGGABLE_SUFFIX=elf
 FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
+ifeq ($(COMPARE_BUILD), true)
+COMPARISON_BUILD=
+else
+COMPARISON_BUILD=
+endif
+
 # Object Directory
 OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 
@@ -85,7 +91,7 @@ ${OBJECTDIR}/_ext/1472/ECAN.p1: ../ECAN.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/ECAN.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/ECAN.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/ECAN.p1  ../ECAN.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib $(COMPARISON_BUILD)  --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/ECAN.p1  ../ECAN.c 
 	@-${MV} ${OBJECTDIR}/_ext/1472/ECAN.d ${OBJECTDIR}/_ext/1472/ECAN.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/ECAN.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -93,7 +99,7 @@ ${OBJECTDIR}/_ext/1472/main.p1: ../main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/main.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/main.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/main.p1  ../main.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib $(COMPARISON_BUILD)  --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/main.p1  ../main.c 
 	@-${MV} ${OBJECTDIR}/_ext/1472/main.d ${OBJECTDIR}/_ext/1472/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -101,7 +107,7 @@ ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1: ../../vscp_firmware/common/vscp_f
 	@${MKDIR} "${OBJECTDIR}/_ext/1935753226" 
 	@${RM} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1  ../../vscp_firmware/common/vscp_firmware.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib $(COMPARISON_BUILD)  --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1  ../../vscp_firmware/common/vscp_firmware.c 
 	@-${MV} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.d ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -110,7 +116,7 @@ ${OBJECTDIR}/_ext/1472/ECAN.p1: ../ECAN.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/ECAN.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/ECAN.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/ECAN.p1  ../ECAN.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib $(COMPARISON_BUILD)  --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/ECAN.p1  ../ECAN.c 
 	@-${MV} ${OBJECTDIR}/_ext/1472/ECAN.d ${OBJECTDIR}/_ext/1472/ECAN.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/ECAN.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -118,7 +124,7 @@ ${OBJECTDIR}/_ext/1472/main.p1: ../main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/main.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/main.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/main.p1  ../main.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib $(COMPARISON_BUILD)  --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1472/main.p1  ../main.c 
 	@-${MV} ${OBJECTDIR}/_ext/1472/main.d ${OBJECTDIR}/_ext/1472/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -126,7 +132,7 @@ ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1: ../../vscp_firmware/common/vscp_f
 	@${MKDIR} "${OBJECTDIR}/_ext/1935753226" 
 	@${RM} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1  ../../vscp_firmware/common/vscp_firmware.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib $(COMPARISON_BUILD)  --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1  ../../vscp_firmware/common/vscp_firmware.c 
 	@-${MV} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.d ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1935753226/vscp_firmware.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -143,13 +149,13 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.map  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     --rom=default,-7dc0-7fff --ram=default,-5f4-5ff,-f9c-f9c,-fd4-fd4,-fdb-fdf,-fe3-fe7,-feb-fef,-ffd-fff  -odist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.map  -D__DEBUG=1 --debugger=realice  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     --rom=default,-7dc0-7fff --ram=default,-5f4-5ff,-f9c-f9c,-fd4-fd4,-fdb-fdf,-fe3-fe7,-feb-fef,-ffd-fff  $(COMPARISON_BUILD)  -odist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	@${RM} dist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.hex 
 	
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.map  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0x800 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     -odist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.map  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,-asmfile,-speed,+space,+debug --addrqual=ignore --mode=pro -DDEBUG -P -N255 -I"." -I".." -I"../../vscp_firmware/pic/common" -I"../../vscp_firmware/common" --warn=9 --asmlist -DXPRJ_bejing_2580_debug=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,+file --codeoffset=0 --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,+plib --output=-mcof,+elf "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     $(COMPARISON_BUILD)  -odist/${CND_CONF}/${IMAGE_TYPE}/Bejing.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 endif
 

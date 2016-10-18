@@ -37,6 +37,7 @@
 #include "beijing.h"
 #include "version.h"
 
+
 #if defined(_18F2580) 
 
 #if defined(RELEASE)
@@ -879,6 +880,9 @@ void init_app_eeprom(void)
     // Debounce counter
     eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_DEBOUNCE_COUNT, 
                     DEBOUNCE_COUNT_DEFAULT );
+    
+    // Short pulse
+    eeprom_write( VSCP_EEPROM_END + REG0_BEIJING_SHORT_PULSE_TIME, SHORT_PULSE_DEFAULT );
 
     // * * * Decision Matrix * * *
     // All elements disabled.
@@ -1470,7 +1474,7 @@ uint8_t vscp_readAppReg(uint8_t reg)
         else if ( ( reg >= REG0_BEIJING_CH0_STATUS ) &&
                 ( reg <= REG0_BEIJING_CH9_STATUS ) ) {
 
-            switch (reg) {
+            switch ( reg ) {
 
                     // Channel 0 Status
                 case REG0_BEIJING_CH0_STATUS:
@@ -1919,8 +1923,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH0_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
@@ -1951,8 +1955,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH1_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
@@ -1983,8 +1987,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH2_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
@@ -2015,8 +2019,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH3_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
@@ -2047,8 +2051,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH4_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PROTECTION ) {
 
@@ -2079,8 +2083,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH5_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
 
@@ -2111,8 +2115,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH6_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
@@ -2143,8 +2147,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
                 
                 case REG0_BEIJING_CH7_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
@@ -2175,8 +2179,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
 
                 case REG0_BEIJING_CH8_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
@@ -2207,8 +2211,8 @@ uint8_t vscp_writeAppReg( uint8_t reg, uint8_t val )
                 
                 case REG0_BEIJING_CH9_OUTPUT_CTRL:
 
-                    eeprom_write( VSCP_EEPROM_END + REG0_COUNT + reg, val );
-                    rv = eeprom_read( VSCP_EEPROM_END + REG0_COUNT + reg );
+                    eeprom_write( VSCP_EEPROM_END + reg, val );
+                    rv = eeprom_read( VSCP_EEPROM_END + reg );
 
                     if ( val & OUTPUT_CTRL_PULSE ) {
                     
@@ -2545,7 +2549,7 @@ void SendInformationEvent( unsigned char idx,
 // The routine expects vscp_imsg to contain a valid incoming event
 //
 
-void doDM(void)
+void doDM( void )
 {
     unsigned char i;
     unsigned char dmflags;
@@ -3637,8 +3641,6 @@ void vscp_goBootloaderMode( uint8_t algorithm )
 
 void vscp_getMatrixInfo(char *pData)
 {
-    uint8_t i;
-
     pData[ 0 ] = DESCION_MATRIX_ROWS;  // Matrix is seven rows
     pData[ 1 ] = REG_DESCION_MATRIX;   // Matrix start offset
     pData[ 2 ] = 0;                    // Matrix start page
