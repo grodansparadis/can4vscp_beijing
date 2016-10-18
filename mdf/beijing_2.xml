@@ -3996,7 +3996,7 @@
 			</param>
 		</action>
         
-        <action code="0x06">				
+        <action code="0x08">				
       	<name lang="en">Send short pulse on I/O channel</name>
         	<description lang="en">
 			Send a short pulse on the I/O channel given by the argument. The argument is an integer 
