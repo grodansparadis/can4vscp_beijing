@@ -3305,7 +3305,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             else {
                 if ( 0 == CHANNEL0 ) bEvent = TRUE;
                 CHANNEL0 = 1;
-                shortpulse[ 1 ] = pulseTime;
+                shortpulse[ 0 ] = pulseTime;
             }
             break;
 
