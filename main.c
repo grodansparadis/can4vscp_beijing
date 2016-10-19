@@ -215,6 +215,81 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             STATUS_LED = 0;
             vscp_statuscnt = 0;
         }
+        
+        
+        ////////////////////////////////////////////////////////////////
+        //                    Short pulse logic
+        ////////////////////////////////////////////////////////////////
+        if (shortpulse[ 0 ]) {
+            shortpulse[ 0 ]--;
+            if (!shortpulse[ 0 ]) {
+                CHANNEL0 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 1 ]) {
+            shortpulse[ 1 ]--;
+            if (!shortpulse[ 1 ]) {
+                CHANNEL1 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 2 ]) {
+            shortpulse[ 2 ]--;
+            if (!shortpulse[ 2 ]) {
+                CHANNEL2 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 3 ]) {
+            shortpulse[ 3 ]--;
+            if (!shortpulse[ 3 ]) {
+                CHANNEL3 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 4 ]) {
+            shortpulse[ 4 ]--;
+            if (!shortpulse[ 4 ]) {
+                CHANNEL4 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 5 ]) {
+            shortpulse[ 5 ]--;
+            if (!shortpulse[ 5 ]) {
+                CHANNEL5 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 6 ]) {
+            shortpulse[ 6 ]--;
+            if (!shortpulse[ 6 ]) {
+                CHANNEL6 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 7 ]) {
+            shortpulse[ 7 ]--;
+            if (!shortpulse[ 7 ]) {
+                CHANNEL7 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 8 ]) {
+            shortpulse[ 8 ]--;
+            if (!shortpulse[ 8 ]) {
+                CHANNEL8 = 0; // Turn off
+            }
+        }
+
+        if (shortpulse[ 9 ]) {
+            shortpulse[ 9 ]--;
+            if (!shortpulse[ 9 ]) {
+                CHANNEL9 = 0; // Turn off
+            }
+        }
+        
 
         INTCONbits.TMR0IF = 0; // Clear Timer0 Interrupt Flag
 
@@ -310,13 +385,13 @@ void main()
                 //////////////////////////////////////////////////////////////
                 if ( measurement_clock_10ms >= 10 ) {
                     
+                    measurement_clock_10ms = 0;
+                    
                     uint16_t dir = 
                         ( (uint16_t)eeprom_read( VSCP_EEPROM_END +
                                         REG0_BEIJING_IO_DIRECTION_MSB ) << 8 ) +
                         (uint16_t)eeprom_read( VSCP_EEPROM_END +
                                         REG0_BEIJING_IO_DIRECTION_LSB );
-
-                    measurement_clock_10ms = 0;
 
                     if ( ( dir & ( 1 << current_channel_to_check ) ) &&     // Input))
                             ( eeprom_read( VSCP_EEPROM_END +                // debounce
@@ -443,78 +518,6 @@ void main()
                     current_channel_to_check++;
                     if ( current_channel_to_check > 9 ) current_channel_to_check = 0;
                     
-                    ////////////////////////////////////////////////////////////////
-                    //                    Short pulse logic
-                    ////////////////////////////////////////////////////////////////
-                    if ( shortpulse[ 0 ] ) {            
-                        shortpulse[ 0 ]--;
-                        if ( !shortpulse[ 0 ] ) {
-                            CHANNEL0 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 1 ] ) {            
-                        shortpulse[ 1 ]--;
-                        if ( !shortpulse[ 1 ] ) {
-                            CHANNEL1 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 2 ] ) {            
-                        shortpulse[ 2 ]--;
-                        if ( !shortpulse[ 2 ] ) {
-                            CHANNEL2 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 3 ] ) {            
-                        shortpulse[ 3 ]--;
-                        if ( !shortpulse[ 3 ] ) {
-                            CHANNEL3 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 4 ] ) {            
-                        shortpulse[ 4 ]--;
-                        if ( !shortpulse[ 4 ] ) {
-                            CHANNEL4 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 5 ] ) {            
-                        shortpulse[ 5 ]--;
-                        if ( !shortpulse[ 5 ] ) {
-                            CHANNEL5 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 6 ] ) {            
-                        shortpulse[ 6 ]--;
-                        if ( !shortpulse[ 6 ] ) {
-                            CHANNEL6 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 7 ] ) {            
-                        shortpulse[ 7 ]--;
-                        if ( !shortpulse[ 7 ] ) {
-                            CHANNEL7 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 8 ] ) {            
-                        shortpulse[ 8 ]--;
-                        if ( !shortpulse[ 8 ] ) {
-                            CHANNEL8 = 0;   // Turn off
-                        }
-                    }
-                    
-                    if ( shortpulse[ 9 ] ) {            
-                        shortpulse[ 9 ]--;
-                        if ( !shortpulse[ 9 ] ) {
-                            CHANNEL9 = 0;   // Turn off
-                        }
-                    }
                     
                 }
                 break;
