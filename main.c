@@ -3319,6 +3319,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL1 = 0;
             }
             else {
+                if ( 0 == CHANNEL1 ) bEvent = TRUE;
                 CHANNEL1 = 1;
                 shortpulse[ 1 ] = pulseTime;
             }
@@ -3331,6 +3332,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL2 = 0;
             }
             else {
+                if ( 0 == CHANNEL2 ) bEvent = TRUE;
                 CHANNEL2 = 1;
                 shortpulse[ 2 ] = pulseTime;
             }
@@ -3343,6 +3345,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL3 = 0;
             }
             else {
+                if ( 0 == CHANNEL3 ) bEvent = TRUE;
                 CHANNEL3 = 1;
                 shortpulse[ 3 ] = pulseTime;
             }
@@ -3355,6 +3358,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL4 = 0;
             }
             else {
+                if ( 0 == CHANNEL4 ) bEvent = TRUE;
                 CHANNEL4 = 1;
                 shortpulse[ 4 ] = pulseTime;
             }
@@ -3367,6 +3371,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL5 = 0;
             }
             else {
+                if ( 0 == CHANNEL5 ) bEvent = TRUE;
                 CHANNEL5 = 1;
                 shortpulse[ 5 ] = pulseTime;
             }
@@ -3379,6 +3384,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL6 = 0;
             }
             else {
+                if ( 0 == CHANNEL6 ) bEvent = TRUE;
                 CHANNEL6 = 1;
                 shortpulse[ 6 ] = pulseTime;
             }
@@ -3391,6 +3397,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL7 = 0;
             }
             else {
+                if ( 0 == CHANNEL7 ) bEvent = TRUE;
                 CHANNEL7 = 1;
                 shortpulse[ 7 ] = pulseTime;
             }
@@ -3403,6 +3410,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL8 = 0;
             }
             else {
+                if ( 0 == CHANNEL8 ) bEvent = TRUE;
                 CHANNEL8 = 1;
                 shortpulse[ 8 ] = pulseTime;
             }
@@ -3415,6 +3423,7 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
                 CHANNEL9 = 0;
             }
             else {
+                if ( 0 == CHANNEL9 ) bEvent = TRUE;
                 CHANNEL9 = 1;
                 shortpulse[ 9 ] = pulseTime;
             }
