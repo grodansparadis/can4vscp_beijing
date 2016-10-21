@@ -133,6 +133,9 @@ uint8_t debounce_cnt[ 10 ];                     // Debounce counter
 BOOL event_sent[ 10 ];                          // Event markers
 uint8_t current_channel_to_check;               // I/O channel to check
 uint8_t shortpulse[ 10 ];                       // Short pulse timings (10ms))
+volatile uint8_t informOffEvent;                // if bit 7 set a CLASS1.CONTROL
+                                                // off event should be sent. idx
+                                                // is in low bits.
 
 uint16_t sendTimer; // Timer for CAN send
 uint8_t seconds;    // counter for seconds
@@ -224,6 +227,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 0 ]--;
             if (!shortpulse[ 0 ]) {
                 CHANNEL0 = 0; // Turn off
+                informOffEvent = 0x80;
             }
         }
 
@@ -231,6 +235,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 1 ]--;
             if (!shortpulse[ 1 ]) {
                 CHANNEL1 = 0; // Turn off
+                informOffEvent = 0x81;
             }
         }
 
@@ -238,6 +243,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 2 ]--;
             if (!shortpulse[ 2 ]) {
                 CHANNEL2 = 0; // Turn off
+                informOffEvent = 0x82;
             }
         }
 
@@ -245,6 +251,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 3 ]--;
             if (!shortpulse[ 3 ]) {
                 CHANNEL3 = 0; // Turn off
+                informOffEvent = 0x83;
             }
         }
 
@@ -252,6 +259,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 4 ]--;
             if (!shortpulse[ 4 ]) {
                 CHANNEL4 = 0; // Turn off
+                informOffEvent = 0x84;
             }
         }
 
@@ -259,6 +267,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 5 ]--;
             if (!shortpulse[ 5 ]) {
                 CHANNEL5 = 0; // Turn off
+                informOffEvent = 0x85;
             }
         }
 
@@ -266,6 +275,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 6 ]--;
             if (!shortpulse[ 6 ]) {
                 CHANNEL6 = 0; // Turn off
+                informOffEvent = 0x86;
             }
         }
 
@@ -273,6 +283,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 7 ]--;
             if (!shortpulse[ 7 ]) {
                 CHANNEL7 = 0; // Turn off
+                informOffEvent = 0x87;
             }
         }
 
@@ -280,6 +291,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 8 ]--;
             if (!shortpulse[ 8 ]) {
                 CHANNEL8 = 0; // Turn off
+                informOffEvent = 0x88;
             }
         }
 
@@ -287,6 +299,7 @@ void interrupt low_priority  interrupt_at_low_vector( void )
             shortpulse[ 9 ]--;
             if (!shortpulse[ 9 ]) {
                 CHANNEL9 = 0; // Turn off
+                informOffEvent = 0x89;
             }
         }
         
@@ -378,6 +391,12 @@ void main()
                         doDM();
 					}
                     
+                }
+                
+                // Should off event be sent?
+                if ( informOffEvent & 0x80 ) {
+                    SendInformationEvent( informOffEvent & 0x0f, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                    informOffEvent = 0;
                 }
                 
                 ///////////////////////////////////////////////////////////////
@@ -3302,8 +3321,10 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 0:      
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL0 = 1; 
+                CHANNEL0 = 1;
+                SendInformationEvent( 0, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL0 = 0;
+                SendInformationEvent( 0, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL0 ) bEvent = TRUE;
@@ -3316,7 +3337,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL1 = 1; 
+                SendInformationEvent( 1, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL1 = 0;
+                SendInformationEvent( 1, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL1 ) bEvent = TRUE;
@@ -3329,7 +3352,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL2 = 1; 
+                SendInformationEvent( 2, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL2 = 0;
+                SendInformationEvent( 2, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL2 ) bEvent = TRUE;
@@ -3342,7 +3367,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL3 = 1; 
+                SendInformationEvent( 3, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL3 = 0;
+                SendInformationEvent( 3, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL3 ) bEvent = TRUE;
@@ -3355,7 +3382,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL4 = 1; 
+                SendInformationEvent( 4, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL4 = 0;
+                SendInformationEvent( 4, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL4 ) bEvent = TRUE;
@@ -3367,8 +3396,10 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 5:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL5 = 1; 
+                CHANNEL5 = 1;
+                SendInformationEvent( 5, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL5 = 0;
+                SendInformationEvent( 5, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL5 ) bEvent = TRUE;
@@ -3381,7 +3412,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL6 = 1; 
+                SendInformationEvent( 6, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL6 = 0;
+                SendInformationEvent( 6, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL6 ) bEvent = TRUE;
@@ -3393,8 +3426,10 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 7:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL7 = 1; 
+                CHANNEL7 = 1;
+                SendInformationEvent( 7, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL7 = 0;
+                SendInformationEvent( 7, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL7 ) bEvent = TRUE;
@@ -3406,8 +3441,10 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 8:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL8 = 1; 
+                CHANNEL8 = 1;
+                SendInformationEvent( 8, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL8 = 0;
+                SendInformationEvent( 8, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL8 ) bEvent = TRUE;
@@ -3420,7 +3457,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL9 = 1; 
+                SendInformationEvent( 9, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
                 CHANNEL9 = 0;
+                SendInformationEvent( 9, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
             }
             else {
                 if ( 0 == CHANNEL9 ) bEvent = TRUE;
