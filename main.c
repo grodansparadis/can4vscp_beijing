@@ -2657,31 +2657,31 @@ void doDM( void )
                     case BEIJING_ACTION_NOOP:
                         break;
                         
-                    case BEIJING_ACTION_SET: // Enable Channels in arg. bit arry
+                    case BEIJING_ACTION_SET:        // Enable Channels in arg. bit arry
                         doActionOn( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                             REG0_COUNT + REG1_COUNT + 
                                                             REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
 
-                    case BEIJING_ACTION_CLR: // Disable Channels in arg. bitarry
+                    case BEIJING_ACTION_CLR:        // Disable Channels in arg. bitarry
                         doActionOff( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                             REG0_COUNT + REG1_COUNT + 
                                                             REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
 
-                    case BEIJING_ACTION_PULSEON: // Pulse Channels in arg. bitarry, zone, subzone
+                    case BEIJING_ACTION_PULSEON:    // Pulse Channels in arg. bitarry, zone, subzone
                         doActionPulseOn( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
                         
-                    case BEIJING_ACTION_PULSEOFF: // Pulse Channels in arg. bitarry, zone, subzone
+                    case BEIJING_ACTION_PULSEOFF:   // Pulse Channels in arg. bitarry, zone, subzone
                         doActionPulseOff( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;    
 
-                    case BEIJING_ACTION_STATUS: // Send status for all Channels
+                    case BEIJING_ACTION_STATUS:     // Send status for all Channels
                         doActionStatus( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
@@ -2693,16 +2693,21 @@ void doDM( void )
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;    
 
-                    case BEIJING_ACTION_TOGGLE: // Toggle Channels
+                    case BEIJING_ACTION_TOGGLE:     // Toggle Channels
                         doActionToggle( dmflags, eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
                                                                 REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
                         break;
                         
                     case BEIJING_ACTION_SHORTPULSE: // Short pulse on Channels
-                        doActionShortPulse( dmflags, eeprom_read( VSCP_EEPROM_END + 
+                        {
+                            uint8_t param = eeprom_read( VSCP_EEPROM_END + 
                                                                 REG0_COUNT + REG1_COUNT + 
-                                                                REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM ) );
+                                                                REG_DESCION_MATRIX + (8 * i) + VSCP_DM_POS_ACTIONPARAM );
+                            if ( vscp_imsg.data[ 0 ] ==  eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_SUBZONE + param ) ) {
+                                doActionShortPulse( dmflags, param );
+                            }
+                        }
                         break;    
 
                 } // case
