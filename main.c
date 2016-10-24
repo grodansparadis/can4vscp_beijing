@@ -40,13 +40,14 @@
 
 #if defined(_18F2580) 
 
+
 #if defined(RELEASE)
 
 #pragma config WDT = ON, WDTPS = 128
 #pragma config OSC = HSPLL
 #pragma config BOREN = BOACTIVE
 #pragma config STVREN = ON
-#pragma config BORV = 0			// 4.6V
+#pragma config BORV = 3
 #pragma config LVP = ON
 #pragma config CPB = ON
 #pragma config BBSIZ = 2048
@@ -66,7 +67,7 @@
 #pragma config PWRT = ON
 #pragma config BOREN = BOACTIVE
 #pragma config STVREN = ON
-#pragma config BORV = 0			// 4.6V
+#pragma config BORV = 3
 #pragma config LVP = OFF
 #pragma config CPB = OFF
 #pragma config WRTD  = OFF
@@ -96,7 +97,7 @@
 // CONFIG2H
 #pragma config WDTPS = 1048576  // Watchdog prescaler
 #pragma config BOREN = SBORDIS  // Brown out enabled
-#pragma config BORV  = 0        // 3V
+#pragma config BORV  = 0        // 3.0V
 
 // CONFIG3H
 #pragma config CANMX = PORTB    // ECAN TX and RX pins are located on RB2 and RB3, respectively.
@@ -112,6 +113,7 @@
 #else
 #pragma config WDTEN = ON       // WDT enabled in hardware; 
 #endif
+
 
 #endif
 
@@ -395,7 +397,9 @@ void main()
                 
                 // Should off event be sent?
                 if ( informOffEvent & 0x80 ) {
-                    SendInformationEvent( informOffEvent & 0x0f, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                    if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + (informOffEvent & 0x0f) ) & OUTPUT_CTRL_OFFEVENT ) {
+                        SendInformationEvent( informOffEvent & 0x0f, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                    }
                     informOffEvent = 0;
                 }
                 
@@ -675,8 +679,9 @@ void init()
     // RA3/AN3  - output
     // RA4 input (VCAP for PIC18F26K80))
     // RA5/AN4  - output
-    TRISA = 0b00010000;
     PORTA = 0x00;  // Default off
+    TRISA = 0b00010000;
+    
 
     // PortB
 
@@ -688,8 +693,9 @@ void init()
     // RB5/LVPGM    - Not used = output.
     // RB&/PGC      - Not used = output.
     // RB7/PGD      - Not used = output.
-    TRISB = 0b00001000;
     PORTB = 0x00;  // Default off
+    TRISB = 0b00001000;
+    
 
     // RC0 - Input  - Init. button
     // RC1 - Output - Status LED - Default off
@@ -699,8 +705,9 @@ void init()
     // RC5 - Output - Channel 4.
     // RC6 - Output - Channel 5.
     // RC7 - Output - Channel 6.
-    TRISC = 0b00000001;
     PORTC = 0x00;   // Default off
+    TRISC = 0b00000001;
+    
 
 /*
     // Sensor 0 timer
@@ -3327,9 +3334,13 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL0 = 1;
-                SendInformationEvent( 0, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 0, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL0 = 0;
-                SendInformationEvent( 0, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 0 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 0, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL0 ) bEvent = TRUE;
@@ -3342,9 +3353,13 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL1 = 1; 
-                SendInformationEvent( 1, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 1, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL1 = 0;
-                SendInformationEvent( 1, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 1 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 1, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL1 ) bEvent = TRUE;
@@ -3356,10 +3371,14 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 2:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL2 = 1; 
-                SendInformationEvent( 2, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                CHANNEL2 = 1;
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 2, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL2 = 0;
-                SendInformationEvent( 2, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 2 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 2, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL2 ) bEvent = TRUE;
@@ -3371,10 +3390,14 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 3:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL3 = 1; 
-                SendInformationEvent( 3, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                CHANNEL3 = 1;
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 3, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL3 = 0;
-                SendInformationEvent( 3, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 3 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 3, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL3 ) bEvent = TRUE;
@@ -3386,10 +3409,14 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 4:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL4 = 1; 
-                SendInformationEvent( 4, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                CHANNEL4 = 1;
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 4, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL4 = 0;
-                SendInformationEvent( 4, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 4 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 4, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL4 ) bEvent = TRUE;
@@ -3402,9 +3429,13 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL5 = 1;
-                SendInformationEvent( 5, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 5, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL5 = 0;
-                SendInformationEvent( 5, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 5 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 5, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL5 ) bEvent = TRUE;
@@ -3417,9 +3448,13 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL6 = 1; 
-                SendInformationEvent( 6, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 6, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL6 = 0;
-                SendInformationEvent( 6, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 6 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 6, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL6 ) bEvent = TRUE;
@@ -3432,9 +3467,13 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL7 = 1;
-                SendInformationEvent( 7, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 7, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL7 = 0;
-                SendInformationEvent( 7, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 7 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 7, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL7 ) bEvent = TRUE;
@@ -3447,9 +3486,13 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
                 CHANNEL8 = 1;
-                SendInformationEvent( 8, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 8, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL8 = 0;
-                SendInformationEvent( 8, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 8 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 8, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL8 ) bEvent = TRUE;
@@ -3461,10 +3504,14 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
         case 9:
             if ( 0 == pulseTime ) {
                 // Do fastest possible toggle
-                CHANNEL9 = 1; 
-                SendInformationEvent( 9, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                CHANNEL9 = 1;
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+                    SendInformationEvent( 9, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+                }
                 CHANNEL9 = 0;
-                SendInformationEvent( 9, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + 9 ) & OUTPUT_CTRL_OFFEVENT ) {
+                    SendInformationEvent( 9, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_OFF );
+                }
             }
             else {
                 if ( 0 == CHANNEL9 ) bEvent = TRUE;
@@ -3477,7 +3524,9 @@ void doActionShortPulse( unsigned char dmflags, unsigned char arg )
     
     // Should on event be sent?
     if ( bEvent && ( ctrlreg & OUTPUT_CTRL_ONEVENT ) ) {
-        SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+        if ( eeprom_read( VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + arg ) & OUTPUT_CTRL_ONEVENT ) {
+            SendInformationEvent( arg, VSCP_CLASS1_INFORMATION, VSCP_TYPE_INFORMATION_ON );
+        }
     }
 
 }
