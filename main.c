@@ -805,7 +805,7 @@ void init_app_ram( void )
         }
 
         // Init. protection timers
-        if ( eeprom_read(VSCP_EEPROM_END + REG0_BEIJING_CH5_OUTPUT_CTRL + i ) & OUTPUT_CTRL_PROTECTION) {
+        if ( eeprom_read(VSCP_EEPROM_END + REG0_BEIJING_CH0_OUTPUT_CTRL + i ) & OUTPUT_CTRL_PROTECTION) {
             channel_protection_timer[ i ] =
                 eeprom_read(VSCP_EEPROM_END + REG0_COUNT + REG1_BEIJING_CH0_TIMING_PULSE_MSB + i ) * 256 +
                 eeprom_read(VSCP_EEPROM_END + REG0_COUNT + REG1_BEIJING_CH0_TIMING_PULSE_LSB + i );

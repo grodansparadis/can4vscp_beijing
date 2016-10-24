@@ -476,7 +476,7 @@
         <targetDevice>PIC18F26K80</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD3PlatformTool</platformTool>
+        <platformTool>RealICEPlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>1.21</languageToolchainVersion>
         <platform>2</platform>
@@ -615,6 +615,9 @@
         <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="voltagevalue" value="5.0"/>
       </ICD3PlatformTool>
+      <RealICEPlatformTool>
+        <property key="firmware.download.all" value="false"/>
+      </RealICEPlatformTool>
       <XC8-config-global>
         <property key="advanced-elf" value="true"/>
         <property key="output-file-format" value="-mcof,+elf"/>
