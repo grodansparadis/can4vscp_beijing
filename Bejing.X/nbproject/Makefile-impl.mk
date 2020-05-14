@@ -27,7 +27,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=Bejing.X
 
 # Active Configuration
-DEFAULTCONF=bejing_2580_debug
+DEFAULTCONF=bejing_26k80_relocated
 CONF=${DEFAULTCONF}
 
 # All Configurations

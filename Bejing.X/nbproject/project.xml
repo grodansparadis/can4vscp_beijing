@@ -12,6 +12,32 @@
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>..</sourceRootElem>
+                <sourceRootElem>../../vscp-firmware/common</sourceRootElem>
+                <sourceRootElem>../../vscp-firmware/pic/common</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>bejing_2580_debug</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>bejing_2580_relocated</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>bejing_26k80_debug</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>bejing_26k80_relocated</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
         </data>
     </configuration>
 </project>

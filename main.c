@@ -340,7 +340,8 @@ void main()
 
         ClrWdt();   // Feed the dog
 
-        if ( ( vscp_initbtncnt > 250 ) && ( VSCP_STATE_INIT != vscp_node_state ) ) {
+        if ( ( vscp_initbtncnt > 2500 ) && 
+             ( VSCP_STATE_INIT != vscp_node_state ) ) {
 
             // Init. button pressed
             vscp_initledfunc = VSCP_LED_BLINK1;
@@ -559,6 +560,7 @@ void main()
         if ( measurement_clock_sec > 1000 ) {
 
             measurement_clock_sec = 0;
+            seconds++;
  
             // Do VSCP one second jobs
             vscp_doOneSecondWork();
