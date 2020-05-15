@@ -5,7 +5,7 @@
 	<name>Beijing IO controller</name>
 	<model>B</model>
 	<version>9</version>
-	<changed>2016-10-17</changed>
+	<changed>2020-05-14</changed>
 	<description lang="en">
 		With this VSCP module it is possible to control up to ten digital IO
 		channels where each can be configured as an input or an output.
@@ -17,7 +17,7 @@
 		<address>
 			<street>Brattbergavägen 17</street>
 			<city>Los</city>
-			<postcode>82050</postcode>
+			<postcode>82770</postcode>
 			<country>Sweden</country>
 		</address>
 		<telephone>
@@ -51,6 +51,32 @@
 	</picture>
 	
 	<!-- Firmware for the device -->
+	<files>
+	
+	<firmware target="pic18f2580" 
+		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.6/Bejing_2580_1_1_6.hex"
+		format="intelhex8" 
+		date="2020-05-14" 
+		version_major="1" 
+		version_minor="1" 
+		version_subminor="6">
+		<description lang="en">
+		Firmware for the Beijing I/O module with for use with the VSCP Bootloader wizard.
+               </description>
+        </firmware>
+        
+        <firmware target="pic18f26K80" 
+		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.6/Bejing_26K80.1_1_6.hex"
+		format="intelhex8" 
+		date="2020-05-14" 
+		version_major="1" 
+		version_minor="1" 
+		version_subminor="6">
+		<description lang="en">
+		Firmware for the Beijing I/O module with for use with the VSCP Bootloader wizard.
+               </description>
+        </firmware>
+	
 	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
 		format="intelhex8"
 		date="2015-11-15"
@@ -72,6 +98,7 @@
 		Firmware version 1.0.0 for the Beijing module.
 		</description> 
 	</firmware>
+	</files>
     
     <firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
 		format="intelhex8"

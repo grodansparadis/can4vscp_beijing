@@ -15,7 +15,7 @@
       <itemPath>../vscp_compiler.h</itemPath>
       <itemPath>../vscp_projdefs.h</itemPath>
       <itemPath>../../vscp_firmware/common/vscp_type.h</itemPath>
-      <itemPath>../../vscp-firmware/common/vscp_firmware.h</itemPath>
+      <itemPath>../../vscp-firmware/common/vscp-firmware.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,7 +26,7 @@
                    projectFiles="true">
       <itemPath>../ECAN.c</itemPath>
       <itemPath>../main.c</itemPath>
-      <itemPath>../../vscp-firmware/common/vscp_firmware.c</itemPath>
+      <itemPath>../../vscp-firmware/common/vscp-firmware.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
