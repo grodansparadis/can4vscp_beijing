@@ -5,7 +5,7 @@
  * http://www.vscp.org
  *
  * Copyright (C) 1995-2005 Ake Hedman, eurosource
- * Copyright (C) 1995-2013 Ake Hedman, Grodans Paradis AB
+ * Copyright (C) 1995-2020 Ake Hedman, Grodans Paradis AB
  *                          <akhe@grodansparadis.com>
  *
  *  This work is licensed under the Creative Common 
