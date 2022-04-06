@@ -172,6 +172,7 @@
 	<files>
 	
 	<firmware target="pic18f2580" 
+		targetcode="2"
 		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.6/Bejing_2580_1_1_6.hex"
 		format="intelhex8" 
 		date="2020-05-14" 
@@ -184,6 +185,7 @@
         </firmware>
         
         <firmware target="pic18f26K80" 
+        	targetcode="2"
 		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.6/Bejing_26K80.1_1_6.hex"
 		format="intelhex8" 
 		date="2020-05-14" 
@@ -195,7 +197,9 @@
                </description>
         </firmware>
 	
-	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
+	<firmware target="pic18f2580"
+		targetcode="1"
+		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
 		format="intelhex8"
 		date="2015-11-15"
 		version_major="1"
@@ -206,7 +210,9 @@
 		</description> 
 	</firmware>
 	
-	<firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.0.0/Bejing_1_0_0.hex" 
+	<firmware target="pic18f2580"
+		targetcode="1"
+		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.0.0/Bejing_1_0_0.hex" 
 		format="intelhex8"
 		date="2015-07-07"
 		version_major="1"
@@ -218,7 +224,9 @@
 	</firmware>
 	</files>
     
-    <firmware path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
+    <firmware target="pic18f2580"
+    		targetcode="1"
+    		path="https://github.com/grodansparadis/can4vscp_beijing/releases/download/v1.1.0/Bejing_1_1_0.hex" 
 		format="intelhex8"
 		date="2015-11-15"
 		version_major="1"
