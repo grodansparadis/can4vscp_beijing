@@ -42,13 +42,131 @@
 		</web>					
 	</manufacturer>  
 	
+	<!-- Full documentation for the device -->
+	<manual path="http://www.grodansparadis.com/beijing/manual/doku.php?id=start" 	
+		lang="en"
+		format="html">
+    	<description lang="en" >
+		Full manual for the Beijing module.
+		</description>
+	</manual>
+	
 	<!-- Picture of device -->
-	<picture path="http://www.grodansparadis.com/beijing/images/beijing6.png" 
-		format="jpg" >
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing1.png" 
+		format="png" >
 		<description lang="en" >
-		Picture of Paris Beijing module.
+		Picture 1 of Beijing module.
 		</description>
 	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing2.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 2 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing3.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 3 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing4.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 4 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing5.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 5 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing6.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 6 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing7.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 7 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing8.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 8 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing9.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 9 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing10.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 10 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing11.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 11 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing11_connectors.png" 
+		format="png" >
+		<description lang="en" >
+		Picture of Beijing module connectors.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing12.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 12 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing13.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 13 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing14.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 14 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing15.png" 
+		format="png" >
+		<description lang="en" >
+		Picture 15 of Beijing module.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing15_terminal_block.png" 
+		format="png" >
+		<description lang="en" >
+		Picture of Beijing module terminal block.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing_sch_rev_B.png" 
+		format="png" >
+		<description lang="en" >
+		Beijing schema for reversion B.
+		</description>
+	</picture>
+	<picture path="http://www.grodansparadis.com/beijing/images/beijing_brd_rev_B.png" 
+		format="png" >
+		<description lang="en" >
+		Beijing PCB board layout for reversion B.
+		</description>
+	</picture>
+	
 	
 	<!-- Firmware for the device -->
 	<files>
@@ -110,15 +228,7 @@
 		Firmware version 1.1.0 for the Beijing module.
 		</description> 
 	</firmware>
-
-	<!-- Full documentation for the device -->
-	<manual path="http://www.grodansparadis.com/beijing/manual/doku.php?id=start" 	
-		lang="en"
-		format="html">
-    	<description lang="en" >
-		Full manual for the Beijing module.
-		</description>
-	</manual>
+	
 	
 	<boot>
 		<algorithm>1</algorithm>
