@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generator="FeedCreator 1.8" -->
+<?xml-stylesheet href="https://www.grodansparadis.com/beijing/manual/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="https://www.grodansparadis.com/beijing/manual/feed.php">
+        <title>Beijing Manual</title>
+        <description></description>
+        <link>https://www.grodansparadis.com/beijing/manual/</link>
+        <image rdf:resource="https://www.grodansparadis.com/beijing/manual/lib/tpl/simple_sidebar/images/favicon.ico" />
+       <dc:date>2024-11-07T15:40:15+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?id=start&amp;rev=1589487566&amp;do=diff"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?id=registers&amp;rev=1476880482&amp;do=diff"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?id=decisionmatrix&amp;rev=1476277647&amp;do=diff"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?id=change_log_1&amp;rev=1454602325&amp;do=diff"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?id=recipes&amp;rev=1448015542&amp;do=diff"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=beijing_pulldown.jpg&amp;ns=&amp;rev=1448015475&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot8.png&amp;ns=&amp;rev=1447172826&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot7.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot4.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot6.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot5.png&amp;ns=&amp;rev=1447172824&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot3.png&amp;ns=&amp;rev=1447172823&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot2.png&amp;ns=&amp;rev=1447172822&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot1.png&amp;ns=&amp;rev=1447172823&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="https://www.grodansparadis.com/beijing/manual/lib/tpl/simple_sidebar/images/favicon.ico">
+        <title>Beijing Manual</title>
+        <link>https://www.grodansparadis.com/beijing/manual/</link>
+        <url>https://www.grodansparadis.com/beijing/manual/lib/tpl/simple_sidebar/images/favicon.ico</url>
+    </image>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?id=start&amp;rev=1589487566&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2020-05-14T22:19:26+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>start</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?id=start&amp;rev=1589487566&amp;do=diff</link>
+        <description>CAN4VSCP Beijing module
+
+Document reversion: 1.0.0  2020-05-14 
+
+Copyright © 2000-2015 Grodans Paradis AB, &lt;contact&gt;
+
+[ Beijing ]
+
+This documentation is for the Beijing module. The module is available for international purchase from the FrogShop.
+
+	*  Introduction
+	*  Getting Started
+	*  Hardware
+	*  CAN4VSCP cabling
+	*  Updating the firmware
+	*  Registers
+	*  Decision Matrix
+	*  faq
+
+Disclaimer: © 2011-2015 Grodans Paradis AB. All rights reserved. Grodans Paradis AB®, logo and combinations ther…</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?id=registers&amp;rev=1476880482&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2016-10-19T14:34:42+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>registers - [Misc. setup] </title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?id=registers&amp;rev=1476880482&amp;do=diff</link>
+        <description>Registers
+
+Page 0
+
+Zone/subzone info
+ Register  Page  Description   0    0   The zone this module belongs to   1    0   The sub zone this module belongs to   2    0   Sub zone for I/O channel 0   3    0   Sub zone for I/O channel 1   4    0   Sub zone for I/O channel 2</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?id=decisionmatrix&amp;rev=1476277647&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2016-10-12T15:07:27+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>decisionmatrix - [Decision Matrix] </title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?id=decisionmatrix&amp;rev=1476277647&amp;do=diff</link>
+        <description>Decision Matrix
+
+The full functionality of the decision matrix is explained in the specification. 
+
+Beijing have a decision matrix consisting of eight entries. This matrix can be used to control the I/O channels. Possible actions are listed in the table below.
+ Action  Action code</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?id=change_log_1&amp;rev=1454602325&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2016-02-04T17:12:05+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>change_log_1 - [Change Log for Beijing] </title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?id=change_log_1&amp;rev=1454602325&amp;do=diff</link>
+        <description>Change Log for Beijing
+
+For firmware changes see HISTORY 
+
+
+Documentation changes
+
+2015-06-16 AKHE - Started this change log.
+
+
+
+
+----------</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?id=recipes&amp;rev=1448015542&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-20T11:32:22+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>recipes</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?id=recipes&amp;rev=1448015542&amp;do=diff</link>
+        <description>Recipes
+
+Adding pull-ups/downs to Beijing
+
+Here is a great tip from a customer (Maarten Zanders in Belgium). His word below.
+
+
+
+Here’s a tip for if you use Beijing to process buttons. If you want to add stronger pull-ups (the PIC’s internal pullups are too weak to be used on physical -long- wire), there’s a component from “the old days” that can help you out:</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=beijing_pulldown.jpg&amp;ns=&amp;rev=1448015475&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-20T11:31:15+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>beijing_pulldown.jpg - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=beijing_pulldown.jpg&amp;ns=&amp;rev=1448015475&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=375&amp;t=1518106554&amp;amp;tok=b86a02&amp;amp;media=beijing_pulldown.jpg&quot; alt=&quot;beijing_pulldown.jpg&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot8.png&amp;ns=&amp;rev=1447172826&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:06+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot8.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot8.png&amp;ns=&amp;rev=1447172826&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=43ae1b&amp;amp;media=boot8.png&quot; alt=&quot;boot8.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot7.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:05+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot7.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot7.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=b35cb8&amp;amp;media=boot7.png&quot; alt=&quot;boot7.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot4.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:05+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot4.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot4.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=2045e7&amp;amp;media=boot4.png&quot; alt=&quot;boot4.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot6.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:05+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot6.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot6.png&amp;ns=&amp;rev=1447172825&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=e111a3&amp;amp;media=boot6.png&quot; alt=&quot;boot6.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot5.png&amp;ns=&amp;rev=1447172824&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:04+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot5.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot5.png&amp;ns=&amp;rev=1447172824&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=b9f414&amp;amp;media=boot5.png&quot; alt=&quot;boot5.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot3.png&amp;ns=&amp;rev=1447172823&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:03+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot3.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot3.png&amp;ns=&amp;rev=1447172823&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=f017c6&amp;amp;media=boot3.png&quot; alt=&quot;boot3.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot2.png&amp;ns=&amp;rev=1447172822&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:02+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot2.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot2.png&amp;ns=&amp;rev=1447172822&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=85e2f0&amp;amp;media=boot2.png&quot; alt=&quot;boot2.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://www.grodansparadis.com/beijing/manual/doku.php?image=boot1.png&amp;ns=&amp;rev=1447172823&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T17:27:03+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>boot1.png - created</title>
+        <link>https://www.grodansparadis.com/beijing/manual/doku.php?image=boot1.png&amp;ns=&amp;rev=1447172823&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://www.grodansparadis.com/beijing/manual/lib/exe/fetch.php?w=500&amp;h=299&amp;t=1518106553&amp;amp;tok=a7521d&amp;amp;media=boot1.png&quot; alt=&quot;boot1.png&quot; /&gt;</description>
+    </item>
+</rdf:RDF>

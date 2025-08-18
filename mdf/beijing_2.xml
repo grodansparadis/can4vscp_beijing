@@ -3,6 +3,7 @@
 <vscp>
 <module>
 	<name>Beijing IO controller</name>
+  <level>1</level>
 	<model>B</model>
 	<version>9</version>
 	<changed>2020-05-14</changed>

@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "beijing_rev_B")(type "KiCad")(uri "$(KIPRJMOD)/beijing_rev_B.pretty")(options "")(descr ""))
+)

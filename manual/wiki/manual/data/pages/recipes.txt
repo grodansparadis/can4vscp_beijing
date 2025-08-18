@@ -1,0 +1,25 @@
+====== Recipes ======
+
+===== Adding pull-ups/downs to Beijing =====
+
+Here is a great tip from a customer (Maarten Zanders in Belgium). His word below.
+
+{{::beijing_pulldown.jpg?300|}}
+
+Here’s a tip for if you use Beijing to process buttons. If you want to add stronger pull-ups (the PIC’s internal pullups are too weak to be used on physical -long- wire), there’s a component from “the old days” that can help you out: [[http://www.mouser.be/ProductDetail/Bourns/4610X-101-102LF/?qs=Yn6%252bBELvhqsuyIaggOGa%252bw%3d%3d|SIL resistor arrays]].
+
+Picture attached shows the resistor array in place. I think this position results in a pull down configuration.
+
+I only have the 10 pin version at hand (9 pull-ups) but 11pin versions also exist.
+
+
+\\ 
+---- 
+{{ :grodan_logo.png?100 |}}
+<html>
+<center>
+<b>Paradise of the Frog AB</b> Brattbergavägen 17, 820 50 LOS, SWEDEN<br />
+<b>email:</b> <a href="info@grodansparadis.com">info@paradiseofthefrog.com</a> <b>phone:</b> +46 (0)8 40011835<br />
+<b>web:</b> <a href="http://www.grodansparadis.com">http://www.paradiseofthefrog.com</a><br>
+</center>
+</html>

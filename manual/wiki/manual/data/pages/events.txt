@@ -1,0 +1,23 @@
+====== Events ======
+
+Here the events sent by the module is described.
+
+
+^ Event ^ Description ^
+|  [[http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_3_0x03_on|CLASS1.INFORMATION (20) Type=3, On]]  | An I/O channel has been set to its ON position. For an output this means that it has been set high. For a channel set as an input it means the channel input turned high. The channel is checked every second for a change.|
+|  [[http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_4_0x04_off|CLASS1.INFORMATION (20) Type=4, Off]]  | An I/O channel has been set to its OFF position. For an output this means that it has been set low. For a channel set as an input it means the channel input turned low. The channel is checked every second for a change. |
+|  [[http://www.vscp.org/docs/vscpspec/doku.php?id=class1.control#type_5_0x05_turnon|CLASS1.CONTROL (30) Type=5, TurnOn]]  | An I/O channel has been set to its ON position. The channel is checked every second for a change. This is only valid for a channel configured as input. |
+|  [[http://www.vscp.org/docs/vscpspec/doku.php?id=class1.control#type_6_0x06_turnoff|CLASS1.CONTROL (30) Type=6, TurnOff]]  | An I/O channel has been set to its OFF position. The channel is checked every second for a change. This is only valid for a channel configured as input. |
+|  [[http://www.vscp.org/docs/vscpspec/doku.php?id=class1.data#type_1_0x01_i_o_value|CLASS1.DATA (15) Type=1, I/O Value]]  | Input/Output data steam event sent on regular intervals if activated.\\ \\ **__Byte 0__**\\ **Bit 7** - Reserved.\\ **Bit 6** - Reserved.\\ **Bit 5** - Reserved.\\ **Bit 4** - Reserved.\\ **Bit 3** - Reserved.\\ **Bit 2** - Reserved.\\ **Bit 1** - Channel 9.\\ **Bit 0** - Channel 8.\\ \\ **__Byte 1__**\\ **Bit 7** - Channel 7.\\ **Bit 6** - Channel 6.\\ **Bit 5** - Channel 5.\\ **Bit 4** - Channel 4.\\ **Bit 3** - Channel 3.\\ **Bit 2** - Channel 2.\\ **Bit 1** - Channel 1.\\ **Bit 0** - Channel 0.\\  |
+|  [[http://www.vscp.org/docs/vscpspec/doku.php?id=class1.alarm&#type_2_0x02_alarm_occurred|CLASS1.ALARM (1) Type=1, Alarm occurred]]  | If an alarm is armed this event is sent when it occurs and the corresponding alarm bit is set in the alarm register.\\ \\ **Byte 0** - Channel 0-9\\ **Byte 1** - Zone for module.\\ **Byte 2** - Sub zone for channel or sub zone for module if channel sub zone is zero.\\  |
+
+\\ 
+---- 
+{{ :grodan_logo.png?100 |}}
+<html>
+<center>
+<b>Paradise of the Frog AB</b> Brattbergavägen 17, 820 50 LOS, SWEDEN<br />
+<b>email:</b> <a href="info@grodansparadis.com">info@paradiseofthefrog.com</a> <b>phone:</b> +46 (0)8 40011835<br />
+<b>web:</b> <a href="http://www.grodansparadis.com">http://www.paradiseofthefrog.com</a><br>
+</center>
+</html>

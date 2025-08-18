@@ -1,0 +1,24 @@
+
+
+====== Introduction ====== 
+
+{{ :beijing9.png?600 | Beijing }}
+
+
+Beijing is a module that have ten I/O locations that each can be set as input or output and among other things can be automatically pulsed or time protected in the sense that an output set to a state can automatically be rested after a configurable  protection time. It is possible to automatically monitor the inputs/outputs in several ways and each I/O channel can have an alarm associated with it. It is possible to set a debouncer for inputs so that proper decoding of a button press can be detected.
+
+The module comes with a GUID and is programmed with a bootloader and VSCP module functionality that works right out of the box.
+
+
+\\ 
+---- 
+{{ :grodan_logo.png?100 |}}
+<html>
+<center>
+<b>Paradise of the Frog AB</b> Brattbergavägen 17, 820 50 LOS, SWEDEN<br />
+<b>email:</b> <a href="info@grodansparadis.com">info@paradiseofthefrog.com</a> <b>phone:</b> +46 (0)8 40011835<br />
+<b>web:</b> <a href="http://www.grodansparadis.com">http://www.paradiseofthefrog.com</a><br>
+</center>
+</html>
+
+

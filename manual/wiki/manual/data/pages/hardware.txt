@@ -1,0 +1,144 @@
+====== Hardware ======
+
+=====  Most current information ===== 
+You can find the most current information about the Beijing module at \\ [[http://www.grodansparadis.com/beijing/beijing.html]]. On the site you can also find links to the latest firmware, drivers and schematics etc for its use. 
+
+=====  Installing the module ===== 
+
+Connect the module to the CAN4VSCP bus. The red LED on the module should
+light up indicating that the device is powered. If this is the first time you start
+up the module the green lamp next to the initializing button will start to blink.
+This means that the module is trying to negotiate a nickname address with the
+rest of the modules on the bus. When it found a free nickname the green LED
+will light steady. If the green led does not start to blink press the initialization button until it does. 
+
+Now your module is ready to use. 
+
+=====  The raw facts ===== 
+
+^ Parameter ^ Value ^
+| Current hardware reversion | B |
+| Current firmware version | 1.0.0 |
+| Supply voltage | +9-+28 VDC |
+| PCB Size | 42mm x 72mm |
+| Power requirements | 0.1W |
+| Communication: CAN4VSCP (CAN) | 125 kbps |
+
+===== Schematics =====
+
+{{:beijing-sch-rev-b.png?700|}}
+
+Schematics: Rev B (click picture to enlarge) 
+
+===== Components =====
+
+{{:beijing11_conectors.png?700|}}
+
+
+
+===== Connectors =====
+
+{{::beijing15_terminal_block.png?700|}}
+
+
+==== Terminal block ====
+
+
+
+
+^ Pin ^ Description ^ 
+| 1 | Ground (GND) | 
+| 2 | I/O 9 | 
+| 3 | I/O 8 | 
+| 4 | I/O 7 | 
+| 5 | I/O 6 | 
+| 6 | I/O 5 | 
+| 7 | I/O 4 | 
+| 8 | I/O 3 | 
+| 9 | I/O 2 | 
+| 10 | I/O 1 | 
+| 11 | I/O 0 | 
+| 12 | +5V (VCC) | 
+
+
+
+==== RJ-XX pin-out ====
+
+The unit is powered over the CAN4VSCP bus. The CAN4VSCP normally uses CAT5 or better twisted pair cable. You can use other cables if you which. The important thing is that the CANH and CANL signals uses a twisted cable. For connectors you can use RJ10, RJ11, RJ12 or the most common RJ45 connectors.
+
+Recommended connector is RJ-34/RJ-12 or RJ-11 with pin out as in this table.
+
+^ Pin ^ Use ^ RJ-11 ^ RJ-12 ^ RJ-45 ^ Patch Cable wire color T568B ^
+| 1 | +9-28V DC	| | | RJ-45 | Orange/White |
+| 2 1 | +9-28V DC | | RJ-12 | RJ-45 | Orange |
+| 3 2 1	| +9-28V DC | RJ-11 | RJ-12 | RJ-45 | Green/White |
+| 4 3 2	| CANH | RJ-11 | RJ-12 | RJ-45 | Blue |
+| 5 4 3	| CANL | RJ-11 | RJ-12 | RJ-45 | Blue/White |
+| 6 5 4	| GND | RJ-11 | RJ-12 | RJ-45 | Green |
+| 7 6 | GND | | RJ-12 | RJ-45 | Brown/White |
+| 8 | GND |  |  | RJ-45 | Brown |
+
+{{ :rj45.jpg?300 |RJ-11/12/45 pin-out}}
+**RJ-11/12/45 pin-out**
+
+:!: Always use a pair of twisted wires for CANH/CANL for best noise immunity. If the EIA/TIA 56B standard is used this condition will be satisfied. This is good as most Ethernet networks already is wired this way. 
+
+
+
+==== Inter module connector ====
+
+The inter module connector can be used to connect modules that are physically close to each other together in an easy way. Remember that the minimum length of a connection cable is 30 cm.
+
+^ Pin ^Description ^
+| 1 | Power from CAN4VSCP bus |
+| 2 | CANH |
+| 3 | CANL |
+| 4 | GND |
+
+\\ 
+
+{{ :odessa_inter_module_connector.png?600 |}} 
+
+
+==== PIC programming Connector ====
+
+^ pin  ^ Description  ^
+| 1 | Reset |
+| 2 | VCC |
+| 3 | GND |
+| 4 | PGD (RX of second serial port is here to) |
+| 5 | PGC (TX of second serial port is here to) |
+| 6 | LWPGM |
+
+\\ 
+
+{{::odessa_programming_connector.png?700|}}
+
+
+==== Functionality of the status LED ====
+
+The LED is used to indicate the status of the module. It will light steady when the firmware is running and will blink when the module is in the nickname discovery process. 
+
+^ LED ^ Description ^
+| Steady | No error. Firmware running. |
+| Blinking | Module is going through the [[http://www.vscp.org/docs/vscpspec/doku.php?id=vscp_level_i_specifics#address_or_nickname_assignment_for_level_i_nodes|nickname discovery process]]. |
+
+
+
+==== CAN ====
+
+CAN4VSCP is a CAN based bus running at 125 kbps with the addition of DC power. If you are interested in how CAN works you have a pretty good intro [[http://www.eeherald.com/section/design-guide/esmod9.html|here]].
+
+CAN is known to be robust and is there for used in vehicles and in the industry.
+
+
+\\ 
+---- 
+{{ :grodan_logo.png?100 |}}
+<html>
+<center>
+<b>Paradise of the Frog AB</b> Brattbergavägen 17, 820 50 LOS, SWEDEN<br />
+<b>email:</b> <a href="info@grodansparadis.com">info@paradiseofthefrog.com</a> <b>phone:</b> +46 (0)8 40011835<br />
+<b>web:</b> <a href="http://www.grodansparadis.com">http://www.paradiseofthefrog.com</a><br>
+</center>
+</html>
