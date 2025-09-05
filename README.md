@@ -24,7 +24,7 @@ This project is part of the <a href="http://www.vscp.org">VSCP (Very Simple Cont
   * [User Manual](https://grodansparadis.github.io/can4vscp_beijing/#)
 
 ### Schematic, PCB, 3D files etc
-  * [Schematics reversion B](https://raw.githubusercontent.com/grodansparadis/can4vscp_beijing/refs/heads/master/images/beijing_sch_rev_B.png)
+  * [Schematics reversion B](./docs/eagle/beijing_sch_rev_B.png)
  * Hardware design files is made in [KiCad](https://kicad.org) and can be found in the `kicad` directory. Valid from reversion B of the hardware.
    * Gerber files for PCB production can be found in the `gerber` directory (in the `kicad` folder).
  * Eagle schema and board files for reversion A and B can be found in the `eagle` directory. They are no longer actively updated.
