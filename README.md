@@ -1,6 +1,6 @@
 <h1>CAN4VSCP Beijing module</h1>
 
-<img src="docs/images/beijing3.png" /> 
+<img src="./docs/images/beijing3.png" /> 
 
 Beijing is a general I/O module that connects to a CAN4VSCP bus and can handle general I/O on ten channels that individually can be set as input or output. The module can be attached to a standard DIN Rail or be mounted directly on a wall (ordered as separate versions).
 
