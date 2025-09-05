@@ -1,12 +1,11 @@
 
 
-![VSCP logo](./images/logo_400.png)
+![VSCP logo](./docs/images/logo_400.png)
 
-# Manual for the Accra module
+# Manual for the Beijing module
 
 Scroll down to view docs.
 
 [Homepage](https://www.vscp.org)
 [Docs](https://www.vscp.org/#documentation)
-[Downloads](https://www.vscp.org/#download)
 [Get Started](./README)
