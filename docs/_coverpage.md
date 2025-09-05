@@ -1,6 +1,6 @@
 
 
-![VSCP logo](./docs/images/logo_100.png)
+![VSCP logo](./images/logo_100.png)
 
 # Manual for the Beijing module
 
